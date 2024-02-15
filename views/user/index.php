@@ -26,13 +26,14 @@
             <div>
                 <input type="submit" value="Registrarse" id="register-button">
             </div>
-            <?php 
+            
+            
+        </form>
+        <?php 
                 if ($_SESSION['register']=='failed') {
                     echo "<div><p class='alert'>{$_SESSION['error']}</p></div>";
                 }
             ?>
-            
-        </form>
     </div>
     <div id="login">
         <h1>¿Ya tienes cuenta?</h1>

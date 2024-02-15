@@ -163,6 +163,10 @@ a:hover{
 
 /*********** GENERALES ******************/
 
+.alert {
+    color: red;
+}
+
 .h2-block {
     grid-area: h2-block;
     padding: 20px;
