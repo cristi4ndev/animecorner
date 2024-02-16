@@ -1,6 +1,6 @@
 <?php
 class CategoryController {
     public function index(){
-        require_once 'views/layout/category.php';
+        require_once 'views/category/category.php';
     }
 }

@@ -1,3 +1,46 @@
+/*********** GENERALES ******************/
+
+.alert {
+    color: red;
+}
+
+.h2-block {
+    grid-area: h2-block;
+    padding: 20px;
+    letter-spacing: 10px;
+    text-align: center;
+    font-size: 3em;
+}
+strong {
+    color: #FF5757;
+}
+i {
+    color: #FF5757;
+    padding: 5px;
+
+}
+
+.flex-list {
+    overflow: auto;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    justify-content: space-between;
+    padding: 0px;
+    margin: 0px;
+    position: relative;
+
+}
+
+.flex-list :first-child {
+    padding-left: 0px;
+}
+
+.flex-list li {
+    padding: 15px;
+}
+
 * {
     padding: 0px;
     margin: 0px;
@@ -19,6 +62,7 @@ body {
         "footer";
     justify-content: center;
     margin: 0px auto;
+    color: black;
 }
 
 body>* {
@@ -30,7 +74,7 @@ body>* {
 a{
     text-decoration: none;
     transition: 500ms;
-    
+    color: inherit;
 }
 a:hover{
     
@@ -161,48 +205,6 @@ a:hover{
 
 
 
-/*********** GENERALES ******************/
-
-.alert {
-    color: red;
-}
-
-.h2-block {
-    grid-area: h2-block;
-    padding: 20px;
-    letter-spacing: 10px;
-    text-align: center;
-    font-size: 3em;
-}
-strong {
-    color: #FF5757;
-}
-i {
-    color: #FF5757;
-    padding: 5px;
-
-}
-
-.flex-list {
-    overflow: auto;
-    flex: 1;
-    display: flex;
-    flex-direction: row;
-    list-style: none;
-    justify-content: space-between;
-    padding: 0px;
-    margin: 0px;
-    position: relative;
-
-}
-
-.flex-list :first-child {
-    padding-left: 0px;
-}
-
-.flex-list li {
-    padding: 15px;
-}
 
 
 
@@ -343,6 +345,27 @@ i {
     display: grid;
     grid-template-columns: repeat(5,1fr);
 }
+
+/***************** ACCOUNT ************************/
+
+#account-content {
+
+    padding: 0px;
+    padding-top: 20px;
+    align-content: center;
+    min-height: 400px;
+    grid-area: content;
+    display: grid;
+    grid-template-areas: "sidebar main-content-account ";
+    grid-template-columns: minmax(200px, 1fr) 5fr;
+   
+
+}
+#main-content-account {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 /* SIDEBAR */
 
 #sidebar {
@@ -478,14 +501,6 @@ i {
     display: flex;
     flex-direction: column;
 }
-
-
-
-
-
-
-
-
 
 
 /* FOOTER */

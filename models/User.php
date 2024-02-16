@@ -15,8 +15,6 @@ class User {
     }
 
     
-
-    
     /**
      * Get the value of dni
      */
@@ -152,6 +150,18 @@ class User {
 			$result = true;
 		}
 		return $result;
-    }        
-}
+    }   
+    
+    public function login (){
+        $sql = "SELECT * from users where email='{$this->getEmail()}'";
+        $result = $this->db->query($sql);
+       
+        if ($result->num_rows==1) {
+            $user=$result->fetch_assoc();
+
+            return $user;
+        } else return false;
+    }
+    
+}   
 
