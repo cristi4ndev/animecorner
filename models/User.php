@@ -162,6 +162,20 @@ class User {
             return $user;
         } else return false;
     }
+
+    public function verifyPassword(){
+        $sql= "SELECT password FROM users where id = '{$this->getId()}'";
+        $result = $this->db->query($sql);
+        $truePass = $result->fetch_assoc();
+        return $truePass;
+    }
+
+    public function changePassword(){
+        $sql = "UPDATE users SET password = '{$this->getPassword()}'";
+        $result = $this->db->query($sql);
+        return $result;
+
+    }
     
 }   
 
