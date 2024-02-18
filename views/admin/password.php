@@ -1,12 +1,12 @@
 <div id="account-content">
-    <?= require_once 'views/user/category-block.php' ;
+    <?= require_once 'views/admin/category-block.php' ;
     
     ?>
 
 <div id="main-content-account">
         <div id="create-address" >
             <h3>Cambia tu contraseña</h3>
-            <form method="POST" action="<?= base_url ?>user/passwordChange" class="st2-form">
+            <form method="POST" action="<?= base_url ?>admin/passwordChange" class="st2-form">
                 <div class="st2-form-group">
                     <label for="old-password">Contreña Actual</label>
                     

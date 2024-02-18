@@ -18,11 +18,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
             // Mostrar el botón de guardar
             var guardar = formulario.querySelector('#update-address');
+            var editar = formulario.querySelector('.edit-address');
             if (guardar.style.display=='block') {
                 guardar.style.display = 'none';
+                editar.style.display = 'block';
+
+            
             }
             else {
                 guardar.style.display = 'block';
+                editar.style.display = 'none';
             }
             
         });

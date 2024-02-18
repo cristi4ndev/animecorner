@@ -1,26 +1,34 @@
 /*********** GENERALES ******************/
-button, .button{
+button,
+.button {
     cursor: pointer;
     transition-duration: 500ms;
-    
+
 }
-button{
+
+button {
     border-color: #FF5757;
     padding: 5px 10px 5px 10px;
     margin-top: 10px;
     color: #FF5757;
     border-radius: 10px;
 }
-.button:hover, button:hover {
+
+.button:hover,
+button:hover {
     color: #FF5757;
-    
+
 }
-#update-address{
+
+#update-address {
     display: none;
+    background-color: #8cff57;
+    
+    
 }
 
 .primary-button {
-    background-color:#FF5757;
+    background-color: #FF5757;
     border-radius: 20px;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -30,15 +38,18 @@ button{
     border: none;
     transition-duration: 500ms;
 }
-.primary-button:hover{
+
+.primary-button:hover {
     background-color: #383838;
     color: white;
 }
+
 .primary-button i {
     color: white;
 }
+
 .edit-button {
-    background-color:#ffc157;
+    background-color: #ffc157;
     border-radius: 20px;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -47,11 +58,13 @@ button{
     letter-spacing: 5px;
     border: none;
 }
+
 .edit-button i {
     color: white;
 }
+
 .delete-button {
-    background-color:#767676;
+    background-color: #767676;
     border-radius: 20px;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -60,6 +73,7 @@ button{
     letter-spacing: 5px;
     border: none;
 }
+
 .delete-button i {
     color: white;
 }
@@ -75,9 +89,11 @@ button{
     text-align: center;
     font-size: 3em;
 }
+
 strong {
     color: #FF5757;
 }
+
 i {
     color: #FF5757;
     padding: 5px;
@@ -111,42 +127,61 @@ i {
     letter-spacing: 5px;
 }
 
+a {
+    text-decoration: none;
+    transition: 500ms;
+    color: inherit;
+    cursor: pointer;
+}
+
+a:hover {
+
+    color: #FF5757;
+}
+
+/************************ LAYOUT ***********************/
+
 body {
     max-width: 2560px;
-    
+
     letter-spacing: 4px;
     font-family: "Avenir Next", Roboto, -apple-system,
         BlinkMacSystemFont, "Helvetica Neue", helvetica, segoe ui, arial,
         "PingFang SC", "miui", "Hiragino Sans GB", "Microsoft Yahei", sans-serif;
-    display: grid;
-    grid-template-areas:
-        "before-content"
-        "header"
-        "navbar"
-        "content"
-        "footer";
-    justify-content: center;
+
     margin: 0px auto;
     color: black;
 }
 
-body>* {
+#main-container {
     padding-left: 60px;
     padding-right: 60px;
-    
-}
 
-a{
-    text-decoration: none;
-    transition: 500ms;
-    color: inherit;
-}
-a:hover{
-    
-    color: #FF5757;
-}
+    height: 100%;
 
-#content {width: 100vw;}
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    
+
+
+
+}
+/*********CONTENT********/
+
+#content {
+
+    padding: 0px;
+    align-content: center;
+    
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    grid-area: content;
+    min-height: calc(100vh - 10vh - 164px);
+
+}
 
 /******HEADER ******/
 #before-content {
@@ -191,9 +226,10 @@ a:hover{
 
     min-height: 40px;
     grid-area: navbar;
-    
+
     top: 122px;
 }
+
 #navbar li:hover {
 
     text-decoration: underline #FF5757 3px;
@@ -219,6 +255,7 @@ a:hover{
     border: none;
     height: 100%;
     width: auto;
+    align-items: center;
 
     justify-content: space-between;
 
@@ -236,8 +273,9 @@ a:hover{
     background-color: #FF5757;
     border-radius: 50%;
     padding: 10px;
-    align-items: center;
+    display: flex;
     justify-content: center;
+    align-items: center;
     border: 2px solid white;
 }
 
@@ -254,24 +292,35 @@ a:hover{
 }
 
 .search-bar button {
+    margin: 0px;
     border: none;
-    height: 100%;
-    width: auto;
+    height: 20px;
+    width: 20px;
     background-color: transparent;
+    display: flex;
+    justify-content: center;
+    /* Centra horizontalmente el contenido */
+    align-items: center;
+
 
 
 }
 
 .search-bar i {
     color: white;
+    font-size: 20px;
+    letter-spacing: 0px;
+
 
 
 }
-/*********** ACCOINT ***********/
-#create-address{
+
+
+/*********** ACCOUNT ***********/
+#create-address {
     padding-top: 20px;
     display: flex;
-    flex-direction:column; 
+    flex-direction: column;
     justify-content: flex-start;
     align-self: flex-start;
     gap: 10px;
@@ -283,22 +332,10 @@ a:hover{
 
 
 
-/*********CONTENT********/
 
-#content {
 
-    padding: 0px;
-    align-content: center;
-   
-    grid-area: content;
-    min-height: calc(100vh - 10vh - 164px);
+#account {
 
-}
-
-#account 
-{
-    padding-left: 60px;
-    padding-right: 60px;
     display: flex;
     width: 100%;
     justify-content: center;
@@ -314,71 +351,63 @@ a:hover{
     align-items: center;
     flex-direction: column;
     gap: 20px;
-    height: 100%;
     
+
 }
 
 #login {
     display: flex;
     flex: 1;
+    height: 100%;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     background-color: #ff575778;
     gap: 20px;
-    height: 100%;
     
+
 }
 
 
-.st-form-group input{
+.st-form-group input {
     border-radius: 5px;
     width: 100%;
     padding-top: 10px;
     padding-bottom: 10px;
     text-indent: 10px;
-    
+
 }
-.st2-form-group input{
+
+.st2-form-group input {
     border-radius: 10px;
     width: 100%;
     padding-top: 5px;
     padding-bottom: 5px;
     text-indent: 10px;
-    
+
 }
 
 
-#register-button{
+#register-button {
     padding: 10px;
     color: white;
     background-color: black;
     width: 100%;
     border-radius: 20px;
+    margin-top: 10px;
 }
-#login-button{
+
+#login-button {
     padding: 10px;
     color: white;
     background-color: black;
     width: 100%;
     border-radius: 20px;
+    margin-top: 10px;
 }
-#content-home {
 
-    padding: 0px;
-    align-content: center;
-    min-height: 400px;
-    grid-area: content;
-    display: grid;
-    grid-template-areas:
-        "carrousel"
-        "homepage-grid"
-        "h2-block"
-        "products-list";
-        
-    grid-template-columns: 1fr;
 
-}
+
 /* MAIN CONTENT */
 #main-content {
     padding-top: 20px;
@@ -387,8 +416,6 @@ a:hover{
     padding-right: 60px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    
-
     justify-items: center;
     align-items: center;
     gap: 20px;
@@ -398,7 +425,7 @@ a:hover{
     width: 100%;
     height: auto;
     padding: 20px;
-  
+
 }
 
 .article-list-name {
@@ -421,12 +448,13 @@ a:hover{
     display: grid;
     grid-template-areas: "sidebar main-content-category ";
     grid-template-columns: minmax(200px, 1fr) 5fr;
-   
+
 
 }
+
 #main-content-category {
     display: grid;
-    grid-template-columns: repeat(5,1fr);
+    grid-template-columns: repeat(5, 1fr);
 }
 
 /***************** ACCOUNT ************************/
@@ -441,10 +469,11 @@ a:hover{
     display: grid;
     grid-template-areas: "sidebar main-content-account ";
     grid-template-columns: minmax(200px, 1fr) 5fr;
-    
-   
+
+
 
 }
+
 #main-content-account {
     display: flex;
     flex-direction: row;
@@ -454,9 +483,10 @@ a:hover{
     gap: 20px;
     margin-left: 30px;
     margin-right: 30px;
-    
+
 }
-.main-content-account:first-child{
+
+.main-content-account:first-child {
     align-items: flex-start;
     justify-content: flex-start;
 }
@@ -465,11 +495,12 @@ a:hover{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 10px;
-    
+
 }
 
-#address-list > div {
-    background-color: #ffffff; /* Fondo de respaldo en caso de que no se cargue el gradiente */
+#address-list>div {
+    background-color: #ffffff;
+    /* Fondo de respaldo en caso de que no se cargue el gradiente */
     padding: 20px;
     border-radius: 5px;
     border-top: 2px solid #FF5757;
@@ -478,13 +509,13 @@ a:hover{
     border-bottom: 2px solid #a74e4E;
 }
 
-#address-container h1{
+#address-container h1 {
     padding: 10px;
 }
 
 
 
-#address-container{
+#address-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -515,14 +546,32 @@ a:hover{
 
 }
 
+
+
+/*******HOME PAGE *********/
+#content-home {
+
+    padding: 0px;
+    align-content: center;
+    min-height: 400px;
+    grid-area: content;
+    display: grid;
+    grid-template-areas:
+        "carrousel"
+        "homepage-grid"
+        "h2-block"
+        "products-list";
+
+    grid-template-columns: 1fr;
+
+}
+
 #carrousel {
     grid-area: carrousel;
     background-color: white;
     width: 100%;
     height: auto;
 }
-
-/*******HOME PAGE *********/
 
 .homepage-grid {
     margin-top: 20px;
@@ -557,21 +606,24 @@ a:hover{
 .homepage-grid img {
     width: 100%;
     border-radius: 20px;
-    
+
     border-left: 5px solid #FF5757;
-    
+
 }
+
 .homepage-grid h3 {
     padding: 5px;
-    
+
 }
 
 #figuras {
     grid-area: figuras;
 }
+
 #goku {
     grid-area: goku;
 }
+
 #onepiece {
     grid-area: onepiece;
 }
@@ -603,22 +655,23 @@ a:hover{
 
 
 
-.product-listing  {
+.product-listing {
     padding-left: 60px;
     padding-right: 60px;
     display: flex;
     flex: auto;
     align-items: center;
     justify-content: center;
-    
-    
-       
+
+
+
 }
 
 .product-listing div {
     flex: auto;
-    
+
 }
+
 .article-list {
     width: 300px;
     align-items: center;
@@ -631,10 +684,10 @@ a:hover{
 /* FOOTER */
 
 #footer {
-    
+
     min-height: 10vh;
     background-color: rgb(32, 32, 32);
-    grid-area: footer;
+    margin-top: 20px;
     color: white;
     display: flex;
     justify-content: center;

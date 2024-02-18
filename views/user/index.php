@@ -24,7 +24,7 @@
                 <input type="text" name="dni" id="dni" required />
             </div>
             <div>
-                <input type="submit" value="Registrarse" id="register-button">
+                <input class="button" type="submit" value="Registrarse" id="register-button">
             </div>
 
 
@@ -49,7 +49,7 @@
                 <input type="password" name="password" id="password" required />
             </div>
             <div>
-                <input type="submit" value="Iniciar sesión" id="login-button">
+                <input class="button" type="submit" value="Iniciar sesión" id="login-button">
             </div>
 
         </form>

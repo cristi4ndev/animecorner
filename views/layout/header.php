@@ -1,11 +1,11 @@
-
+<div id="main-container">
 <?php require_once 'views/layout/before.php'; ?>
 <header id="header">
         <a href="<?=base_url?>"><img id="logo" src="<?=base_url?>/uploads/images/animecornerlogo.png"></a>
         <div class="search-bar">
             <form>
                 <div><input type="search" placeholder="Realiza tu búsqueda..."></div>
-                <div><button><i class="fas fa-search"></i></button> </div>
+                <div><button><i class="fa-solid fa-magnifying-glass"></i></button> </div>
             </form>
         </div>
         <div id="user-panel">
