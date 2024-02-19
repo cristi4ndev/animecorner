@@ -1,4 +1,50 @@
 /*********** GENERALES ******************/
+
+.table-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 20px;
+    align-self: flex-start;
+}
+
+.table-headings {
+    display: flex;
+    font-weight: 600;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+}
+
+.table-heading {
+    width: 100px;
+    flex: 1;
+}
+.table-heading:first-child{
+    width: 50px;
+    flex: auto;
+}
+.table-rows {
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    border-top: 1px solid black;
+    padding-top: 15px;
+}
+.table-cell:first-child {
+    width: 50px;
+    flex: auto;
+}
+.table-cell {
+    width: 100px;
+    flex: 1;
+}
+
+
 button,
 .button {
     cursor: pointer;
@@ -23,8 +69,8 @@ button:hover {
 #update-address {
     display: none;
     background-color: #8cff57;
-    
-    
+
+
 }
 
 .primary-button {
@@ -97,6 +143,7 @@ strong {
 i {
     color: #FF5757;
     padding: 5px;
+    letter-spacing: 0px;
 
 }
 
@@ -122,8 +169,7 @@ i {
 }
 
 * {
-    padding: 0px;
-    margin: 0px;
+    
     letter-spacing: 5px;
 }
 
@@ -149,36 +195,35 @@ body {
         BlinkMacSystemFont, "Helvetica Neue", helvetica, segoe ui, arial,
         "PingFang SC", "miui", "Hiragino Sans GB", "Microsoft Yahei", sans-serif;
 
-    margin: 0px auto;
+    
     color: black;
+    height: 100%;
 }
 
 #main-container {
     padding-left: 60px;
-    padding-right: 60px;
-
-    height: 100%;
-
+    padding-right: 60px;   
+    min-height: 100%;
     display: flex;
     flex-direction: column;
-
     justify-content: center;
-    
+
 
 
 
 }
+
 /*********CONTENT********/
 
 #content {
 
     padding: 0px;
     align-content: center;
-    
+    margin-top: 20px;
     justify-content: center;
     align-items: center;
     height: 100%;
-    grid-area: content;
+    
     min-height: calc(100vh - 10vh - 164px);
 
 }
@@ -188,7 +233,7 @@ body {
     background-color: #FF5757;
     color: rgb(255, 255, 255);
     letter-spacing: 5px;
-    padding: 10px;
+    
     grid-area: before-content;
     text-align: center;
     font-weight: bold;
@@ -227,7 +272,7 @@ body {
     min-height: 40px;
     grid-area: navbar;
 
-    top: 122px;
+    
 }
 
 #navbar li:hover {
@@ -235,6 +280,27 @@ body {
     text-decoration: underline #FF5757 3px;
     text-underline-position: under;
     transition-duration: 300ms;
+}
+
+#categories-nav-list{
+    justify-content: space-around;
+     align-items: center;
+}
+
+#sagas-nav-list {
+    background-color: #ffffff;
+    color: #3f3f3f;
+    border-top: 2px solid #FF5757;
+    border-bottom: 2px solid #FF5757;
+    line-height: 0px;
+    
+    font-size: 12px;
+}
+#sagas {
+    background-color: #FF5757;
+    color: white;
+    text-indent: 10px;
+    font-weight: 600;
 }
 
 #logo {
@@ -329,11 +395,6 @@ body {
 }
 
 
-
-
-
-
-
 #account {
 
     display: flex;
@@ -344,27 +405,27 @@ body {
 }
 
 #register {
-    padding-top: 60px;
+    
     display: flex;
     flex: 1;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     gap: 20px;
-    
+
 
 }
 
 #login {
     display: flex;
     flex: 1;
-    height: 100%;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: #ff575778;
     gap: 20px;
+    background-color: #ff575778;
     
+
 
 }
 
@@ -413,7 +474,7 @@ body {
     padding-top: 20px;
     min-height: 400px;
     grid-area: main-content;
-    padding-right: 60px;
+    
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     justify-items: center;
@@ -525,10 +586,13 @@ body {
 /* SIDEBAR */
 
 #sidebar {
-    padding-top: 20px;
+    
     min-height: 400px;
     grid-area: sidebar;
-    padding-left: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: flex-start;
     border-right: 10px solid #FF5757;
     border-radius: 20px;
 
@@ -538,11 +602,18 @@ body {
 #category-block {
     position: sticky;
     top: 20px;
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
+    padding: 0px;
+    justify-content: flex-start;
 }
 
 #category-block li {
-    padding: 15px;
+    padding-bottom: 20px;
     list-style: none;
+    flex: auto;
+    
 
 }
 
@@ -656,8 +727,7 @@ body {
 
 
 .product-listing {
-    padding-left: 60px;
-    padding-right: 60px;
+    
     display: flex;
     flex: auto;
     align-items: center;

@@ -1,5 +1,5 @@
 <div id="account-content">
-    <?= require_once 'views/admin/category-block.php' ;
+    <?php require_once 'views/admin/category-block.php' ;
     
     ?>
 

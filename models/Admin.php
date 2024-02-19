@@ -173,11 +173,27 @@ class Admin extends User {
     }
 
     public function changePassword(){
-        $sql = "UPDATE users SET password = '{$this->getPassword()}'";
+        $sql = "UPDATE users SET password = '{$this->getPassword()}' WHERE id='{$this->getId()}'";
         $result = $this->db->query($sql);
         return $result;
 
     }
+
+    public function getUsers(){
+        $sql = "SELECT * FROM users WHERE NOT id='{$this->getId()}'";
+        $result = $this->db->query($sql);
+       
+        if ($result && $result->num_rows > 0) {
+            $users = array();
+            while ($row = $result->fetch_assoc()) {
+                $users[] = $row;
+            }
+            return $users;
+        } else {
+            return false;
+        }
+    }
+    
     
 }   
 

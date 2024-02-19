@@ -1,5 +1,5 @@
 <?php
-require_once 'utils/Utils.php';
+require_once 'helpers/Utils.php';
 require_once 'models/Admin.php';
 require_once 'config/parameters.php';
 class AdminController
@@ -7,7 +7,7 @@ class AdminController
     public function index()
     {   
 
-        if (isset($_SESSION['logged']) && $_SESSION['logged'] == true) {
+        if (isset($_SESSION['logged']) && $_SESSION['logged'] == true && $_SESSION['user']['role']=='admin') {
             header("Location: " . base_url . "admin/summary");
         }
 
@@ -37,11 +37,11 @@ class AdminController
         $adminTryingToLog->setEmail($_POST['email']);
         try {
             $admin = $adminTryingToLog->login();
+          
 
             if ($admin != false) {
-                $pass_verify = ($_POST['password']== $admin['password']);
-
-                if ($pass_verify) {
+                
+                if ($_POST['password'] == $admin['password']) {
 
                     $_SESSION['user'] = $admin;
                     $_SESSION['logged'] = true;
@@ -84,8 +84,9 @@ class AdminController
     }
     public function password()
     {
-        
         require 'views/admin/password.php';
+        Utils::deleteSession('error');
+        Utils::deleteSession('response');
     }
     public function passwordChange()
     {
@@ -109,15 +110,14 @@ class AdminController
                 $_SESSION['error'] = "Las contraseñas no coinciden";
             }
         } else $_SESSION['error'] = "La contraseña introducida no es correcta";
-        header("Location: " . base_url . "/admin/password");
+        header("Location: " . base_url . "admin/password");
     }
 
+    public function users(){
+        $admin = new Admin();
 
-
-
-    public function addresses()
-    {
+        $user_list = $admin->setId($_SESSION['user']['id'])->getUsers();
         
-        require_once 'views/user/addresses.php';
+        require_once 'views/admin/users.php';
     }
 }

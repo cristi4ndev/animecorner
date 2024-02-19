@@ -1,15 +1,14 @@
 <?php
-require_once 'utils/Utils.php';
+require_once 'helpers/Utils.php';
 require_once 'models/User.php';
 require_once 'config/parameters.php';
 class UserController
 {
     public function index()
     {
-        if (isset($_SESSION['logged']) && $_SESSION['logged'] == true) {
+        if (isset($_SESSION['logged']) && $_SESSION['logged'] == true && $_SESSION['user']['role']=='customer') {
             header("Location: " . base_url . "user/account");
         }
-
         require_once 'views/user/index.php';
     }
     public function register()
@@ -85,6 +84,8 @@ class UserController
     {
         Utils::isCustomer();
         require 'views/user/password.php';
+        Utils::deleteSession('error');
+        Utils::deleteSession('response');
     }
     public function passwordChange()
     {
@@ -108,7 +109,7 @@ class UserController
                 $_SESSION['error'] = "Las contraseñas no coinciden";
             }
         } else $_SESSION['error'] = "La contraseña introducida no es correcta";
-        header("Location: " . base_url . "/user/password");
+        header("Location: " . base_url . "user/password");
     }
 
 

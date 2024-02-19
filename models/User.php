@@ -6,7 +6,7 @@ class User {
     private $surname;
     private $email;
     private $password;
-    private $rol;
+    private $role;
     private $dni;
     private $db;
     
@@ -36,17 +36,17 @@ class User {
     /**
      * Get the value of rol
      */
-    public function getRol()
+    public function getRole()
     {
-        return $this->rol;
+        return $this->role;
     }
 
     /**
      * Set the value of rol
      */
-    public function setRol($rol): self
+    public function setRole($role): self
     {
-        $this->rol = $rol;
+        $this->role = $role;
 
         return $this;
     }
@@ -171,7 +171,7 @@ class User {
     }
 
     public function changePassword(){
-        $sql = "UPDATE users SET password = '{$this->getPassword()}'";
+        $sql = "UPDATE users SET password = '{$this->getPassword()}' WHERE id='{$this->getId()}'";
         $result = $this->db->query($sql);
         return $result;
 
