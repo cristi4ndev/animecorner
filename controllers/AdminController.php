@@ -154,7 +154,7 @@ class AdminController
             }
             $category_model->setName($_POST['name'])->setParent($parent);
             $creation = $category_model->createCategory();
-            header("Location: " . base_url . "admin/categories&id=". $_POST['id']);
+            header("Location: " . base_url . "admin/categories&id=". $_POST['parent']);
             
         } 
         if (isset($_POST['entity']) && $_POST['entity']=='product') {

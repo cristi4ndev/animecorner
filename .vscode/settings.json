@@ -1,0 +1,31 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled",
+                "ssl": {}
+            },
+            "previewLimit": 50,
+            "server": "50.31.176.102",
+            "port": 3306,
+            "driver": "MariaDB",
+            "name": "animecorner",
+            "database": "mxzmwcti_animecorner",
+            "username": "mxzmwcti_admin"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "50.31.176.102",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "ANIMERCONER",
+            "username": "mxzmwcti_admin",
+            "database": "mxzmwcti_animecorner"
+        }
+    ]
+}

@@ -1,7 +1,8 @@
 <div id="account-content">
     <?php require_once 'views/admin/category-block.php' ?>
     <div id='main-content-account'>
-        <div id="create-address">
+        <div id="category-panel">
+        <div id="create-block">
             <h3>Crear nueva categoría</h3>
             <form method="POST" action="<?= base_url ?>admin/create" class="st2-form">
                 <div style="display: none;" class="st2-form-group">
@@ -28,6 +29,11 @@
             </form>
             <?php if (isset($_SESSION['error'])) echo $_SESSION['error']; ?>
 
+        </div>
+        <div id="category-tree">
+            <h2>Árbol de Categorías</h2>
+            <?php Category::printCategories($all_categories); ?>
+        </div>
         </div>
         <div id="categories-container">
             <div>
@@ -59,8 +65,8 @@
                         echo "                 
                             <div class='table-rows'> 
                                 <div class='table-cell'>{$category['id']}</div>
-                                <div class='table-cell'><a href='<?= base_url ?>admin/categories&id=<?={$category['id']}?>'> {$category['name']} </a></div>
-                                <div class='table-cell'>{$parent_name}</div>
+                                <div class='table-cell'><a href='" . base_url . "admin/categories&id={$category['id']}'> {$category['name']} </a></div>
+                                <div class='table-cell'><a href='" . base_url . "admin/categories&id={$category['parent']}'> {$parent_name} </a></div>
                             </div>            
                              ";
                     }

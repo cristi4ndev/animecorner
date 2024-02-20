@@ -22,10 +22,7 @@
     width: 100px;
     flex: 1;
 }
-.table-heading:first-child{
-    width: 50px;
-    flex: auto;
-}
+
 .table-rows {
 
     display: flex;
@@ -35,10 +32,7 @@
     border-top: 1px solid black;
     padding-top: 15px;
 }
-.table-cell:first-child {
-    width: 50px;
-    flex: auto;
-}
+
 .table-cell {
     width: 100px;
     flex: 1;
@@ -193,7 +187,8 @@ body {
         BlinkMacSystemFont, "Helvetica Neue", helvetica, segoe ui, arial,
         "PingFang SC", "miui", "Hiragino Sans GB", "Microsoft Yahei", sans-serif;
 
-    
+    display: flex;
+    justify-content: center;
     color: black;
     margin: 8px 8px 0px 8px;
     
@@ -206,6 +201,7 @@ body {
     flex-direction: column;
     justify-content: center;
     max-width: 2560px;
+    justify-self: center;
 }
 
 
@@ -431,6 +427,13 @@ body {
     padding-top: 5px;
     padding-bottom: 5px;
     text-indent: 10px;
+
+}
+.st2-form-group  {
+    
+    padding-top: 5px;
+    padding-bottom: 5px;
+    
 
 }
 
@@ -757,6 +760,33 @@ body {
 
 
 /****************** ADMIN **************************/
+
+.second-level{
+text-indent: 10px;
+}
+.third-level{
+text-indent: 20px;
+}
+
+#create-block {
+    
+    display: flex;
+   
+    flex-direction: column;
+    justify-content: flex-start;
+    align-self: flex-start;
+    gap: 10px;
+    position: sticky;
+    top: 10px;
+   
+   
+}
+
+#category-panel{
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
 
 #categories-list {
     display: flex;

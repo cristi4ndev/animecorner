@@ -68,21 +68,7 @@ class Category
         return $this;
     }
 
-    public function getTopCategories()
-    {
-        $sql = "SELECT * FROM categories WHERE parent={$this->getParent()}";
-        $result = $this->db->query($sql);
-
-        if ($result && $result->num_rows > 0) {
-            $categories = array();
-            while ($row = $result->fetch_assoc()) {
-                $categories[] = $row;
-            }
-            return $categories;
-        } else {
-            return false;
-        }
-    }
+   
 
     public function getOne()
     {
@@ -111,6 +97,17 @@ class Category
         } else {
             return false;
         }
+    }
+
+    public static function printCategories($categories, $parent_id = 1, $level = 0) {
+        echo "<ul class='level-$level'>";
+        foreach ($categories as $category) {
+            if ($category['parent'] == $parent_id) {
+                echo "<li>{$category['name']}</li>";
+                Category::printCategories($categories, $category['id'], $level + 1);
+            }
+        }
+        echo "</ul>";
     }
 
 
