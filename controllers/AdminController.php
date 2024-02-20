@@ -15,6 +15,7 @@ class AdminController
     }
     public function register()
     {
+        Utils::isAdmin();
         try {
 
             $new_user = new Admin();
@@ -33,6 +34,7 @@ class AdminController
     }
     public function login()
     {
+        Utils::isAdmin();
         $adminTryingToLog = new Admin();
         $adminTryingToLog->setEmail($_POST['email']);
         try {
@@ -70,13 +72,13 @@ class AdminController
 
     public function summary()
     {
-        
+        Utils::isAdmin();
         require_once 'views/admin/summary.php';
     }
 
     public function logout()
     {
-        
+        Utils::isAdmin();
         unset($_SESSION['logged']);
 
         unset($_SESSION['user']);
@@ -84,13 +86,14 @@ class AdminController
     }
     public function password()
     {
+        Utils::isAdmin();
         require 'views/admin/password.php';
         Utils::deleteSession('error');
         Utils::deleteSession('response');
     }
     public function passwordChange()
     {
-        
+        Utils::isAdmin();
         unset($_SESSION['error']);
         unset($_SESSION['response']);
         $old_password = $_POST['old-password'];
@@ -114,10 +117,49 @@ class AdminController
     }
 
     public function users(){
+        Utils::isAdmin();
         $admin = new Admin();
 
         $user_list = $admin->setId($_SESSION['user']['id'])->getUsers();
         
         require_once 'views/admin/users.php';
+    }
+    public function categories(){
+        Utils::isAdmin();
+        require_once 'models/Category.php';
+        $category_model = new Category();
+        
+        if (isset($_GET['id'])){
+            $category_model->setParent($_GET['id']);    
+            $category_list = $category_model->getCategories();              
+        }else {
+            $category_model->setParent(1);
+            $category_list = $category_model->getCategories();
+           
+        }
+        $select_list = new Category();
+        $all_categories = $select_list->getAll();
+
+        require_once 'views/admin/categories.php';
+    }
+
+    public function create() {
+        Utils::isAdmin();
+        require_once 'models/Category.php';
+        if (isset($_POST['entity']) && $_POST['entity']=='category') {
+            $category_model = new Category();
+            $parent = "";
+            if (isset($_POST['parent']) && $_POST['parent']!='ninguna'){
+                $parent = $_POST['parent'];
+            }
+            $category_model->setName($_POST['name'])->setParent($parent);
+            $creation = $category_model->createCategory();
+            header("Location: " . base_url . "admin/categories&id=". $_POST['id']);
+            
+        } 
+        if (isset($_POST['entity']) && $_POST['entity']=='product') {
+           
+        } 
+        
     }
 }

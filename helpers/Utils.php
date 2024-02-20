@@ -21,4 +21,14 @@ class Utils {
 		
 		return $name;
 	}
+
+    public static function getCategoryName($id) {
+        
+        $cat_model = new Category();
+        $cat_model->setId($id);
+        $category = $cat_model->getOne();
+        
+        
+        return $category['name'];
+    }
 }

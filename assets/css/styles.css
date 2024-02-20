@@ -188,53 +188,32 @@ a:hover {
 /************************ LAYOUT ***********************/
 
 body {
-    max-width: 2560px;
-
-    letter-spacing: 4px;
+   letter-spacing: 4px;
     font-family: "Avenir Next", Roboto, -apple-system,
         BlinkMacSystemFont, "Helvetica Neue", helvetica, segoe ui, arial,
         "PingFang SC", "miui", "Hiragino Sans GB", "Microsoft Yahei", sans-serif;
 
     
     color: black;
-    height: 100%;
+    margin: 8px 8px 0px 8px;
+    
 }
 
 #main-container {
-    padding-left: 60px;
-    padding-right: 60px;   
-    min-height: 100%;
+     
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-
-
-
-
+    max-width: 2560px;
 }
 
-/*********CONTENT********/
-
-#content {
-
-    padding: 0px;
-    align-content: center;
-    margin-top: 20px;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    
-    min-height: calc(100vh - 10vh - 164px);
-
-}
 
 /******HEADER ******/
 #before-content {
     background-color: #FF5757;
     color: rgb(255, 255, 255);
     letter-spacing: 5px;
-    
-    grid-area: before-content;
     text-align: center;
     font-weight: bold;
     text-transform: uppercase;
@@ -257,22 +236,12 @@ body {
 #header {
 
     padding-top: 10px;
-    min-height: 50px;
-    grid-area: header;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     justify-items: center;
     align-items: center;
 
-}
-
-#navbar {
-
-    min-height: 40px;
-    grid-area: navbar;
-
-    
 }
 
 #navbar li:hover {
@@ -381,27 +350,44 @@ body {
 
 }
 
+/*********CONTENT********/
+
+#content {
+
+    padding: 0px;
+    align-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    justify-content: center;
+    align-items: flex-start;
+    display: flex;
+    flex: 1;
+
+}
+
 
 /*********** ACCOUNT ***********/
 #create-address {
-    padding-top: 20px;
+    
     display: flex;
+   
     flex-direction: column;
     justify-content: flex-start;
     align-self: flex-start;
     gap: 10px;
     position: sticky;
     top: 10px;
+   
 }
 
 
 #account {
 
     display: flex;
-    width: 100%;
+    flex: 1;
     justify-content: center;
-    align-items: center;
-    height: 100%;
+    
+    
 }
 
 #register {
@@ -539,7 +525,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     grid-area: main-content-account;
     gap: 20px;
     margin-left: 30px;
@@ -556,6 +542,7 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 10px;
+
 
 }
 
@@ -581,7 +568,11 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    flex: 1;
 }
+
+
+
 
 /* SIDEBAR */
 
@@ -757,9 +748,46 @@ body {
 
     min-height: 10vh;
     background-color: rgb(32, 32, 32);
-    margin-top: 20px;
+    
     color: white;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+
+/****************** ADMIN **************************/
+
+#categories-list {
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    width: 100%;
+
+
+}
+
+#categories-list>div {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    border-top: 2px solid #FF5757;
+    border-left: 2px solid #FF5757;
+    border-right: 2px solid #a74e4e;
+    border-bottom: 2px solid #a74e4E;
+}
+
+#categories-container h1 {
+    padding: 10px;
+}
+
+
+
+#categories-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
 }

@@ -1,15 +1,18 @@
 <?php
 
-class User {
+class Category
+{
     private $id;
     private $name;
     private $parent;
-        
-    public function __construct() {
+    private $db;
+
+    public function __construct()
+    {
         $this->db = Database::connect();
     }
 
-    
+
 
     /**
      * Get the value of parent
@@ -63,5 +66,81 @@ class User {
         $this->name = $name;
 
         return $this;
+    }
+
+    public function getTopCategories()
+    {
+        $sql = "SELECT * FROM categories WHERE parent={$this->getParent()}";
+        $result = $this->db->query($sql);
+
+        if ($result && $result->num_rows > 0) {
+            $categories = array();
+            while ($row = $result->fetch_assoc()) {
+                $categories[] = $row;
+            }
+            return $categories;
+        } else {
+            return false;
+        }
+    }
+
+    public function getOne()
+    {
+        $sql = "SELECT * FROM categories WHERE id={$this->getId()}";
+        $result = $this->db->query($sql);
+        if ($result && $result->num_rows == 1) {
+            return $result->fetch_assoc();
+        } else {
+            return false;
+        }
+    }
+
+    public function getAll()
+    {
+        $sql = "SELECT * FROM categories ORDER BY name";
+
+        $result = $this->db->query($sql);
+
+        if ($result && $result->num_rows > 0) {
+            $categories = array();
+            while ($row = $result->fetch_assoc()) {
+                $categories[] = $row;
+            }
+
+            return $categories;
+        } else {
+            return false;
+        }
+    }
+
+
+    public function getCategories()
+    {
+        $sql = "SELECT * FROM categories WHERE parent={$this->getParent()}";
+
+        $result = $this->db->query($sql);
+
+        if ($result && $result->num_rows > 0) {
+            $categories = array();
+            while ($row = $result->fetch_assoc()) {
+                $categories[] = $row;
+            }
+
+            return $categories;
+        } else {
+            return false;
+        }
+    }
+
+    public function createCategory()
+    {
+        $sql = "INSERT INTO categories VALUES (null,'{$this->getName()}','{$this->getParent()}')";
+        $result = $this->db->query($sql);
+
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

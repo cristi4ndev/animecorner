@@ -193,6 +193,13 @@ class Admin extends User {
             return false;
         }
     }
+    public function getCategories(){
+        
+    }
+    public function createCategory(){
+        
+    }
+
     
     
 }   
