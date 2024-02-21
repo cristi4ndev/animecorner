@@ -8,6 +8,7 @@
     align-items: flex-start;
     gap: 10px;
     align-self: flex-start;
+    padding: 20px;
 }
 
 .table-headings {
@@ -198,7 +199,8 @@ body {
     display: flex;
     justify-content: center;
     color: black;
-    margin: 8px 8px 0px 8px;
+    max-width: 2560px;
+    margin: 0px auto;
     
 }
 
@@ -211,6 +213,7 @@ body {
     justify-content: center;
     max-width: 2560px;
     justify-self: center;
+    margin: 8px 8px 0px 8px;
 }
 
 
@@ -434,6 +437,7 @@ body {
 #account-content {
    
     height: 100%;
+    width: 100%;
     grid-area: content;
     display: grid;
     grid-template-areas: "sidebar main-content-account ";
@@ -778,8 +782,11 @@ body {
 
 /****************** ADMIN **************************/
 
-
-#create-block {
+.admin-create-panel {
+    position: sticky;
+    top: 10px; 
+}
+.create-block {
     
     display: flex;
    
@@ -787,11 +794,10 @@ body {
     justify-content: flex-start;
     align-self: flex-start;
     gap: 5px;
-    position: sticky;
-    top: 10px;  
+     
    
 }
-#create-block .st2-form-group  {
+.create-block .st2-form-group  {
     
     padding-bottom: 10px;
    
@@ -816,7 +822,7 @@ body {
 
 #categories-list>div {
     background-color: #ffffff;
-    padding: 5px;
+    padding: 10px;
     border-radius: 5px;
     border-top: 2px solid #FF5757;
     border-left: 2px solid #FF5757;

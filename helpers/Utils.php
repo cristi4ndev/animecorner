@@ -64,4 +64,24 @@ class Utils
         $has_parent = $category_model->getCategories();
         return $has_parent;
     }
+    // Función para devolver el nombre de una entidad según su ID
+    
+    public static function getEntityName($array, $id)
+    {
+
+        $filtered_array = array_filter($array, function ($array) use ($id) {
+            return $array['id'] == $id;
+        });
+
+        // Verificar si se encontró un elemento en el array filtrado
+        if (!empty($filtered_array)) {
+            // Como array_filter devuelve un array, obtenemos el primer elemento
+            $first_element = reset($filtered_array);
+            $name = $first_element['name'];
+            return $name;
+        } else {
+            // Si no se encontró ninguna coincidencia, devolvemos null
+            return null;
+        }
+    }
 }

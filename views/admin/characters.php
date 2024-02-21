@@ -1,25 +1,25 @@
 <div id="account-content">
     <?php require_once 'views/admin/category-block.php' ?>
     <div id='main-content-account'>
-        <div id="category-panel">
-            <div id="create-block">
-                <h3>Crear nueva categoría</h3>
+        <div id="saga-panel">
+            <div class="create-block">
+                <h3>Crear nuevo Personaje</h3>
                 <form method="POST" action="<?= base_url ?>admin/create" class="st2-form">
                     <div style="display: none;" class="st2-form-group">
                         <label for="entity">Entidad</label>
-                        <input value="category" type="hidden" name="entity" required>
+                        <input value="character" type="hidden" name="entity" required>
                     </div>
                     <div class="st2-form-group">
                         <label for="name">Nombre</label>
                         <input type="text" name="name" required>
                     </div>
                     <div class="st2-form-group">
-                        <label for="parent">Categoría Padre:</label>
-                        <select name="parent" id="parent">
+                        <label for="saga">Categoría Padre:</label>
+                        <select name="saga" id="saga">
                             <option value="1">Inicio</option>
                             <?php
-                            foreach ($all_categories as $category) {
-                                echo "<option " . ($category['id'] == $_GET['id'] ? 'selected' : '') . " value='" . $category["id"] . "'>" . $category["name"] . "</option>";
+                            foreach ($all_sagas as $saga) {
+                                echo "<option " . ($saga['id'] == $_GET['id'] ? 'selected' : '') . " value='" . $saga["id"] . "'>" . $saga["name"] . "</option>";
                             }
                             ?>
                         </select>
@@ -30,18 +30,33 @@
                 <?php if (isset($_SESSION['error'])) echo $_SESSION['error']; ?>
 
             </div>
-            <div id="category-tree">
-                <h3>Árbol de Categorías</h3>
-                <?php Utils::printCategoriesTree($all_categories); ?>
+            <div class="create-block">
+                <h3>Crear nueva Saga</h3>
+                <form method="POST" action="<?= base_url ?>admin/create" class="st2-form">
+                    <div style="display: none;" class="st2-form-group">
+                        <label for="entity">Entidad</label>
+                        <input value="saga" type="hidden" name="entity" required>
+                    </div>
+                    <div class="st2-form-group">
+                        <label for="name">Nombre</label>
+                        <input type="text" name="name" required>
+                    </div>
+                    
+
+                    <button class="primary-button" type="submit"><i class="fa-solid fa-circle-plus"></i>Crear</button>
+                </form>
+                <?php if (isset($_SESSION['error'])) echo $_SESSION['error']; ?>
+
             </div>
+            
         </div>
         <div id="categories-container">
             <div>
-                <?php
+            <?php
                 if (isset($_GET['id'])) {
-                    $category_name = Utils::getCategoryName($all_categories, $_GET['id']);
+                    $category_name = Utils::getEntityName($all_sagas, $_GET['id']);
                     echo "<h1>{$category_name}</h1>";
-                } else     echo "<h1>Inicio</h1>"
+                } else     echo "<h1>Sagas</h1>"
                 ?>
 
             </div>
@@ -51,29 +66,28 @@
                 <?php
 
 
-                if ($category_list) {
+                if ($character_list) {
                     echo " 
                         <div class='table-container'>
                             <div class='table-headings'>
                             <div class='table-heading'>id</div>
                             <div class='table-heading'>Nombre</div>
-                            <div class='table-heading'>Categoría</div>
                             <div class='table-heading'>Acción</div>
                         </div>
                     ";
-                    foreach ($category_list as $category) {
-                        $parent_name = Utils::getCategoryName($all_categories, $category['parent']);
+                    foreach ($character_list as $character) {
+                        
 
                         echo "                 
                             <div class='table-rows'> 
-                                <div class='table-cell'>{$category['id']}</div>
-                                <div class='table-cell'><a href='" . base_url . "admin/categories&id={$category['id']}'> {$category['name']} </a></div>
-                                <div class='table-cell'> {$parent_name} </div>
+                                <div class='table-cell'>{$character['id']}</div>
+                                <div class='table-cell'><a href='" . base_url . "admin/sagas&id={$character['id']}'> {$character['name']} </a></div>
+                                
                                 <div class='table-cell'> 
                                     
                                         <button class='edit-cat edit-button'><i class='fa-solid fa-pen-to-square'></i></button> 
                                     
-                                    <a href='" . base_url . "admin/delete&id={$category['id']}&parent={$category['parent']}&entity=category'>
+                                    <a href='" . base_url . "admin/delete&id={$character['id']}&entity=saga'>
                                         <button class='delete-button'><i class='fa-solid fa-trash'></i></button> 
                                     </a>
 
@@ -84,14 +98,14 @@
                         
                         
                         echo " </div> ";
-                        require 'views/admin/modify-block.php';
+                        require 'views/admin/edit-character-block.php';
                         echo " </div> ";
                         
                         
                         
                     }
                 } else {
-                    echo "<p style='text-align:center'>Todavía no hay subcategorías para esta categoría, <strong>¡Empieza creando una!</strong></p>";
+                    echo "<p style='text-align:center'>Todavía no hay Personajes para esta Serie / Manga, <strong>¡Empieza creando uno!</strong></p>";
                 }
                 ?>
 

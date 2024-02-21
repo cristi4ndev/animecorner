@@ -148,8 +148,9 @@ class AdminController
     public function create()
     {
         Utils::isAdmin();
-        require_once 'models/Category.php';
+
         if (isset($_POST['entity']) && $_POST['entity'] == 'category') {
+            require_once 'models/Category.php';
             $category_model = new Category();
             $parent = "";
             if (isset($_POST['parent']) && $_POST['parent'] != 'ninguna') {
@@ -159,16 +160,29 @@ class AdminController
             $creation = $category_model->createCategory();
             header("Location: " . base_url . "admin/categories&id=" . $_POST['parent']);
         }
-        if (isset($_POST['entity']) && $_POST['entity'] == 'product') {
+        if (isset($_POST['entity']) && $_POST['entity'] == 'saga') {
+            require_once 'models/Saga.php';
+            $saga_model = new Saga();
+            $saga_model->setName($_POST['name']);
+            $create_saga = $saga_model->create();
+            header("Location: " . base_url . "admin/sagas");
+        }
+        if (isset($_POST['entity']) && $_POST['entity'] == 'character') {
+            require_once 'models/Character.php';
+            $character_model = new Character();
+            $character_model->setName($_POST['name'])->setSagaId($_POST['saga']);
+            $create_char = $character_model->create();
+            header("Location: " . base_url . "admin/sagas&id=" . $_POST['saga']);
         }
     }
 
     public function edit()
     {
         Utils::isAdmin();
-        require_once 'models/Category.php';
+
 
         if (isset($_GET['entity']) && $_GET['entity'] == 'category') {
+            require_once 'models/Category.php';
             $category_model = new Category();
             $category_model->setId($_GET['id'])->setName($_POST['name'])->setParent($_POST['parent']);
             $result = $category_model->edit();
@@ -176,23 +190,39 @@ class AdminController
 
             else $_SESSION['error'] = "Error en la eliminación";
         }
-        if (isset($_GET['entity']) && $_GET['entity'] == 'product') {
+        if (isset($_GET['entity']) && $_GET['entity'] == 'saga') {
+            require_once 'models/Saga.php';
+            $saga_model = new Saga();
+            $saga_model->setId($_GET['id'])->setName($_POST['name']);
+            $result = $saga_model->edit();
+            if ($result) header("Location: " . base_url . "admin/sagas");
+
+            else $_SESSION['error'] = "Error en la eliminación";
+        }
+        if (isset($_GET['entity']) && $_GET['entity'] == 'character') {
+            require_once 'models/Character.php';
+            $character_model = new Character();
+            $character_model->setId($_GET['id'])->setName($_POST['name'])->setSagaId($_POST['saga']);
+            $result = $character_model->edit();
+            if ($result) header("Location: " . base_url . "admin/sagas&id=" . $_POST['saga']);
+
+            else $_SESSION['error'] = "Error en la eliminación";
         }
     }
     public function delete()
     {
         Utils::isAdmin();
 
-        require_once 'models/Category.php';
-        $category_model = new Category();
 
-        if (Utils::categoryHasChildren($_GET['id'])) {
-            
-            $category_model->setParent($_GET['id']);
-            $category_model->setParentCategory();
-        }
         if (isset($_GET['entity']) && $_GET['entity'] == 'category') {
+            require_once 'models/Category.php';
+            $category_model = new Category();
 
+            if (Utils::categoryHasChildren($_GET['id'])) {
+
+                $category_model->setParent($_GET['id']);
+                $category_model->setParentCategory();
+            }
             $category_model->setId($_GET['id']);
             $result = $category_model->delete();
             if ($result) header("Location: " . base_url . "admin/categories&id=" . $_GET['parent']);
@@ -202,7 +232,59 @@ class AdminController
                 header("Location: " . base_url . "admin/categories&id=" . $_GET['parent']);
             }
         }
-        if (isset($_GET['entity']) && $_GET['entity'] == 'product') {
+        if (isset($_GET['entity']) && $_GET['entity'] == 'saga') {
+            require_once 'models/Saga.php';
+            $saga_model = new Saga();
+
+            $saga_model->setId($_GET['id']);
+            $result = $saga_model->delete();
+            if ($result) header("Location: " . base_url . "admin/sagas");
+
+            else {
+                $_SESSION['error'] = "Error en la eliminación";
+                header("Location: " . base_url . "admin/sagas");
+            }
         }
+        if (isset($_GET['entity']) && $_GET['entity'] == 'character') {
+            require_once 'models/Character.php';
+            $character_model = new Character();
+
+            $character_model->setId($_GET['id']);
+            $result = $character_model->delete();
+            if ($result) header("Location: " . base_url . "admin/sagas&id=" . $_GET['saga']);
+
+            else {
+                $_SESSION['error'] = "Error en la eliminación";
+                header("Location: " . base_url . "admin/sagas&id=" . $_GET['saga']);
+            }
+        }
+    }
+
+    public function sagas()
+    {
+        Utils::isAdmin();
+        require_once 'models/Saga.php';
+        $saga_model = new Saga();
+        $all_sagas = $saga_model->getAll();
+
+        if (isset($_GET['id'])) {
+            require_once 'models/Character.php';
+            $character_model = new Character();
+            $all_characters = $character_model->getAll();
+            if ($all_characters) {
+                $character_list = array_filter($all_characters, function ($array) {
+               
+                    return $_GET['id'] == $array['saga_id'];
+                });
+            } else {
+                $character_list=false;
+            }
+            
+            require_once 'views/admin/characters.php';
+        } else {
+            require_once 'views/admin/sagas.php';
+        }
+
+        
     }
 }

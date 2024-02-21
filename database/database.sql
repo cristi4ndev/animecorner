@@ -50,7 +50,9 @@ CREATE TABLE sagas (
 ;
 CREATE TABLE characters (
     id int AUTO_INCREMENT PRIMARY KEY,
-    name varchar(200) NOT NULL
+    name varchar(200) NOT NULL,
+    saga_id int NOT NULL,
+    FOREIGN KEY (saga_id) REFERENCES sagas(id)
 ) ENGINE = InnoDb;
 CREATE TABLE product_characters (
     character_id int AUTO_INCREMENT,
