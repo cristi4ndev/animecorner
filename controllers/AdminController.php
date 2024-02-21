@@ -5,9 +5,9 @@ require_once 'config/parameters.php';
 class AdminController
 {
     public function index()
-    {   
+    {
 
-        if (isset($_SESSION['logged']) && $_SESSION['logged'] == true && $_SESSION['user']['role']=='admin') {
+        if (isset($_SESSION['logged']) && $_SESSION['logged'] == true && $_SESSION['user']['role'] == 'admin') {
             header("Location: " . base_url . "admin/summary");
         }
 
@@ -39,10 +39,10 @@ class AdminController
         $adminTryingToLog->setEmail($_POST['email']);
         try {
             $admin = $adminTryingToLog->login();
-          
+
 
             if ($admin != false) {
-                
+
                 if ($_POST['password'] == $admin['password']) {
 
                     $_SESSION['user'] = $admin;
@@ -116,50 +116,93 @@ class AdminController
         header("Location: " . base_url . "admin/password");
     }
 
-    public function users(){
+    public function users()
+    {
         Utils::isAdmin();
         $admin = new Admin();
 
         $user_list = $admin->setId($_SESSION['user']['id'])->getUsers();
-        
+
         require_once 'views/admin/users.php';
     }
-    public function categories(){
+    public function categories()
+    {
         Utils::isAdmin();
         require_once 'models/Category.php';
         $category_model = new Category();
-        
-        if (isset($_GET['id'])){
-            $category_model->setParent($_GET['id']);    
-            $category_list = $category_model->getCategories();              
-        }else {
-            $category_model->setParent(1);
-            $category_list = $category_model->getCategories();
-           
-        }
-        $select_list = new Category();
-        $all_categories = $select_list->getAll();
+        $all_categories = $category_model->getAll();
+
+        $category_list = array_filter($all_categories, function ($array) {
+            if (isset($_GET['id'])) {
+                $id = ($_GET['id']);
+            } else {
+                $id = 1;
+            }
+            return $id == $array['parent'];
+        });
+
 
         require_once 'views/admin/categories.php';
     }
 
-    public function create() {
+    public function create()
+    {
         Utils::isAdmin();
         require_once 'models/Category.php';
-        if (isset($_POST['entity']) && $_POST['entity']=='category') {
+        if (isset($_POST['entity']) && $_POST['entity'] == 'category') {
             $category_model = new Category();
             $parent = "";
-            if (isset($_POST['parent']) && $_POST['parent']!='ninguna'){
+            if (isset($_POST['parent']) && $_POST['parent'] != 'ninguna') {
                 $parent = $_POST['parent'];
             }
             $category_model->setName($_POST['name'])->setParent($parent);
             $creation = $category_model->createCategory();
-            header("Location: " . base_url . "admin/categories&id=". $_POST['parent']);
+            header("Location: " . base_url . "admin/categories&id=" . $_POST['parent']);
+        }
+        if (isset($_POST['entity']) && $_POST['entity'] == 'product') {
+        }
+    }
+
+    public function edit()
+    {
+        Utils::isAdmin();
+        require_once 'models/Category.php';
+
+        if (isset($_GET['entity']) && $_GET['entity'] == 'category') {
+            $category_model = new Category();
+            $category_model->setId($_GET['id'])->setName($_POST['name'])->setParent($_POST['parent']);
+            $result = $category_model->edit();
+            if ($result) header("Location: " . base_url . "admin/categories&id=" . $_POST['parent']);
+
+            else $_SESSION['error'] = "Error en la eliminación";
+        }
+        if (isset($_GET['entity']) && $_GET['entity'] == 'product') {
+        }
+    }
+    public function delete()
+    {
+        Utils::isAdmin();
+
+        require_once 'models/Category.php';
+        $category_model = new Category();
+
+        if (Utils::categoryHasChildren($_GET['id'])) {
             
-        } 
-        if (isset($_POST['entity']) && $_POST['entity']=='product') {
-           
-        } 
-        
+            $category_model->setParent($_GET['id']);
+            $category_model->setParentCategory();
+        }
+        if (isset($_GET['entity']) && $_GET['entity'] == 'category') {
+
+            $category_model->setId($_GET['id']);
+            $result = $category_model->delete();
+            if ($result) header("Location: " . base_url . "admin/categories&id=" . $_GET['parent']);
+
+            else {
+                $_SESSION['error'] = "Error en la eliminación";
+                header("Location: " . base_url . "admin/categories&id=" . $_GET['parent']);
+            }
+        }
+        if (isset($_GET['entity']) && $_GET['entity'] == 'product') {
+        }
     }
 }

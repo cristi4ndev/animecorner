@@ -99,16 +99,7 @@ class Category
         }
     }
 
-    public static function printCategories($categories, $parent_id = 1, $level = 0) {
-        echo "<ul class='level-$level'>";
-        foreach ($categories as $category) {
-            if ($category['parent'] == $parent_id) {
-                echo "<li>{$category['name']}</li>";
-                Category::printCategories($categories, $category['id'], $level + 1);
-            }
-        }
-        echo "</ul>";
-    }
+    
 
 
     public function getCategories()
@@ -139,5 +130,23 @@ class Category
         } else {
             return false;
         }
+    }
+
+    public function delete(){
+        $sql = "DELETE FROM categories WHERE id={$this->id}";
+        $result = $this->db->query($sql);
+        if($result) return true; else return false;
+    }
+    public function edit(){
+        $sql = "UPDATE categories SET name='{$this->getName()}' ,parent='{$this->getParent()}' WHERE id={$this->id}";
+        $result = $this->db->query($sql);
+        if($result) return true; else return false;
+    }
+
+    // Función para mantener la integridad de la base de datos. Si se quiere eliminar una categoría con subcategorías, estas se setean a "Inicio"
+    public function setParentCategory(){
+        $sql = "UPDATE categories SET parent=1 WHERE parent={$this->getParent()}";
+        $result = $this->db->query($sql);
+        if($result) return true; else return false;
     }
 }

@@ -1,35 +1,42 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
+    // Selección de botones de edición de dirección
     var botonesEditar = document.querySelectorAll('.edit-address');
-    botonesEditar.forEach(function(boton) {
-        boton.addEventListener('click', function(event) {
-            // Evitar que el formulario se envíe al hacer clic en el botón
+    botonesEditar.forEach(function (boton) {
+        boton.addEventListener('click', function (event) {
             event.preventDefault();
-            
-            // Obtener el formulario asociado al botón actual
+
             var formulario = boton.closest('form');
-            
-            // Obtener todos los inputs dentro del formulario
             var inputs = formulario.querySelectorAll('input');
-            
-            // Iterar sobre cada input y alternar el atributo 'disabled'
-            inputs.forEach(function(input) {
+            inputs.forEach(function (input) {
                 input.disabled = !input.disabled;
             });
 
-            // Mostrar el botón de guardar
-            var guardar = formulario.querySelector('#update-address');
+            var guardar = formulario.querySelector('.update-address');
             var editar = formulario.querySelector('.edit-address');
-            if (guardar.style.display=='block') {
-                guardar.style.display = 'none';
-                editar.style.display = 'block';
-
-            
-            }
-            else {
-                guardar.style.display = 'block';
-                editar.style.display = 'none';
-            }
-            
+            toggleDisplay(guardar);
+            toggleDisplay(editar);
         });
     });
+
+    // Selección de botones de edición de categoría
+    var editButtons = document.querySelectorAll('.edit-cat');
+
+    editButtons.forEach(function (editButton) {
+        editButton.addEventListener('click', function (event) {
+            event.preventDefault();
+            var editForm = editButton.closest('.table-rows').querySelector('.edit-category-block');
+            editForm.style.display = 'block';
+        });
+    });
+
+    // Función para alternar la visualización de un elemento
+    function toggleDisplay(element) {
+        if (element.style.display == 'block') {
+            element.style.display = 'none';
+        } else {
+            element.style.display = 'block';
+        }
+    }
+
+    
 });
