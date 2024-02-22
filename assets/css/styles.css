@@ -6,9 +6,9 @@
     width: 100%;
     justify-content: flex-start;
     align-items: flex-start;
-    gap: 10px;
+    
     align-self: flex-start;
-    padding: 20px;
+   
 }
 
 .table-headings {
@@ -16,7 +16,13 @@
     font-weight: 600;
     justify-content: space-evenly;
     align-items: center;
+    
     width: 100%;
+
+    &:first-child{
+        border-bottom: 2px solid black;
+        padding-top: 10px;
+    }
 }
 
 .table-heading {
@@ -31,7 +37,7 @@
     align-items: center;
     width: 100%;
     border-top: 1px solid black;
-    padding-top: 10px;
+    
 }
 
 .table-cell {
@@ -201,7 +207,7 @@ body {
     color: black;
     max-width: 2560px;
     margin: 0px auto;
-    
+    margin: 8px 8px 0px 8px;
 }
 
 #main-container {
@@ -213,7 +219,7 @@ body {
     justify-content: center;
     max-width: 2560px;
     justify-self: center;
-    margin: 8px 8px 0px 8px;
+    
 }
 
 
@@ -828,10 +834,6 @@ body {
     border-left: 2px solid #FF5757;
     border-right: 2px solid #a74e4e;
     border-bottom: 2px solid #a74e4E;
-}
-
-#categories-container h1 {
-    padding: 10px;
 }
 
 

@@ -21,8 +21,9 @@ insert into users ("Cristian","Argüeso","cristian@cr1stian.dev","1234","admin",
 create TABLE categories (
     id int AUTO_INCREMENT PRIMARY KEY,
     name varchar(200) not null,
-    parent int,
+    parent int DEFAULT 1,
     FOREIGN KEY (parent) REFERENCES categories(id)
+    on DELETE set DEFAULT;
 ) ENGINE = InnoDb;
 ;
 create TABLE products (
@@ -53,6 +54,7 @@ CREATE TABLE characters (
     name varchar(200) NOT NULL,
     saga_id int NOT NULL,
     FOREIGN KEY (saga_id) REFERENCES sagas(id)
+    on delete cascade
 ) ENGINE = InnoDb;
 CREATE TABLE product_characters (
     character_id int AUTO_INCREMENT,
@@ -83,6 +85,7 @@ create TABLE orders (
     carrier_id int NOT NULL,
     vat double NOT NULL,
     address_id int NOT NULL,
+    FOREIGN KEY (carrier_id) REFERENCES carriers(id),
     FOREIGN KEY (product_id) REFERENCES products(id),
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (address_id) REFERENCES addresses(id)

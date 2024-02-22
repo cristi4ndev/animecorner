@@ -287,4 +287,34 @@ class AdminController
 
         
     }
+    public function menu()
+    {
+        Utils::isAdmin();
+        require_once 'models/Category.php';
+        $category_model = new Category();
+        $all_categories = $category_model->getAll();
+
+
+        
+
+        if (isset($_GET['id'])) {
+            require_once 'models/Character.php';
+            $character_model = new Character();
+            $all_characters = $character_model->getAll();
+            if ($all_characters) {
+                $character_list = array_filter($all_characters, function ($array) {
+               
+                    return $_GET['id'] == $array['saga_id'];
+                });
+            } else {
+                $character_list=false;
+            }
+            
+            require_once 'views/admin/characters.php';
+        } else {
+            require_once 'views/admin/sagas.php';
+        }
+
+        
+    }
 }

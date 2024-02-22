@@ -5,6 +5,7 @@ class Category
     private $id;
     private $name;
     private $parent;
+    private $menu;
     private $db;
 
     public function __construct()
@@ -148,5 +149,23 @@ class Category
         $sql = "UPDATE categories SET parent=1 WHERE parent={$this->getParent()}";
         $result = $this->db->query($sql);
         if($result) return true; else return false;
+    }
+
+    /**
+     * Get the value of menu
+     */
+    public function getMenu()
+    {
+        return $this->menu;
+    }
+
+    /**
+     * Set the value of menu
+     */
+    public function setMenu($menu): self
+    {
+        $this->menu = $menu;
+
+        return $this;
     }
 }

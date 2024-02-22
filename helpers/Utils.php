@@ -84,4 +84,23 @@ class Utils
             return null;
         }
     }
+    public static function getMenu()
+    {
+        require_once ('models/Category.php');
+        $category_model = new Category();
+        $categories = $category_model->getAll();
+        $menu_categories = array_filter($categories, function ($array) {
+            return $array['menu'] == 1;
+        });
+
+
+        // Verificar si se encontró un elemento en el array filtrado
+        if (!empty($menu_categories)) {           
+            
+            return $menu_categories;
+        } else {
+            // Si no se encontró ninguna coincidencia, devolvemos null
+            return null;
+        }
+    }
 }
