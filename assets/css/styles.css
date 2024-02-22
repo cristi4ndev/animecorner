@@ -6,9 +6,9 @@
     width: 100%;
     justify-content: flex-start;
     align-items: flex-start;
-    
+
     align-self: flex-start;
-   
+
 }
 
 .table-headings {
@@ -16,10 +16,10 @@
     font-weight: 600;
     justify-content: space-evenly;
     align-items: center;
-    
+
     width: 100%;
 
-    &:first-child{
+    &:first-child {
         border-bottom: 2px solid black;
         padding-top: 10px;
     }
@@ -37,7 +37,7 @@
     align-items: center;
     width: 100%;
     border-top: 1px solid black;
-    
+
 }
 
 .table-cell {
@@ -105,7 +105,8 @@ button:hover {
     letter-spacing: 5px;
     border: none;
     transition-duration: 500ms;
-    &:hover{
+
+    &:hover {
         background-color: #FF5757;
     }
 }
@@ -123,7 +124,8 @@ button:hover {
     color: white;
     letter-spacing: 5px;
     border: none;
-    &:hover{
+
+    &:hover {
         background-color: #FF5757;
     }
 
@@ -178,7 +180,7 @@ i {
 }
 
 * {
-    
+
     letter-spacing: 5px;
 }
 
@@ -197,7 +199,7 @@ a:hover {
 /************************ LAYOUT ***********************/
 
 body {
-   letter-spacing: 4px;
+    letter-spacing: 4px;
     font-family: "Avenir Next", Roboto, -apple-system,
         BlinkMacSystemFont, "Helvetica Neue", helvetica, segoe ui, arial,
         "PingFang SC", "miui", "Hiragino Sans GB", "Microsoft Yahei", sans-serif;
@@ -207,11 +209,12 @@ body {
     color: black;
     max-width: 2560px;
     margin: 0px auto;
-    margin: 8px 8px 0px 8px;
+
 }
 
 #main-container {
-     
+    width: 100%;
+    height: 100%;
     min-height: 100vh;
     min-width: 100%;
     display: flex;
@@ -219,7 +222,8 @@ body {
     justify-content: center;
     max-width: 2560px;
     justify-self: center;
-    
+    margin: 8px 8px 8px 8px;
+
 }
 
 
@@ -258,6 +262,11 @@ body {
 
 }
 
+#navbar {
+    width: 100%;
+    height: 100%;
+}
+
 #navbar li:hover {
 
     text-decoration: underline #FF5757 3px;
@@ -265,9 +274,11 @@ body {
     transition-duration: 300ms;
 }
 
-#categories-nav-list{
+#categories-nav-list {
     justify-content: space-around;
-     align-items: center;
+    align-items: center;
+    position: sticky;
+
 }
 
 #sagas-nav-list {
@@ -276,9 +287,10 @@ body {
     border-top: 2px solid #FF5757;
     border-bottom: 2px solid #FF5757;
     line-height: 0px;
-    
+
     font-size: 12px;
 }
+
 #sagas {
     background-color: #FF5757;
     color: white;
@@ -366,36 +378,61 @@ body {
 }
 
 .carousel {
-    width: 100%; /* Ancho del carrusel */
-    overflow: hidden; /* Oculta el contenido que desborda */
-    
-  }
-  
-  .slide {
-    width: 100%;
-    list-style: none; /* Elimina los puntos de la lista */
-    padding: 0; /* Elimina el relleno predeterminado de la lista */
-    margin: 0; /* Elimina el margen predeterminado de la lista */
-    white-space: nowrap; /* Evita que los elementos se envuelvan */
-    display: inline-block; /* Para que la lista ocupe solo el ancho necesario */
-    animation: carousel 20s linear infinite; /* Velocidad de la animación y repetición infinita */
-  }
-  
-  .slide li {
-    display: inline-block; /* Hace que los elementos de la lista se muestren en línea */
-    text-align: center; /* Centra el texto horizontalmente */
-    
-  }
-  
-  /* Animación del carrusel */
-  @keyframes carousel {
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+}
+
+.carousel:before,
+.carousel:after {
+    position: absolute;
+    top: 0;
+    width: 250px;
+    height: 100%;
+    content: "";
+    z-index: 2;
+}
+
+.carousel:before {
+    left: 0;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
+}
+
+.carousel:after {
+    right: 0;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
+}
+
+.carousel:hover .carousel-slide {
+    animation-play-state: paused;
+}
+
+.carousel-slide {
+    display: inline-block;
+    animation: 30s carousel infinite linear;
+}
+
+.carousel-slide p {
+
+    padding: 0px 30px;
+    display: inline-block;
+
+}
+
+
+
+
+
+/* Animación del carrusel */
+@keyframes carousel {
     0% {
-      transform: translateX(0);
+        transform: translateX(0);
     }
+
     100% {
-      transform: translateX(calc(-100% - 300px)); /* -300px para asegurar que el último elemento no quede parcialmente oculto */
+        transform: translateX(-100%);
     }
-  }
+}
 
 /*********CONTENT********/
 
@@ -427,7 +464,7 @@ body {
     padding-top: 20px;
     min-height: 400px;
     grid-area: main-content;
-    
+
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     justify-items: center;
@@ -474,7 +511,7 @@ body {
 /***************** ACCOUNT ************************/
 
 #account-content {
-   
+    flex: 1;
     height: 100%;
     width: 100%;
     grid-area: content;
@@ -537,16 +574,16 @@ body {
 }
 
 #create-address {
-    
+
     display: flex;
-   
+
     flex-direction: column;
     justify-content: flex-start;
     align-self: flex-start;
     gap: 10px;
     position: sticky;
     top: 10px;
-   
+
 }
 
 
@@ -559,12 +596,12 @@ body {
     justify-content: center;
     height: 100%;
     width: 100%;
-    
-    
+
+
 }
 
 #register {
-    
+
     display: flex;
     flex: 1;
     justify-content: center;
@@ -584,7 +621,7 @@ body {
     flex-direction: column;
     gap: 20px;
     background-color: #ff575778;
-    
+
 
 
 }
@@ -607,11 +644,12 @@ body {
     text-indent: 10px;
 
 }
-.st2-form-group  {
-    
+
+.st2-form-group {
+
     padding-top: 5px;
     padding-bottom: 5px;
-    
+
 
 }
 
@@ -640,7 +678,7 @@ body {
 /* SIDEBAR */
 
 #sidebar {
-    
+
     min-height: 400px;
     grid-area: sidebar;
     display: flex;
@@ -667,7 +705,7 @@ body {
     padding-bottom: 20px;
     list-style: none;
     flex: auto;
-    
+
 
 }
 
@@ -781,7 +819,7 @@ body {
 
 
 .product-listing {
-    
+
     display: flex;
     flex: auto;
     align-items: center;
@@ -823,26 +861,28 @@ body {
 
 .admin-create-panel {
     position: sticky;
-    top: 10px; 
+    top: 10px;
 }
+
 .create-block {
-    
+
     display: flex;
-   
+
     flex-direction: column;
     justify-content: flex-start;
     align-self: flex-start;
     gap: 5px;
-     
-   
-}
-.create-block .st2-form-group  {
-    
-    padding-bottom: 10px;
-   
+
+
 }
 
-#category-panel{
+.create-block .st2-form-group {
+
+    padding-bottom: 10px;
+
+}
+
+#category-panel {
     display: flex;
     flex-direction: column;
     margin: 0px 10px;
@@ -853,7 +893,7 @@ body {
     display: flex;
     flex-direction: column;
     grid-template-columns: 1fr 1fr 1fr;
-    
+
     width: 100%;
 
 
@@ -878,11 +918,12 @@ body {
     align-items: center;
     flex: 1;
 }
-#category-tree{
+
+#category-tree {
     outline: 5px dotted #ffa2a2;
     display: flex;
     flex-direction: column;
-    
+
     border-radius: 10px;
     padding: 10px;
 }
@@ -890,8 +931,7 @@ body {
 #category-tree li {
     padding-bottom: 10px;
 }
+
 #category-tree h3 {
     text-align: center;
 }
-
-

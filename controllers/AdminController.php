@@ -1,4 +1,5 @@
 <?php
+
 require_once 'helpers/Utils.php';
 require_once 'models/Admin.php';
 require_once 'config/parameters.php';
