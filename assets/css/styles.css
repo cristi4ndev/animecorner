@@ -284,6 +284,9 @@ body {
     color: white;
     text-indent: 10px;
     font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #logo {
@@ -360,9 +363,39 @@ body {
     font-size: 20px;
     letter-spacing: 0px;
 
-
-
 }
+
+.carousel {
+    width: 100%; /* Ancho del carrusel */
+    overflow: hidden; /* Oculta el contenido que desborda */
+    
+  }
+  
+  .slide {
+    width: 100%;
+    list-style: none; /* Elimina los puntos de la lista */
+    padding: 0; /* Elimina el relleno predeterminado de la lista */
+    margin: 0; /* Elimina el margen predeterminado de la lista */
+    white-space: nowrap; /* Evita que los elementos se envuelvan */
+    display: inline-block; /* Para que la lista ocupe solo el ancho necesario */
+    animation: carousel 20s linear infinite; /* Velocidad de la animación y repetición infinita */
+  }
+  
+  .slide li {
+    display: inline-block; /* Hace que los elementos de la lista se muestren en línea */
+    text-align: center; /* Centra el texto horizontalmente */
+    
+  }
+  
+  /* Animación del carrusel */
+  @keyframes carousel {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-100% - 300px)); /* -300px para asegurar que el último elemento no quede parcialmente oculto */
+    }
+  }
 
 /*********CONTENT********/
 

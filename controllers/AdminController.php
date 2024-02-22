@@ -203,11 +203,23 @@ class AdminController
             require_once 'models/Character.php';
             $character_model = new Character();
             $character_model->setId($_GET['id'])->setName($_POST['name'])->setSagaId($_POST['saga']);
+
             $result = $character_model->edit();
             if ($result) header("Location: " . base_url . "admin/sagas&id=" . $_POST['saga']);
 
             else $_SESSION['error'] = "Error en la eliminación";
         }
+        if (isset($_GET['entity']) && $_GET['entity'] == 'menu') {
+            require_once 'models/Category.php';
+            $category_model = new Category();
+            if (isset($_GET['id'])) $category_model->setId($_GET['id']);
+            else $category_model->setId($_POST['id']);
+            $category_model->setMenu($_GET['menu']);
+            $result = $category_model->editMenu();
+            if ($result) header("Location: " . base_url . "admin/menu");
+
+        } else $_SESSION['error'] = "Error en la eliminación";
+        
     }
     public function delete()
     {
@@ -273,19 +285,17 @@ class AdminController
             $all_characters = $character_model->getAll();
             if ($all_characters) {
                 $character_list = array_filter($all_characters, function ($array) {
-               
+
                     return $_GET['id'] == $array['saga_id'];
                 });
             } else {
-                $character_list=false;
+                $character_list = false;
             }
-            
+
             require_once 'views/admin/characters.php';
         } else {
             require_once 'views/admin/sagas.php';
         }
-
-        
     }
     public function menu()
     {
@@ -293,28 +303,9 @@ class AdminController
         require_once 'models/Category.php';
         $category_model = new Category();
         $all_categories = $category_model->getAll();
-
-
-        
-
-        if (isset($_GET['id'])) {
-            require_once 'models/Character.php';
-            $character_model = new Character();
-            $all_characters = $character_model->getAll();
-            if ($all_characters) {
-                $character_list = array_filter($all_characters, function ($array) {
-               
-                    return $_GET['id'] == $array['saga_id'];
-                });
-            } else {
-                $character_list=false;
-            }
-            
-            require_once 'views/admin/characters.php';
-        } else {
-            require_once 'views/admin/sagas.php';
-        }
-
-        
+        $category_list = array_filter($all_categories, function ($array) {
+            return $array['menu'] == 1;
+        });
+        require_once 'views/admin/menu/index.php';
     }
 }

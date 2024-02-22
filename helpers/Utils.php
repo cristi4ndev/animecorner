@@ -103,4 +103,21 @@ class Utils
             return null;
         }
     }
+    public static function getSagas()
+    {
+        require_once ('models/Saga.php');
+        $saga_model = new Saga();
+        $sagas = $saga_model->getAll();
+        
+
+
+        // Verificar si se encontró un elemento en el array filtrado
+        if (!empty($sagas)) {           
+            
+            return $sagas;
+        } else {
+            // Si no se encontró ninguna coincidencia, devolvemos null
+            return null;
+        }
+    }
 }

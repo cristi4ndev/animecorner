@@ -38,5 +38,29 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    
+    // Referencia al carrusel
+    var carousel = document.querySelector('.carousel');
+    // Referencia al intervalo del carrusel
+    var carouselInterval;
+
+    // Función para iniciar el carrusel
+    function startCarousel() {
+        carouselInterval = setInterval(() => {
+            carousel.scrollLeft += 1; // Cambia el valor de desplazamiento horizontal
+        }, 10); // Ajusta la velocidad del carrusel
+    }
+
+    // Función para detener el carrusel
+    function stopCarousel() {
+        clearInterval(carouselInterval);
+    }
+
+    // Inicia el carrusel automáticamente cuando se carga la página
+    startCarousel();
+
+    // Detiene el carrusel cuando el ratón se coloca sobre él
+    carousel.addEventListener('mouseenter', stopCarousel);
+
+    // Reanuda el carrusel cuando el ratón se retira del elemento
+    carousel.addEventListener('mouseleave', startCarousel);
 });

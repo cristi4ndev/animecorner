@@ -69,7 +69,24 @@ class Category
         return $this;
     }
 
-   
+       /**
+     * Get the value of menu
+     */
+    public function getMenu()
+    {
+        return $this->menu;
+    }
+
+    /**
+     * Set the value of menu
+     */
+    public function setMenu($menu): self
+    {
+        $this->menu = $menu;
+
+        return $this;
+    }
+  
 
     public function getOne()
     {
@@ -98,9 +115,7 @@ class Category
         } else {
             return false;
         }
-    }
-
-    
+    }  
 
 
     public function getCategories()
@@ -123,7 +138,7 @@ class Category
 
     public function createCategory()
     {
-        $sql = "INSERT INTO categories VALUES (null,'{$this->getName()}','{$this->getParent()}')";
+        $sql = "INSERT INTO categories VALUES (null,'{$this->getName()}','{$this->getParent()}',0)";
         $result = $this->db->query($sql);
 
         if ($result) {
@@ -143,6 +158,11 @@ class Category
         $result = $this->db->query($sql);
         if($result) return true; else return false;
     }
+    public function editMenu(){
+        $sql = "UPDATE categories SET menu='{$this->getMenu()}' WHERE id={$this->id}";
+        $result = $this->db->query($sql);
+        if($result) return true; else return false;
+    }
 
     // Función para mantener la integridad de la base de datos. Si se quiere eliminar una categoría con subcategorías, estas se setean a "Inicio"
     public function setParentCategory(){
@@ -151,21 +171,5 @@ class Category
         if($result) return true; else return false;
     }
 
-    /**
-     * Get the value of menu
-     */
-    public function getMenu()
-    {
-        return $this->menu;
-    }
-
-    /**
-     * Set the value of menu
-     */
-    public function setMenu($menu): self
-    {
-        $this->menu = $menu;
-
-        return $this;
-    }
+ 
 }
