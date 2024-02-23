@@ -407,7 +407,7 @@ display: flex;
 
 .carousel-slide {
     
-    animation: 8s carousel infinite linear;
+    animation: 30s carousel infinite linear;
     display: flex;
    justify-content: center;
     align-items: center;
