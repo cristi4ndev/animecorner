@@ -1,5 +1,11 @@
 /*********** GENERALES ******************/
 
+* {
+
+    letter-spacing: 5px;
+    box-sizing: border-box;
+}
+
 .table-container {
     display: flex;
     flex-direction: column;
@@ -69,7 +75,7 @@ button:hover {
 
 #update-address {
     display: none;
-    background-color: #8cff57;
+    
 
 
 }
@@ -168,6 +174,7 @@ i {
     padding: 0px;
     margin: 0px;
     position: relative;
+    flex-wrap: wrap;
 
 }
 
@@ -179,10 +186,7 @@ i {
     padding: 15px;
 }
 
-* {
 
-    letter-spacing: 5px;
-}
 
 a {
     text-decoration: none;
@@ -216,13 +220,13 @@ body {
     width: 100%;
     height: 100%;
     min-height: 100vh;
-    min-width: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    max-width: 2560px;
+    
     justify-self: center;
-    margin: 8px 8px 8px 8px;
+    padding: 8px;
 
 }
 
@@ -259,7 +263,13 @@ body {
     justify-content: space-between;
     justify-items: center;
     align-items: center;
+    flex-wrap: wrap;
 
+}
+
+#user-panel {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 #navbar {
@@ -287,7 +297,7 @@ body {
     border-top: 2px solid #FF5757;
     border-bottom: 2px solid #FF5757;
     line-height: 0px;
-
+display: flex;
     font-size: 12px;
 }
 
@@ -330,13 +340,12 @@ body {
     padding: 10px;
 }
 
-.search-bar div:nth-child(2) {
+#search-button {
 
-    height: 20px;
-    width: 20px;
+  
     background-color: #FF5757;
     border-radius: 50%;
-    padding: 10px;
+    padding: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -348,31 +357,18 @@ body {
     border: none;
     width: 100%;
     height: 100%;
-
+    min-width: 260px;
     &::placeholder {
         padding-left: 10px;
 
     }
 }
 
-.search-bar button {
-    margin: 0px;
-    border: none;
-    height: 20px;
-    width: 20px;
-    background-color: transparent;
-    display: flex;
-    justify-content: center;
-    /* Centra horizontalmente el contenido */
-    align-items: center;
 
-
-
-}
 
 .search-bar i {
     color: white;
-    font-size: 20px;
+    font-size: 15px;
     letter-spacing: 0px;
 
 }
@@ -381,6 +377,8 @@ body {
     overflow: hidden;
     white-space: nowrap;
     position: relative;
+    display: flex;
+    width: 100%;
 }
 
 .carousel:before,
@@ -408,20 +406,20 @@ body {
 }
 
 .carousel-slide {
-    display: inline-block;
-    animation: 30s carousel infinite linear;
+    
+    animation: 8s carousel infinite linear;
+    display: flex;
+   justify-content: center;
+    align-items: center;
 }
 
-.carousel-slide p {
+.carousel-slide div {
 
-    padding: 0px 30px;
+   
+   margin: 10px 30px;
     display: inline-block;
 
 }
-
-
-
-
 
 /* Animación del carrusel */
 @keyframes carousel {

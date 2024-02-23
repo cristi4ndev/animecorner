@@ -48,11 +48,11 @@ $addresses = $addressinstance->getAll(); ?>
                 <input disabled type="tel" name="phone" value="<?php echo $address['phone']; ?>">
             </div>
             <div style="display: flex; justify-content:center;gap:10px;">
-                <button class="button edit-address">
+                <button  style="display: inline-block;" class="button edit-address">
                     <i class="fa-solid fa-pen-to-square"></i>Editar
                 </button>
 
-                <button type="submit" class="button update-address" id="update-address" >
+                <button style="display: none;" type="submit" class="button update-address" id="update-address" >
                     <i class="fa-solid fa-circle-check"></i>Guardar
                 </button>
 

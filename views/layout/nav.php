@@ -14,18 +14,19 @@
         }
         ?>
     </ul>
-    <div id="sagas-nav-list" class="flex-list" onmouseover="stopCarousel()" onmouseout="startCarousel()">
+    <div id="sagas-nav-list">
 
         <div id="sagas">SAGAS</div>
 
         <div class="carousel">
+            
             <div class="carousel-slide">
                 <?php
                 require_once 'helpers/Utils.php';
                 $sagas = Utils::getSagas();
                 if ($sagas) {
                     foreach ($sagas as $saga) {
-                        echo "<a href='" . base_url . "saga/listar?{$saga['id']}'><p>{$saga['name']}</p></a>";
+                        echo "<a href='" . base_url . "saga/listar?{$saga['id']}'><div>{$saga['name']}</div></a>";
                     }
                 } else {
                     echo "Empiece asignando sagas al menú en el panel de administrador";
@@ -38,26 +39,14 @@
                 $sagas = Utils::getSagas();
                 if ($sagas) {
                     foreach ($sagas as $saga) {
-                        echo "<a href='" . base_url . "saga/listar?{$saga['id']}'><p>{$saga['name']}</p></a>";
+                        echo "<a href='" . base_url . "saga/listar?{$saga['id']}'><div>{$saga['name']}</div></a>";
                     }
                 } else {
                     echo "Empiece asignando sagas al menú en el panel de administrador";
                 }
                 ?>
             </div>
-            <div class="carousel-slide">
-                <?php
-                require_once 'helpers/Utils.php';
-                $sagas = Utils::getSagas();
-                if ($sagas) {
-                    foreach ($sagas as $saga) {
-                        echo "<a href='" . base_url . "saga/listar?{$saga['id']}'><p>{$saga['name']}</p></a>";
-                    }
-                } else {
-                    echo "Empiece asignando sagas al menú en el panel de administrador";
-                }
-                ?>
-            </div>
+            
 
         </div>
 

@@ -5,7 +5,7 @@
         <div class="search-bar">
             <form>
                 <div><input type="search" placeholder="Realiza tu búsqueda..."></div>
-                <div><button><i class="fa-solid fa-magnifying-glass"></i></button> </div>
+                <div id="search-button"><i class="fa-solid fa-magnifying-glass"></i></div>
             </form>
         </div>
         <div id="user-panel">
