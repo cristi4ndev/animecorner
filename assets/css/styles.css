@@ -290,6 +290,9 @@ body {
     position: sticky;
 
 }
+#categories-nav-list li:last-child{
+    display: none;
+}
 
 #sagas-nav-list {
     background-color: #ffffff;
@@ -716,15 +719,10 @@ display: flex;
     align-content: center;
     min-height: 400px;
     grid-area: content;
-    display: grid;
-    grid-template-areas:
-        "carrousel"
-        "homepage-grid"
-        "h2-block"
-        "products-list";
-
-    grid-template-columns: 1fr;
-
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
 }
 
 #carrousel {
@@ -735,22 +733,18 @@ display: flex;
 }
 
 .homepage-grid {
-    margin-top: 20px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-left: 60px;
-    padding-right: 60px;
-    justify-self: center;
+    
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
     grid-template-areas:
-        " goku figuras camisetas disfraces onepiece"
-        " goku figuras camisetas disfraces onepiece"
-        " goku sudaderas tazas posters  onepiece"
-        " goku sudaderas gorras posters  onepiece"
-    ;
-    grid-area: homepage-grid;
-    gap: 20px;
+        " goku figuras camisetas funkos disfraces onepiece"
+        " goku figuras camisetas alfombrillas disfraces onepiece"
+        " goku sudaderas tazas posters  mochilas onepiece"
+        " goku sudaderas gorras posters  mochilas onepiece";
+    max-width: 100%;
+    margin: 0 auto;
+    grid-template-columns: repeat(6,1fr);
+    column-gap: 10px;
+    row-gap: 5px;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -758,60 +752,63 @@ display: flex;
     letter-spacing: 10px;
 }
 
-.homepage-grid div {
-    border-radius: 20px;
-    background-color: #FF5757;
-    box-shadow: 0px 3px 0px rgb(75, 75, 75);
-}
+@media (width <= 768px)  { 
+    .homepage-grid {
+        grid-template-columns: repeat(3,  1fr);
+        grid-template-areas:
+        " goku figuras camisetas"
+        " goku figuras camisetas"
+        " goku sudaderas tazas"
+        " goku sudaderas gorras"
+        "funkos disfraces onepiece"
+        "alfombrillas disfraces one piece"
+        "posters sudaderas tazas posters"
+        "posters sudaderas gorras posters"
+        "posters  mochilas onepiece"
+
+
+
+    
+}}
+@media (width <= 480px) { 
+    .homepage-grid {
+        grid-template-columns: repeat(2,  1fr);
+        grid-template-areas:
+        "goku figuras"
+        "goku sudaderas"
+        "camisetas funkos"
+        "camisetas alfombrillas"
+        "tazas posters"
+        "gorras posters"
+        "disfraces one piece"
+        "mochilas one piece"
+     
+}}
+
 
 .homepage-grid img {
     width: 100%;
-    border-radius: 20px;
-
-    border-left: 5px solid #FF5757;
-
+    height: auto;
+    border-radius: 8px;
 }
 
 .homepage-grid h3 {
     padding: 5px;
-
 }
 
-#figuras {
-    grid-area: figuras;
-}
+#figuras { grid-area: figuras; }
+#goku { grid-area: goku; }
+#onepiece { grid-area: onepiece; }
+#camisetas { grid-area: camisetas; }
+#gorras { grid-area: gorras; }
+#sudaderas { grid-area: sudaderas; }
+#tazas { grid-area: tazas; }
+#disfraces { grid-area: disfraces; }
+#posters { grid-area: posters; }
+#alfombrillas { grid-area: alfombrillas; }
+#funkos { grid-area: funkos; }
+#mochilas { grid-area: mochilas; }
 
-#goku {
-    grid-area: goku;
-}
-
-#onepiece {
-    grid-area: onepiece;
-}
-
-#camisetas {
-    grid-area: camisetas;
-}
-
-#gorras {
-    grid-area: gorras;
-}
-
-#sudaderas {
-    grid-area: sudaderas;
-}
-
-#tazas {
-    grid-area: tazas;
-}
-
-#disfraces {
-    grid-area: disfraces;
-}
-
-#posters {
-    grid-area: posters;
-}
 
 
 
@@ -819,6 +816,7 @@ display: flex;
 .product-listing {
 
     display: flex;
+    flex-wrap: wrap;
     flex: auto;
     align-items: center;
     justify-content: center;
@@ -828,7 +826,8 @@ display: flex;
 }
 
 .product-listing div {
-    flex: auto;
+    
+    display: flex;
 
 }
 
@@ -852,6 +851,9 @@ display: flex;
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 
