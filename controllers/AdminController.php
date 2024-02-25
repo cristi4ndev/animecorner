@@ -175,6 +175,42 @@ class AdminController
             $create_char = $character_model->create();
             header("Location: " . base_url . "admin/sagas&id=" . $_POST['saga']);
         }
+        if (isset($_POST['entity']) && $_POST['entity'] == 'product') {
+            require_once 'models/Product.php';
+            require_once 'models/ProductCharacters.php';
+            try {
+                $product_model = new Product();
+                // Guardado de la imagen 
+                if(isset($_FILES['imagen'])) {
+                    // Carpeta donde se guardará la imagen
+                    $dir = '<?=base_url?>uploads/images/products/';
+                
+                    // Obtener el nombre y la ubicación temporal del archivo
+                    $file_name = $_FILES['image']['name'];
+                    $tmp_file = $_FILES['image']['tmp_name'];
+                
+                    // Mover el archivo a la carpeta de destino
+                    if(move_uploaded_file($tmp_file, $dir . $file_name)) {
+                        echo "La imagen se ha guardado correctamente.";
+                    } else {
+                        echo "Hubo un error al guardar la imagen.";
+                    }
+
+                    $product_model->setImage($dir.$file_name);
+                }
+                
+                $product_model->setStock($_POST['stock'])->setPrice($_POST['price'])->setName($_POST['name'])->setDescription($_POST['description'])->setCategoryId($_POST['category'])->setSagaId($_POST['saga']);
+                if (isset($_POST['saga']) && isset($_POST['character'])){
+                    $prodchar_model = new ProductCharacters();
+                    $create_relation = $prodchar_model->create();
+                }
+                   
+                header("Location: " . base_url . "admin/products");
+            } catch (\Throwable $th) {
+                throw $th->getMessage();
+                header("Location: " . base_url . "admin/new_product");
+            }
+        }
     }
 
     public function edit()
@@ -218,9 +254,7 @@ class AdminController
             $category_model->setMenu($_GET['menu']);
             $result = $category_model->editMenu();
             if ($result) header("Location: " . base_url . "admin/menu");
-
         } else $_SESSION['error'] = "Error en la eliminación";
-        
     }
     public function delete()
     {
@@ -308,5 +342,17 @@ class AdminController
             return $array['menu'] == 1;
         });
         require_once 'views/admin/menu/index.php';
+    }
+    public function products()
+    {
+        Utils::isAdmin();
+
+        require_once 'views/admin/products/index.php';
+    }
+    public function new_product()
+    {
+        Utils::isAdmin();
+
+        require_once 'views/admin/products/create.php';
     }
 }

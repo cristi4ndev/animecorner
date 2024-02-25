@@ -8,8 +8,10 @@ CREATE TABLE users(
     password varchar(255) not null,
     role varchar(20) not null,
     dni varchar(9) not null,
+    deleted boolean default 0,
     CONSTRAINT user_id PRIMARY KEY(id),
-    CONSTRAINT email UNIQUE(email)
+    CONSTRAINT email UNIQUE(email),
+    
 ) ENGINE = InnoDb;
 
 ////////////////////////////
@@ -34,14 +36,20 @@ create TABLE products (
     created_at timestamp NOT NULL,
     name varchar(50) NOT NULL,
     description longtext NOT NULL,
-    category_id int NOT NULL,
+    category_id int,
+    saga_id int,
+    deleted boolean default 0,
     FOREIGN KEY (category_id) REFERENCES categories(id)
+    ON DELETE SET NULL,
+    FOREIGN KEY (saga_id) REFERENCES sagas(id)
+    ON DELETE SET NULL,
 ) ENGINE = InnoDb;
 ;
 CREATE TABLE carriers (
     id int AUTO_INCREMENT PRIMARY KEY,
     price double(10, 2) NOT NULL,
-    name varchar(200) NOT NULL
+    name varchar(200) NOT NULL,
+    deleted boolean default 0,
 ) ENGINE = InnoDb;
 ;
 CREATE TABLE sagas (
@@ -59,8 +67,8 @@ CREATE TABLE characters (
 CREATE TABLE product_characters (
     character_id int AUTO_INCREMENT,
     product_id int NOT NULL,
-    FOREIGN KEY (product_id) REFERENCES products(id),
-    FOREIGN KEY (character_id) REFERENCES characters(id),
+    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE cascade,
+    FOREIGN KEY (character_id) REFERENCES characters(id) ON DELETE CASCADE,
     PRIMARY KEY(character_id, product_id)
 ) ENGINE = InnoDb;
 ;
@@ -72,8 +80,9 @@ CREATE TABLE addresses (
     locality varchar(50) NOT NULL,
     address varchar(300) NOT NULL,
     phone int(9) NOT NULL,
+    deleted boolean default 0,
     user_id int NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
 ) ENGINE = InnoDb;
 ;
 create TABLE orders (

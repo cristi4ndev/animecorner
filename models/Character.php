@@ -1,11 +1,13 @@
 <?php
-class Character  {
+class Character
+{
     private $id;
     private $name;
     private $saga_id;
     private $db;
-    
-    public function __construct() {
+
+    public function __construct()
+    {
         $this->db = Database::connect();
     }
 
@@ -46,7 +48,7 @@ class Character  {
         return $this;
     }
 
-       /**
+    /**
      * Get the value of saga_id
      */
     public function getSagaId()
@@ -94,10 +96,47 @@ class Character  {
         }
     }
 
-    
+    public function getAllJoinChars()
+    {
+
+        $sql = "SELECT characters.id, characters.name, saga_id, sagas.name as saga FROM characters INNER JOIN sagas ON characters.saga_id = sagas.id;";
+
+        $result = $this->db->query($sql);
+
+        if ($result && $result->num_rows > 0) {
+            $characters = array();
+            while ($row = $result->fetch_assoc()) {
+                $characters[] = $row;
+            }
+
+            return $characters;
+        } else {
+            return false;
+        }
+    }
+    public function getAllBySagaId()
+    {
+
+        $sql = "SELECT * FROM characters where saga_id = {$this->getSagaId()}";
+
+        $result = $this->db->query($sql);
+
+        if ($result && $result->num_rows > 0) {
+            $characters = array();
+            while ($row = $result->fetch_assoc()) {
+                $characters[] = $row;
+            }
+
+            return $characters;
+        } else {
+            return false;
+        }
+    }
 
 
-    
+
+
+
 
     public function create()
     {
@@ -111,25 +150,20 @@ class Character  {
         }
     }
 
-    public function delete(){
+    public function delete()
+    {
         $sql = "DELETE FROM characters WHERE id={$this->id}";
         $result = $this->db->query($sql);
-        if($result) return true; else return false;
+        if ($result) return true;
+        else return false;
     }
-    public function edit(){
+    public function edit()
+    {
         $sql = "UPDATE characters SET name='{$this->getName()}', saga_id='{$this->getSagaId()}' WHERE id={$this->id}";
         $result = $this->db->query($sql);
-        if($result) return true; else return false;
+        if ($result) return true;
+        else return false;
     }
-
-    // Función para mantener la integridad de la base de datos. 
-    // Si se quiere eliminar una saga con productos relacionados, estas se setean a null
-    /*public function resetProductSaga(){
-        $sql = "UPDATE sagas SET parent=1 WHERE parent={$this->()}";
-        $result = $this->db->query($sql);
-        if($result) return true; else return false;
-    }*/
-  
-
- 
 }
+
+  

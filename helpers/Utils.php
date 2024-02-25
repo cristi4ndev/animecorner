@@ -42,6 +42,13 @@ class Utils
             return null;
         }
     }
+    public static function getCategories()
+    {
+
+        $category_model = new Category();
+        $categories = $category_model->getAll();
+        return $categories;
+    }
 
     // Función recursiva para imprimir el árbol de categorías
     public static function printCategoriesTree($categories, $parent_id = 0, $level = 0)
@@ -120,4 +127,22 @@ class Utils
             return null;
         }
     }
+    public static function getSagasAndChars()
+    {
+        require_once ('models/Character.php');
+        $char_model = new Character();
+        $characters = $char_model->getAllJoinChars();
+        
+
+
+        // Verificar si se encontró un elemento en el array filtrado
+        if (!empty($characters)) {           
+            
+            return $characters;
+        } else {
+            // Si no se encontró ninguna coincidencia, devolvemos null
+            return null;
+        }
+    }
+    
 }

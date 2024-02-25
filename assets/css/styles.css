@@ -752,7 +752,7 @@ display: flex;
     letter-spacing: 10px;
 }
 
-@media (width <= 768px)  { 
+@media (width <= 1024px)  { 
     .homepage-grid {
         grid-template-columns: repeat(3,  1fr);
         grid-template-areas:
@@ -761,27 +761,30 @@ display: flex;
         " goku sudaderas tazas"
         " goku sudaderas gorras"
         "funkos disfraces onepiece"
-        "alfombrillas disfraces one piece"
-        "posters sudaderas tazas posters"
-        "posters sudaderas gorras posters"
+        "alfombrillas disfraces onepiece"
+        "posters mochilas onepiece"
         "posters  mochilas onepiece"
 
 
 
     
 }}
-@media (width <= 480px) { 
+@media (width < 480px) { 
     .homepage-grid {
         grid-template-columns: repeat(2,  1fr);
         grid-template-areas:
         "goku figuras"
+        "goku figuras"
+        "goku sudaderas"
         "goku sudaderas"
         "camisetas funkos"
         "camisetas alfombrillas"
         "tazas posters"
         "gorras posters"
-        "disfraces one piece"
-        "mochilas one piece"
+        "disfraces onepiece"
+        "disfraces onepiece"
+        "mochilas onepiece"
+        "mochilas onepiece"
      
 }}
 
@@ -935,3 +938,60 @@ display: flex;
 #category-tree h3 {
     text-align: center;
 }
+
+.secondary-admin-menu {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    background-color: #a74e4E;
+}
+.admin-listing {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    background-color: #3f3f3f;
+}
+
+
+/*********** PRODUCTS ***********/
+
+#product-image{
+    width: 225px;
+    height: 225px;
+}
+#create-product {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.create-product {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#product-image-block{
+    display: flex;
+    flex-direction: column;
+}
+#first-column{
+    display: flex;
+    flex-direction: column;
+}
+#second-column{
+    display: flex;
+    flex-direction: column;
+}
+
+#product-title {
+    display:flex; 
+    flex-direction:column;
+    
+}
+#product-title input {
+    font-size: 20px;
+    text-indent: 10px;
+}
+
+
+

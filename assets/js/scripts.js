@@ -1,4 +1,8 @@
+const base_url = "http://192.168.1.137/animecorner/";
+
 document.addEventListener("DOMContentLoaded", function () {
+
+
      // Selección de botones de edición de dirección
      var botonesEditar = document.querySelectorAll('.edit-address');
      botonesEditar.forEach(function (boton) {
@@ -39,6 +43,40 @@ document.addEventListener("DOMContentLoaded", function () {
             element.disabled = true; 
         }
     }  
+
+
+    //cargar los personajes dinámicamente según el select seleccionado por el usuario
+    document.getElementById('saga').addEventListener('change', function() {
+        console.log("hasta aqui he entrado")
+        var sagaId = this.value;
+        var xhr = new XMLHttpRequest();
+        
+        xhr.open('GET', base_url + 'ajax/getCharacterById&ajax=true&id=' + sagaId, true);
+        xhr.onload = function() {
+            if (xhr.status >= 200 && xhr.status < 400) {
+                var characters = JSON.parse(xhr.responseText);
+                var charactersDiv = document.getElementById('characters-container');
+                charactersDiv.innerHTML = ''; // Limpiar contenido anterior
+                characters.forEach(function(character) {
+                    var checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    checkbox.id = character.id;
+                    checkbox.value = character.id;
+                    checkbox.name = character.name;
+                    var label = document.createElement('label');
+                    label.htmlFor = character.name;
+                    label.textContent = character.name;
+                    var div = document.createElement('div');
+                    div.appendChild(checkbox);
+                    div.appendChild(label);
+                    charactersDiv.appendChild(div);
+                });
+            }else console.log("No he entrado")
+        };
+        xhr.send();
+    });
+
+
     
 
   
