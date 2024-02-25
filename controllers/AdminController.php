@@ -178,17 +178,18 @@ class AdminController
         if (isset($_POST['entity']) && $_POST['entity'] == 'product') {
             require_once 'models/Product.php';
             require_once 'models/ProductCharacters.php';
+            
             try {
                 $product_model = new Product();
                 // Guardado de la imagen 
-                if(isset($_FILES['imagen'])) {
+                if(isset($_FILES['image'])) {
                     // Carpeta donde se guardará la imagen
                     $dir = '<?=base_url?>uploads/images/products/';
-                
+                    
                     // Obtener el nombre y la ubicación temporal del archivo
                     $file_name = $_FILES['image']['name'];
                     $tmp_file = $_FILES['image']['tmp_name'];
-                
+                   
                     // Mover el archivo a la carpeta de destino
                     if(move_uploaded_file($tmp_file, $dir . $file_name)) {
                         echo "La imagen se ha guardado correctamente.";
@@ -200,10 +201,15 @@ class AdminController
                 }
                 
                 $product_model->setStock($_POST['stock'])->setPrice($_POST['price'])->setName($_POST['name'])->setDescription($_POST['description'])->setCategoryId($_POST['category'])->setSagaId($_POST['saga']);
-                if (isset($_POST['saga']) && isset($_POST['character'])){
+                var_dump($product_model);die();               
+                 /*if (isset($_POST['saga']) && isset($_POST['character'])){
                     $prodchar_model = new ProductCharacters();
-                    $create_relation = $prodchar_model->create();
-                }
+                    foreach($_POST['characters'] as $character){
+                        $prodchar_model ->setProductId($_POST['id'])->setCharacterId();
+                        $create_relation = $prodchar_model->create();
+                    }
+                    
+                }*/
                    
                 header("Location: " . base_url . "admin/products");
             } catch (\Throwable $th) {

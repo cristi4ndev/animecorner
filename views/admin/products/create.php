@@ -9,7 +9,7 @@
             <form class="create-product" method="POST" action="<?= base_url ?>admin/create" enctype="multipart/form-data">
             <input type="hidden" value="product" name="entity" id="entity">    
             <div id="product-title" >
-                    <input type="text" placeholder="Escribe el nombre del producto...">
+                    <input type="text" name="name" id="name" placeholder="Escribe el nombre del producto...">
 
                 </div>
                 <div style="display: flex; ">

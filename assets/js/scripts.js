@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     checkbox.type = 'checkbox';
                     checkbox.id = character.id;
                     checkbox.value = character.id;
-                    checkbox.name = character.name;
+                    checkbox.name = "characters[]";
                     var label = document.createElement('label');
                     label.htmlFor = character.name;
                     label.textContent = character.name;
