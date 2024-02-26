@@ -273,11 +273,24 @@ class Product
 
     public function create()
     {
-        $sql = "INSERT INTO characters VALUES (null,'{$this->getImage()}','{$this->getStock()}','{$this->getPrice()}',CURRENT_TIMESTAMP(),{$this->getName()}','{$this->getDescription()}','{$this->getCategoryId()},'{$this->getSagaId()}',0')";
+        $sql = "INSERT INTO products 
+        VALUES (null,'{$this->getImage()}','{$this->getStock()}','{$this->getPrice()}',CURRENT_TIMESTAMP(),'{$this->getName()}','{$this->getDescription()}','{$this->getCategoryId()}','{$this->getSagaId()}',0)";
         $result = $this->db->query($sql);
 
         if ($result) {
             return true;
+        } else {
+            return false;
+        }
+    }
+    public function getLastInsertedId()
+    {
+        $sql = "SELECT LAST_INSERT_ID() as last_id";
+        $result = $this->db->query($sql);
+
+        if ($result) {
+            $row = $result->fetch_assoc();
+            return $row['last_id'];
         } else {
             return false;
         }

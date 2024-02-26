@@ -1,4 +1,4 @@
-const base_url = "http://192.168.1.137/animecorner/";
+const base_url = "http://localhost/animecorner/";
 
 document.addEventListener("DOMContentLoaded", function () {
 

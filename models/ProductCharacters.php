@@ -52,7 +52,7 @@ class ProductCharacters
 
     public function create()
     {
-        $sql = "INSERT INTO characters VALUES ('{$this->getCharacterId()}','{$this->getProductID()}')";
+        $sql = "INSERT INTO product_characters VALUES ('{$this->getCharacterId()}','{$this->getProductID()}')";
         $result = $this->db->query($sql);
 
         if ($result) {
@@ -62,9 +62,9 @@ class ProductCharacters
         }
     }
 
-    public function edit()
+    /*public function edit()
     {
-        $sql = "INSERT INTO characters VALUES (null,'{$this->getImage()}','{$this->getStock()}','{$this->getPrice()}',CURRENT_TIMESTAMP(),{$this->getName()}','{$this->getDescription()}','{$this->getCategoryId()},'{$this->getSagaId()}',0')";
+        $sql = "INSERT INTO product_characters VALUES (null,'{$this->getImage()}','{$this->getStock()}','{$this->getPrice()}',CURRENT_TIMESTAMP(),{$this->getName()}','{$this->getDescription()}','{$this->getCategoryId()},'{$this->getSagaId()}',0')";
         $result = $this->db->query($sql);
 
         if ($result) {
@@ -72,5 +72,5 @@ class ProductCharacters
         } else {
             return false;
         }
-    }
+    }*/
 }

@@ -178,42 +178,51 @@ class AdminController
         if (isset($_POST['entity']) && $_POST['entity'] == 'product') {
             require_once 'models/Product.php';
             require_once 'models/ProductCharacters.php';
-            
+
             try {
                 $product_model = new Product();
                 // Guardado de la imagen 
-                if(isset($_FILES['image'])) {
+                if (isset($_FILES['image'])) {
                     // Carpeta donde se guardará la imagen
-                    $dir = '<?=base_url?>uploads/images/products/';
-                    
+                    $dir = storage . 'uploads/images/products/';
+
                     // Obtener el nombre y la ubicación temporal del archivo
                     $file_name = $_FILES['image']['name'];
                     $tmp_file = $_FILES['image']['tmp_name'];
-                   
+
                     // Mover el archivo a la carpeta de destino
-                    if(move_uploaded_file($tmp_file, $dir . $file_name)) {
+                    if (move_uploaded_file($tmp_file, $dir . $file_name)) {
                         echo "La imagen se ha guardado correctamente.";
                     } else {
                         echo "Hubo un error al guardar la imagen.";
                     }
 
-                    $product_model->setImage($dir.$file_name);
+                    $product_model->setImage(base_url . 'uploads/images/products/' . $file_name);
                 }
-                
+
                 $product_model->setStock($_POST['stock'])->setPrice($_POST['price'])->setName($_POST['name'])->setDescription($_POST['description'])->setCategoryId($_POST['category'])->setSagaId($_POST['saga']);
-                var_dump($product_model);die();               
-                 /*if (isset($_POST['saga']) && isset($_POST['character'])){
-                    $prodchar_model = new ProductCharacters();
+                $product_creation = $product_model->create();
+            
+                if (isset($_POST['saga']) && isset($_POST['characters'])){
+                   
                     foreach($_POST['characters'] as $character){
-                        $prodchar_model ->setProductId($_POST['id'])->setCharacterId();
+                        
+                        $prodchar_model = new ProductCharacters();
+                        $prodchar_model ->setProductId($product_model->getLastInsertedId())->setCharacterId($character);                 
+                              
                         $create_relation = $prodchar_model->create();
+                        if ($create_relation) {
+                            echo "La relación en la tabla ProductsCharacters se ha realizado correctamente.";
+                        } else {
+                            echo "Hubo un error al crear la relación de productos y personajes.";
+                        }
                     }
                     
-                }*/
-                   
+                }
+
                 header("Location: " . base_url . "admin/products");
             } catch (\Throwable $th) {
-                throw $th->getMessage();
+                throw $th;
                 header("Location: " . base_url . "admin/new_product");
             }
         }

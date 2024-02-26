@@ -77,7 +77,7 @@
                             <div>
                                 <h2>Personaje/s:</h2>
                                 <div id="characters-container">
-                                <p>Por favor, seleccione una saga</p>
+                                <p>No existen personajes para esta Saga, por favor, vaya al panel de administración para crear personajes nuevos.</p>
                                 </div>
                                 
                             </div>
