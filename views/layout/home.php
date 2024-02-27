@@ -1,8 +1,11 @@
 <div id="content-home">
-
-    <img id="carrousel" src="https://i.redd.it/9iirx6dmxyd91.png" />
-
-
+    <div id="carrousel" class="image-slider">
+        <img  src="./uploads/images/home/image-slider/goku.png" />
+        <img  src="./uploads/images/home/image-slider/naruto.png" />
+        <img  src="./uploads/images/home/image-slider/onepiece.png" />
+    </div>
+    
+    <h2 class="h2-block">Categorías <strong>destacadas</strong> </h2>
     <div class="homepage-grid">
         <div id="figuras">
             <img src="./uploads/images/home/figuras.jpg">

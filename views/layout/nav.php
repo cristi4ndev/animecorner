@@ -14,7 +14,10 @@
         }
         ?>
     </ul>
-    <div id="sagas-nav-list">
+    
+
+</nav>
+<div id="sagas-nav-list">
 
         <div id="sagas">SAGAS</div>
 
@@ -51,6 +54,4 @@
         </div>
 
     </div>
-
-</nav>
 <div id="content">

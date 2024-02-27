@@ -275,6 +275,12 @@ body {
 #navbar {
     width: 100%;
     height: 100%;
+    animation: sticky-header linear both;
+    animation-timeline: scroll(root);
+    animation-range: 150px 300px;
+    position: sticky;
+    top: 0px;
+
 }
 
 #navbar li:hover {
@@ -287,7 +293,6 @@ body {
 #categories-nav-list {
     justify-content: space-around;
     align-items: center;
-    position: sticky;
 
 }
 #categories-nav-list li:last-child{
@@ -425,15 +430,7 @@ display: flex;
 }
 
 /* Animación del carrusel */
-@keyframes carousel {
-    0% {
-        transform: translateX(0);
-    }
 
-    100% {
-        transform: translateX(-100%);
-    }
-}
 
 /*********CONTENT********/
 
@@ -729,7 +726,16 @@ display: flex;
     grid-area: carrousel;
     background-color: white;
     width: 100%;
+    display: flex;
+    overflow: hidden;
+   
+    
+}
+#carrousel img{
+   
+    width: 100%;
     height: auto;
+    animation: 5s image-slider linear both ;
 }
 
 .homepage-grid {
@@ -793,7 +799,12 @@ display: flex;
     width: 100%;
     height: auto;
     border-radius: 8px;
+    animation: scrolling-images linear both;
+    animation-timeline: view();
+    animation-range: entry 25% cover 30%;
 }
+
+
 
 .homepage-grid h3 {
     padding: 5px;
@@ -840,6 +851,11 @@ display: flex;
     justify-content: center;
     display: flex;
     flex-direction: column;
+}
+.article-list-image{
+    animation: scrolling-images linear both;
+    animation-timeline: view();
+    animation-range: entry 25% cover 30%;
 }
 
 
@@ -994,4 +1010,43 @@ display: flex;
 }
 
 
+/************ ANIMATIONS **************/
+@keyframes carousel {
+    0% {
+        transform: translateX(0);
+    }
 
+    100% {
+        transform: translateX(-100%);
+    }
+}
+@keyframes image-slider {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes scrolling-images {
+    from {
+        opacity: 0;
+        scale: 50%;
+        transform: translateY(100px);
+    }
+    to{
+        opacity: 100;
+        scale: 100%;
+    }
+}
+
+@keyframes sticky-header {
+    to {
+        backdrop-filter: blur(10px);
+        background-color: #0000001c;
+        z-index: 50;
+        color: white;
+    }
+}
