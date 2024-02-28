@@ -28,12 +28,14 @@
     &:first-child {
         border-bottom: 2px solid black;
         padding-top: 10px;
+        
     }
 }
 
 .table-heading {
     width: 100px;
     flex: 1;
+    
 }
 
 .table-rows {
@@ -43,12 +45,19 @@
     align-items: center;
     width: 100%;
     border-top: 1px solid black;
+   
 
+}
+
+.table-cell img {
+    width: 50px;
+    height: auto;
 }
 
 .table-cell {
     width: 100px;
     flex: 1;
+    
 }
 
 
@@ -133,6 +142,7 @@ button:hover {
 
     &:hover {
         background-color: #FF5757;
+        color: white;
     }
 
 }
@@ -728,16 +738,23 @@ display: flex;
     width: 100%;
     display: flex;
     overflow: hidden;
+    
    
     
+}
+#carrousel:hover img {
+    animation-play-state: paused;
 }
 #carrousel img{
    
     width: 100%;
     height: auto;
-    animation: 5s image-slider linear both ;
+    animation: 13s linear infinite image-slider;
+   
 }
-
+carrousel-banner {
+    display: flex;
+}
 .homepage-grid {
     
     display: grid;
@@ -959,13 +976,13 @@ display: flex;
     display: flex;
     flex-direction: column;
     width: 20%;
-    background-color: #a74e4E;
+    
 }
 .admin-listing {
     display: flex;
     flex-direction: column;
     width: 80%;
-    background-color: #3f3f3f;
+    
 }
 
 
@@ -979,6 +996,7 @@ display: flex;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    width: 100%;
 }
 .create-product {
     display: flex;
@@ -1023,12 +1041,45 @@ display: flex;
 @keyframes image-slider {
     0% {
         transform: translateX(0);
+        
+    }
+    
+    31.33% {
+        transform: translateX(0%);
+        
+     
     }
 
-    100% {
+    35% {
         transform: translateX(-100%);
+        
+     
+    }
+   
+    64.66% {
+        transform: translateX(-100%);
+        
+    }
+
+    66.66% {
+        transform: translateX(-200%);
+        
+    }
+    
+    98% {
+        transform: translateX(-200%);
+       
+    }
+    100% {
+        transform: translateX(-300%);
+        
     }
 }
+
+@keyframes opacity-view {
+    
+}
+
 
 @keyframes scrolling-images {
     from {

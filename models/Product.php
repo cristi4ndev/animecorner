@@ -17,7 +17,6 @@ class Product
     public function __construct()
     {
         $this->db = Database::connect();
-       
     }
 
     /**
@@ -182,7 +181,7 @@ class Product
         return $this;
     }
 
-     /**
+    /**
      * Get the value of deleted
      */
     public function getDeleted()
@@ -202,7 +201,7 @@ class Product
 
     public function getOne()
     {
-        $sql = "SELECT * FROM sagas WHERE id={$this->getId()}";
+        $sql = "SELECT * FROM products WHERE id={$this->getId()}";
         $result = $this->db->query($sql);
         if ($result && $result->num_rows == 1) {
             return $result->fetch_assoc();
@@ -213,63 +212,30 @@ class Product
 
     public function getAll()
     {
-        $sql = "SELECT * FROM characters ORDER BY name";
+        $sql = "SELECT products.*, categories.name AS category_name, sagas.name AS saga_name FROM products JOIN categories ON products.category_id = categories.id JOIN sagas ON products.saga_id = sagas.id WHERE deleted=0";
+
+        // Agregar condiciones de filtrado si se proporcionan category_name y/o saga_name
+        if ($this->getCategoryId()) {
+            $sql .= " AND category_id = '{$this->getCategoryId()}'";
+        }
+        if ($this->getSagaId()) {
+            $sql .= " AND saga_id = '{$this->getSagaId()}'";
+        }
+        
 
         $result = $this->db->query($sql);
 
         if ($result && $result->num_rows > 0) {
-            $sagas = array();
+            $products = array();
             while ($row = $result->fetch_assoc()) {
-                $sagas[] = $row;
+                $products[] = $row;
             }
 
-            return $sagas;
+            return $products;
         } else {
             return false;
         }
     }
-
-    public function getAllJoinChars()
-    {
-
-        $sql = "SELECT characters.id, characters.name, saga_id, sagas.name as saga FROM characters INNER JOIN sagas ON characters.saga_id = sagas.id;";
-
-        $result = $this->db->query($sql);
-
-        if ($result && $result->num_rows > 0) {
-            $characters = array();
-            while ($row = $result->fetch_assoc()) {
-                $characters[] = $row;
-            }
-
-            return $characters;
-        } else {
-            return false;
-        }
-    }
-    public function getAllBySagaId()
-    {
-
-        $sql = "SELECT * FROM characters where saga_id = {$this->getSagaId()}";
-
-        $result = $this->db->query($sql);
-
-        if ($result && $result->num_rows > 0) {
-            $characters = array();
-            while ($row = $result->fetch_assoc()) {
-                $characters[] = $row;
-            }
-
-            return $characters;
-        } else {
-            return false;
-        }
-    }
-
-
-
-
-
 
     public function create()
     {
@@ -298,18 +264,16 @@ class Product
 
     public function delete()
     {
-        $sql = "DELETE FROM characters WHERE id={$this->id}";
+        $sql = "DELETE FROM products WHERE id={$this->id}";
         $result = $this->db->query($sql);
         if ($result) return true;
         else return false;
     }
     public function edit()
     {
-        $sql = "UPDATE characters SET name='{$this->getName()}', saga_id='{$this->getSagaId()}' WHERE id={$this->id}";
+        $sql = "UPDATE products SETimage='{$this->getImage()}', stock='{$this->getStock()}',price='{$this->getPrice()}',name='{$this->getName()}',description='{$this->getDescription()}',category_id='{$this->getCategoryId()}',saga_id='{$this->getSagaId()}',0 WHERE id={$this->id}";
         $result = $this->db->query($sql);
         if ($result) return true;
         else return false;
     }
-
-   
 }

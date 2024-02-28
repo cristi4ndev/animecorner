@@ -1,8 +1,9 @@
 <div id="content-home">
     <div id="carrousel" class="image-slider">
-        <img  src="./uploads/images/home/image-slider/goku.png" />
-        <img  src="./uploads/images/home/image-slider/naruto.png" />
         <img  src="./uploads/images/home/image-slider/onepiece.png" />
+        <img  src="./uploads/images/home/image-slider/naruto.png" />
+        <img  src="./uploads/images/home/image-slider/goku.png" />
+       
     </div>
     
     <h2 class="h2-block">Categorías <strong>destacadas</strong> </h2>

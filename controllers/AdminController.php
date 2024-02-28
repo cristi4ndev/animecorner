@@ -184,7 +184,7 @@ class AdminController
                 // Guardado de la imagen 
                 if (isset($_FILES['image'])) {
                     // Carpeta donde se guardará la imagen
-                    $dir = storage . 'uploads/images/products/';
+                    $dir = 'uploads/images/products/';
 
                     // Obtener el nombre y la ubicación temporal del archivo
                     $file_name = $_FILES['image']['name'];
@@ -202,14 +202,14 @@ class AdminController
 
                 $product_model->setStock($_POST['stock'])->setPrice($_POST['price'])->setName($_POST['name'])->setDescription($_POST['description'])->setCategoryId($_POST['category'])->setSagaId($_POST['saga']);
                 $product_creation = $product_model->create();
-            
-                if (isset($_POST['saga']) && isset($_POST['characters'])){
-                   
-                    foreach($_POST['characters'] as $character){
-                        
+
+                if (isset($_POST['saga']) && isset($_POST['characters'])) {
+
+                    foreach ($_POST['characters'] as $character) {
+
                         $prodchar_model = new ProductCharacters();
-                        $prodchar_model ->setProductId($product_model->getLastInsertedId())->setCharacterId($character);                 
-                              
+                        $prodchar_model->setProductId($product_model->getLastInsertedId())->setCharacterId($character);
+
                         $create_relation = $prodchar_model->create();
                         if ($create_relation) {
                             echo "La relación en la tabla ProductsCharacters se ha realizado correctamente.";
@@ -217,7 +217,6 @@ class AdminController
                             echo "Hubo un error al crear la relación de productos y personajes.";
                         }
                     }
-                    
                 }
 
                 header("Location: " . base_url . "admin/products");
@@ -240,7 +239,7 @@ class AdminController
             $result = $category_model->edit();
             if ($result) header("Location: " . base_url . "admin/categories&id=" . $_POST['parent']);
 
-            else $_SESSION['error'] = "Error en la eliminación";
+            else $_SESSION['error'] = "Error en la modificación";
         }
         if (isset($_GET['entity']) && $_GET['entity'] == 'saga') {
             require_once 'models/Saga.php';
@@ -249,7 +248,7 @@ class AdminController
             $result = $saga_model->edit();
             if ($result) header("Location: " . base_url . "admin/sagas");
 
-            else $_SESSION['error'] = "Error en la eliminación";
+            else $_SESSION['error'] = "Error en la modificación";
         }
         if (isset($_GET['entity']) && $_GET['entity'] == 'character') {
             require_once 'models/Character.php';
@@ -259,7 +258,7 @@ class AdminController
             $result = $character_model->edit();
             if ($result) header("Location: " . base_url . "admin/sagas&id=" . $_POST['saga']);
 
-            else $_SESSION['error'] = "Error en la eliminación";
+            else $_SESSION['error'] = "Error en la modificación";
         }
         if (isset($_GET['entity']) && $_GET['entity'] == 'menu') {
             require_once 'models/Category.php';
@@ -269,7 +268,17 @@ class AdminController
             $category_model->setMenu($_GET['menu']);
             $result = $category_model->editMenu();
             if ($result) header("Location: " . base_url . "admin/menu");
-        } else $_SESSION['error'] = "Error en la eliminación";
+        } else $_SESSION['error'] = "Error en la modificación";
+        if (isset($_GET['entity']) && $_GET['entity'] == 'product') {
+            
+                require_once 'models/Product.php';
+                $product_model = new Product();
+                if (isset($_GET['id'])) $product_model->setId($_GET['id']);
+
+                $result = $product_model->edit();
+                if ($result) header("Location: " . base_url . "admin/products");
+            
+        } else $_SESSION['error'] = "Error en la modificación";
     }
     public function delete()
     {
@@ -361,6 +370,18 @@ class AdminController
     public function products()
     {
         Utils::isAdmin();
+        require_once 'models/Product.php';
+        $product_model = new Product();
+
+
+        // Funcionalidad para filtrar por categoría
+        if (isset($_POST['category']) && !empty($_POST['category'])) {
+            $product_model->setCategoryId($_POST['category']);
+        }
+        if (isset($_POST['saga']) && !empty($_POST['saga'])) {
+            $product_model->setSagaId($_POST['saga']);
+        }
+        $products = $product_model->getAll();
 
         require_once 'views/admin/products/index.php';
     }
@@ -370,4 +391,15 @@ class AdminController
 
         require_once 'views/admin/products/create.php';
     }
+    public function edit_product()
+    {
+        Utils::isAdmin();
+        require_once 'models/Product.php';
+        $product_model = new Product();
+        $product_model->setId($_GET['id']);
+        $product = $product_model->getOne();
+
+        require_once 'views/admin/products/edit.php';
+    }
+    
 }

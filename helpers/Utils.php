@@ -63,6 +63,22 @@ class Utils
         }
         echo "</ul>";
     }
+    // Función recursiva para imprimir el árbol de categorías para filtrar productos
+    public static function filterProductsByCategory($parent_id = 0, $level = 0)
+    {   
+        require_once 'models/Category.php';
+        $category_model = new Category();
+        $categories= $category_model->getAll();
+        echo "<ul class='level-$level'>";
+        
+        foreach ($categories as $category) {
+            if ($category['parent'] == $parent_id) {
+                echo "<li><a href='" . base_url . "admin/categories&id={$category['id']}'>{$category['name']}</a></li>";
+                Utils::filterProductsByCategory($category['id'], $level + 1);
+            }
+        }
+        echo "</ul>";
+    }
     // Función para comprobar si una categoría tiene subcategorías
     public static function categoryHasChildren($id)
     {
