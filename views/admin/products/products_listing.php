@@ -18,7 +18,7 @@
                         </div>
                     ";
         foreach ($products as $product) {
-            // $parent_name = Utils::getCategoryName($all_categories, $category['parent']);
+            
 
             echo "                 
                             <div class='table-rows'> 
@@ -30,18 +30,16 @@
                                 <div class='table-cell'>{$product['category_name']}</div>
                                 <div class='table-cell'>{$product['saga_name']}</div>
                                 <div class='table-cell'> 
-                                    
-                                        <button class='edit-cat edit-button'><i class='fa-solid fa-pen-to-square'></i></button> 
-                                    
+                                    <a href='" . base_url . "admin/edit_product&id={$product['id']}'>
+                                        <button class='edit-button'><i class='fa-solid fa-pen-to-square'></i></button> 
+                                    </a>
                                     <a href='" . base_url . "admin/delete&id={$product['id']}&entity=product'>
                                         <button class='delete-button'><i class='fa-solid fa-trash'></i></button> 
                                     </a>
                                 
 
                             ";
-            if (isset($_SESSION['error'])) {
-                echo $_SESSION['error'];
-            }
+           
 
 
             echo " </div> ";

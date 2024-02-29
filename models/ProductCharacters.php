@@ -61,10 +61,10 @@ class ProductCharacters
             return false;
         }
     }
-
-    /*public function edit()
+    //Borra los personajes asociados a los productos
+    public function delete()
     {
-        $sql = "INSERT INTO product_characters VALUES (null,'{$this->getImage()}','{$this->getStock()}','{$this->getPrice()}',CURRENT_TIMESTAMP(),{$this->getName()}','{$this->getDescription()}','{$this->getCategoryId()},'{$this->getSagaId()}',0')";
+        $sql = "DELETE FROM product_characters WHERE product_id ='{$this->getProductID()}'";
         $result = $this->db->query($sql);
 
         if ($result) {
@@ -72,5 +72,25 @@ class ProductCharacters
         } else {
             return false;
         }
-    }*/
+    }
+    public function getCharsByProduct()
+    {
+        $sql = "SELECT * FROM product_characters WHERE product_id = {$this->getProductId()}";
+        $result = $this->db->query($sql);
+
+        if ($result && $result->num_rows > 0) {
+            $characters = array();
+            while ($row = $result->fetch_assoc()) {
+                $characters[] = $row;
+            }
+
+            return $characters;
+        } else {
+            return false;
+        }
+    }
+
+
+
+    
 }

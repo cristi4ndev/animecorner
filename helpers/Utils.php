@@ -160,5 +160,45 @@ class Utils
             return null;
         }
     }
+
+    // Devuelve un array de personajes según el id Saga
+    public static function getCharactersById($id)
+    {
+        require_once ('models/Character.php');
+        $char_model = new Character();
+        $char_model ->setSagaId($id);
+        $characters = $char_model->getAllBySagaId();
+        
+
+
+        // Verificar si se encontró un elemento en el array filtrado
+        if (!empty($characters)) {           
+            
+            return $characters;
+        } else {
+            // Si no se encontró ninguna coincidencia, devolvemos null
+            return null;
+        }
+    }
+
+    // devuelve los personajes de un id de Producto
+    public static function getCharsByProduct($id)
+    {
+        require_once ('models/ProductCharacters.php');
+        $chars_model = new ProductCharacters();
+        $chars_model ->setProductId($id);
+        $characters = $chars_model->getCharsByProduct();
+        
+
+
+        // Verificar si se encontró un elemento en el array filtrado
+        if (!empty($characters)) {           
+            
+            return $characters;
+        } else {
+            // Si no se encontró ninguna coincidencia, devolvemos null
+            return null;
+        }
+    }
     
 }

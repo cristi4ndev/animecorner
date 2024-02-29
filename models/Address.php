@@ -200,7 +200,7 @@ class Address
     }
 
     public function delete() {
-        $sql = "DELETE FROM addresses WHERE id = '{$this->getId()}'";
+        $sql = "UPDATE addresses SET deleted = 1 WHERE id = '{$this->getId()}'";
         $delete = $this->db->query($sql);
         return $delete;
     }
@@ -209,7 +209,7 @@ class Address
     public function getAll()
     {
 
-        $sql = "SELECT * FROM addresses WHERE user_id = '{$this->getUserId()}'";
+        $sql = "SELECT * FROM addresses WHERE user_id = '{$this->getUserId()}' AND deleted = 0";
         $result = $this->db->query($sql);
 
         $addresses = array(); // Array para almacenar todas las direcciones

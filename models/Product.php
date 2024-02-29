@@ -221,7 +221,7 @@ class Product
         if ($this->getSagaId()) {
             $sql .= " AND saga_id = '{$this->getSagaId()}'";
         }
-        
+
 
         $result = $this->db->query($sql);
 
@@ -264,16 +264,24 @@ class Product
 
     public function delete()
     {
-        $sql = "DELETE FROM products WHERE id={$this->id}";
+        $sql = "UPDATE products SET deleted = 1 WHERE id={$this->id}";
         $result = $this->db->query($sql);
         if ($result) return true;
         else return false;
     }
-    public function edit()
+    public function update()
     {
-        $sql = "UPDATE products SETimage='{$this->getImage()}', stock='{$this->getStock()}',price='{$this->getPrice()}',name='{$this->getName()}',description='{$this->getDescription()}',category_id='{$this->getCategoryId()}',saga_id='{$this->getSagaId()}',0 WHERE id={$this->id}";
+        $sql = "UPDATE products SET stock='{$this->getStock()}', price='{$this->getPrice()}', name='{$this->getName()}', description='{$this->getDescription()}', category_id='{$this->getCategoryId()}', saga_id='{$this->getSagaId()}'";
+        if (!empty($this->getImage()) || $this->getImage() != null) {
+            $sql .= ", image='{$this->getImage()}'";
+        }
+        $sql .= " WHERE id={$this->getId()}";
+      
         $result = $this->db->query($sql);
-        if ($result) return true;
-        else return false;
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
