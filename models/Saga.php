@@ -79,7 +79,12 @@ class Saga  {
         $sql= "SELECT p.*, cat.name as cat_name, s.name as saga_name FROM products p JOIN categories cat ON p.category_id = cat.id JOIN sagas s ON p.saga_id = s.id where p.saga_id = {$this->getId()} and p.deleted=0";
 
         if (isset($_GET['character'])) {
-            $sql =  "SELECT * FROM products p JOIN product_characters pc ON p.id = pc.product_id where p.saga_id = {$this->getId()} and p.deleted=0 and pc.character_id={$_GET['character']}";
+            $sql =  "SELECT p.*, cat.name as cat_name, s.name as saga_name, pc.character_id as character_id, c.name as character_name FROM products p 
+            JOIN categories cat ON p.category_id = cat.id 
+            JOIN sagas s ON p.saga_id = s.id 
+            JOIN product_characters pc ON p.id = pc.product_id 
+            JOIN characters c ON pc.product_id = c.id 
+            where p.saga_id = {$this->getId()} and p.deleted=0 and pc.character_id={$_GET['character']}";
         }
         
         if (isset($_GET['category'])) {
@@ -116,6 +121,31 @@ class Saga  {
             }
 
             return $base_categories;
+        } else {
+            return false;
+        }
+
+    }
+    // Metodo para devolver el listado de personajes base según productos de una saga
+    public function getBaseCharacters(){
+        $sql= "SELECT p.*, cat.name as cat_name, s.name as saga_name, pc.character_id as character_id, c.name as character_name FROM products p 
+        JOIN categories cat ON p.category_id = cat.id 
+        JOIN sagas s ON p.saga_id = s.id 
+        JOIN product_characters pc ON p.id = pc.product_id 
+        JOIN characters c ON pc.character_id = c.id 
+        where p.saga_id = {$this->getId()} and p.deleted=0";
+
+            
+        
+        $result = $this->db->query($sql);
+
+        if ($result && $result->num_rows > 0) {
+            $base_characters = array();
+            while ($row = $result->fetch_assoc()) {
+                $base_characters[] = $row;
+            }
+
+            return $base_characters;
         } else {
             return false;
         }
