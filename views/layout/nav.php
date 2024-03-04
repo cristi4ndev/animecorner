@@ -29,7 +29,7 @@
                 $sagas = Utils::getSagas();
                 if ($sagas) {
                     foreach ($sagas as $saga) {
-                        echo "<a href='" . base_url . "saga/listar?{$saga['id']}'><div>{$saga['name']}</div></a>";
+                        echo "<a href='" . base_url . "saga/&id={$saga['id']}'><div>{$saga['name']}</div></a>";
                     }
                 } else {
                     echo "Empiece asignando sagas al menú en el panel de administrador";
@@ -42,7 +42,7 @@
                 $sagas = Utils::getSagas();
                 if ($sagas) {
                     foreach ($sagas as $saga) {
-                        echo "<a href='" . base_url . "saga/listar?{$saga['id']}'><div>{$saga['name']}</div></a>";
+                        echo "<a href='" . base_url . "saga/&id={$saga['id']}'><div>{$saga['name']}</div></a>";
                     }
                 } else {
                     echo "Empiece asignando sagas al menú en el panel de administrador";

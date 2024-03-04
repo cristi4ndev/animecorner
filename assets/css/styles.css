@@ -450,7 +450,7 @@ display: flex;
     align-content: center;
     margin-top: 20px;
     margin-bottom: 20px;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
     display: flex;
     flex: 1;
@@ -480,10 +480,23 @@ display: flex;
     gap: 20px;
 }
 
+.article-list {
+    width: 300px;
+    height: 300px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+
 .article-list-image {
-    width: 100%;
-    height: auto;
+    width: auto;
+    height: 100%;
     padding: 20px;
+    animation: scrolling-images linear both;
+    animation-timeline: view();
+    animation-range: entry 25% cover 30%;
 
 }
 
@@ -862,18 +875,7 @@ carrousel-banner {
 
 }
 
-.article-list {
-    width: 300px;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
-}
-.article-list-image{
-    animation: scrolling-images linear both;
-    animation-timeline: view();
-    animation-range: entry 25% cover 30%;
-}
+
 
 
 /* FOOTER */
