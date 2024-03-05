@@ -6,7 +6,7 @@
         $categories = Utils::getMenu();
         if ($categories) {
             foreach ($categories as $menu_item) {
-                echo "<li>{$menu_item['name']}</li>";
+                echo "<li><a href='". base_url . "category/&id=" .  $menu_item['id'] . "'>" . $menu_item['name']. "</a></li>";
                 echo "<li><i class='fa-solid fa-heart'></i></li>";
             }
         } else {

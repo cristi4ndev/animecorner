@@ -83,7 +83,7 @@ class Saga  {
             JOIN categories cat ON p.category_id = cat.id 
             JOIN sagas s ON p.saga_id = s.id 
             JOIN product_characters pc ON p.id = pc.product_id 
-            JOIN characters c ON pc.product_id = c.id 
+            JOIN characters c ON pc.character_id = c.id 
             where p.saga_id = {$this->getId()} and p.deleted=0 and pc.character_id={$_GET['character']}";
         }
         

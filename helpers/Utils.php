@@ -130,14 +130,49 @@ class Utils
     {
         require_once ('models/Saga.php');
         $saga_model = new Saga();
-        $sagas = $saga_model->getAll();
-        
+        $sagas = $saga_model->getAll();     
 
 
         // Verificar si se encontró un elemento en el array filtrado
         if (!empty($sagas)) {           
             
             return $sagas;
+        } else {
+            // Si no se encontró ninguna coincidencia, devolvemos null
+            return null;
+        }
+    }
+    // Devolver el nombre de la saga según id
+    public static function getSagaById($id)
+    {
+        require_once ('models/Saga.php');
+        $saga_model = new Saga();
+        $saga_model->setId($id);
+        $saga_name = $saga_model->getOne();     
+
+
+        // Verificar si se encontró un elemento en el array filtrado
+        if (!empty($saga_name)) {           
+            
+            return $saga_name['name'];
+        } else {
+            // Si no se encontró ninguna coincidencia, devolvemos null
+            return null;
+        }
+    }
+    // Devolver el nombre de la categoría según id
+    public static function getCategoryById($id)
+    {
+        require_once ('models/Category.php');
+        $category_model = new Category();
+        $category_model->setId($id);
+        $category_name = $category_model->getOne();     
+
+
+        // Verificar si se encontró un elemento en el array filtrado
+        if (!empty($category_name)) {           
+            
+            return $category_name['name'];
         } else {
             // Si no se encontró ninguna coincidencia, devolvemos null
             return null;

@@ -43,8 +43,12 @@
                     </div>
                     <div id="second-column">
                         <div>
+                            <h2 for="ref">Referencia:</h2>
+                            <input id="ref" name="ref" rows="20" cols="70" > </textarea>
+                        </div>
+                        <div>
                             <h2 for="description">Descripción:</h2>
-                            <textarea id="description" name="description" rows="20" cols="100" placeholder="Escribe una descripción..."> </textarea>
+                            <textarea id="description" name="description" rows="20" cols="70" >Escribe una descripción... </textarea>
                         </div>
                         <div>
                             <div class="st2-form-group">

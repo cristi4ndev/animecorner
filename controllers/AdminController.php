@@ -197,10 +197,10 @@ class AdminController
                         echo "Hubo un error al guardar la imagen.";
                     }
 
-                    $product_model->setImage(base_url . 'uploads/images/products/' . $file_name);
+                    $product_model->setImage($file_name);
                 }
 
-                $product_model->setStock($_POST['stock'])->setPrice($_POST['price'])->setName($_POST['name'])->setDescription($_POST['description'])->setCategoryId($_POST['category'])->setSagaId($_POST['saga']);
+                $product_model->setStock($_POST['stock'])->setRef($_POST['ref'])->setPrice($_POST['price'])->setName($_POST['name'])->setDescription($_POST['description'])->setCategoryId($_POST['category'])->setSagaId($_POST['saga']);
                 $product_creation = $product_model->create();
 
                 if (isset($_POST['saga']) && isset($_POST['characters'])) {
@@ -296,7 +296,7 @@ class AdminController
                         echo "Hubo un error al guardar la imagen.";
                     }
 
-                    $product_model->setImage(base_url . 'uploads/images/products/' . $file_name);
+                    $product_model->setImage($file_name);
                 }
 
                 $product_model->setId($_POST['id'])->setStock($_POST['stock'])->setPrice($_POST['price'])->setName($_POST['name'])->setDescription($_POST['description'])->setCategoryId($_POST['category'])->setSagaId($_POST['saga']);

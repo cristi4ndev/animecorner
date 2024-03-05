@@ -12,6 +12,7 @@ class Product
     private $category_id;
     private $saga_id;
     private $deleted;
+    private $ref;
     private $db;
 
     public function __construct()
@@ -199,6 +200,27 @@ class Product
         return $this;
     }
 
+        /**
+     * Get the value of ref
+     */
+    public function getRef()
+    {
+        return $this->ref;
+    }
+
+    /**
+     * Set the value of ref
+     */
+    public function setRef($ref): self
+    {
+        $this->ref = $ref;
+
+        return $this;
+    }
+
+
+    //////METODOS///////////
+
     public function getOne()
     {
         $sql = "SELECT * FROM products WHERE id={$this->getId()}";
@@ -240,7 +262,7 @@ class Product
     public function create()
     {
         $sql = "INSERT INTO products 
-        VALUES (null,'{$this->getImage()}','{$this->getStock()}','{$this->getPrice()}',CURRENT_TIMESTAMP(),'{$this->getName()}','{$this->getDescription()}','{$this->getCategoryId()}','{$this->getSagaId()}',0)";
+        VALUES (null,'{$this->getImage()}','{$this->getStock()}','{$this->getPrice()}',CURRENT_TIMESTAMP(),'{$this->getName()}','{$this->getDescription()}','{$this->getRef()}','{$this->getCategoryId()}','{$this->getSagaId()}',0)";
         $result = $this->db->query($sql);
 
         if ($result) {
@@ -271,7 +293,7 @@ class Product
     }
     public function update()
     {
-        $sql = "UPDATE products SET stock='{$this->getStock()}', price='{$this->getPrice()}', name='{$this->getName()}', description='{$this->getDescription()}', category_id='{$this->getCategoryId()}', saga_id='{$this->getSagaId()}'";
+        $sql = "UPDATE products SET stock='{$this->getStock()}', price='{$this->getPrice()}', name='{$this->getName()}', description='{$this->getDescription()}', ref='{$this->getRef()}', category_id='{$this->getCategoryId()}', saga_id='{$this->getSagaId()}'";
         if (!empty($this->getImage()) || $this->getImage() != null) {
             $sql .= ", image='{$this->getImage()}'";
         }
@@ -284,4 +306,6 @@ class Product
             return false;
         }
     }
+
+
 }

@@ -200,15 +200,15 @@ i {
 
 a {
     text-decoration: none;
-    transition: 500ms;
+    transition: color 500ms; 
     color: inherit;
     cursor: pointer;
 }
 
 a:hover {
-
-    color: #FF5757;
+    color: #FF5757; 
 }
+
 
 /************************ LAYOUT ***********************/
 
@@ -481,8 +481,8 @@ display: flex;
 }
 
 .article-list {
-    width: 300px;
-    height: 300px;
+    width: auto;
+    height: 500px;
     align-items: center;
     justify-content: center;
     display: flex;
@@ -492,13 +492,15 @@ display: flex;
 
 .article-list-image {
     width: auto;
-    height: 100%;
-    padding: 20px;
+    height: 300px;
+    border-radius: 20xp;
+    
     animation: scrolling-images linear both;
     animation-timeline: view();
     animation-range: entry 25% cover 30%;
 
 }
+
 
 .article-list-name {
     text-align: center;
@@ -875,9 +877,32 @@ carrousel-banner {
 
 }
 
+/****************** PRODUCT PAGE ********************/
 
+#product-content {
+    display: flex;
+    width: 100%;
+}
+#main-content-product {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
 
+.product-image img{
+    width: 650px;
+}
 
+.product-info {
+    width: 30%;
+}
+
+.details-table td, th{
+    border: 1px solid black;
+    padding: 10px;
+    box-shadow: 0px 2px  black;
+}
 /* FOOTER */
 
 #footer {
