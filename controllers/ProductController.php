@@ -8,7 +8,7 @@ class ProductController {
         require_once 'models/Product.php';
         $product_model = new Product();
         $product_model->setId($_GET['id']);
-        $product = $product_model->getOne();
+        $product = $product_model->getOneWithSagasAndChars();
         require_once 'views/product/index.php';
     }
     public function create(){

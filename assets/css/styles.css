@@ -12,7 +12,7 @@
     width: 100%;
     justify-content: flex-start;
     align-items: flex-start;
-
+    font-size: 12px;
     align-self: flex-start;
 
 }
@@ -20,7 +20,7 @@
 .table-headings {
     display: flex;
     font-weight: 600;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
 
     width: 100%;
@@ -32,16 +32,12 @@
     }
 }
 
-.table-heading {
-    width: 100px;
-    flex: 1;
-    
-}
+
 
 .table-rows {
 
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     border-top: 1px solid black;
@@ -49,14 +45,51 @@
 
 }
 
+
 .table-cell img {
     width: 50px;
     height: auto;
 }
+.table-cell, .table-heading {
+    width: 100%;
+}
 
-.table-cell {
+.table-id {
+    width: 20px;
+    
+    
+}
+.table-image {
+    width: 50px;
+    
+    
+}
+.table-name {
+    width: 250px;
+    text-overflow: ellipsis;
+    
+}
+.table-price {
+    width: 20px;
+    
+    
+}
+.table-stock {
+    width: 20px;
+   
+    
+}
+.table-category {
     width: 100px;
-    flex: 1;
+  
+    
+}
+.table-saga {
+    width: 100px;
+    
+}
+.table-action {
+    width: 150px; 
     
 }
 
@@ -493,7 +526,8 @@ display: flex;
 .article-list-image {
     width: auto;
     height: 300px;
-    border-radius: 20xp;
+    border-radius: 20px;
+   
     
     animation: scrolling-images linear both;
     animation-timeline: view();
@@ -889,7 +923,9 @@ carrousel-banner {
     justify-content: center;
     align-items: center;
 }
-
+.product-image{
+    margin-right: 30px;
+}
 .product-image img{
     width: 650px;
 }

@@ -219,7 +219,7 @@ class Product
     }
 
 
-    //////METODOS///////////
+    /*********  METODOS **********/
 
     public function getOne()
     {
@@ -227,6 +227,24 @@ class Product
         $result = $this->db->query($sql);
         if ($result && $result->num_rows == 1) {
             return $result->fetch_assoc();
+        } else {
+            return false;
+        }
+    }
+    public function getOneWithSagasAndChars()
+    {
+        $sql = "SELECT p.*, s.name as saga_name, c.name as char_name, c.id as char_id FROM products p 
+        INNER JOIN sagas s ON p.saga_id = s.id 
+        INNER JOIN product_characters pc ON pc.product_id = p.id
+        INNER JOIN characters c ON pc.character_id = c.id WHERE p.id='{$this->getId()}'";
+        $result = $this->db->query($sql);
+        if ($result && $result->num_rows > 0) {
+            $products = array();
+            while ($row = $result->fetch_assoc()) {
+                $products[] = $row;
+            }
+
+            return $products;
         } else {
             return false;
         }

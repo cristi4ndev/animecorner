@@ -168,6 +168,13 @@ class AdminController
             $create_saga = $saga_model->create();
             header("Location: " . base_url . "admin/sagas");
         }
+        if (isset($_POST['entity']) && $_POST['entity'] == 'carrier') {
+            require_once 'models/Carrier.php';
+            $carrier_model = new Carrier();
+            $carrier_model->setName($_POST['name'])->setPrice($_POST['price']);
+            $create_carrier = $carrier_model->create();
+            header("Location: " . base_url . "admin/carriers");
+        }
         if (isset($_POST['entity']) && $_POST['entity'] == 'character') {
             require_once 'models/Character.php';
             $character_model = new Character();
@@ -363,6 +370,19 @@ class AdminController
                 header("Location: " . base_url . "admin/sagas");
             }
         }
+        if (isset($_GET['entity']) && $_GET['entity'] == 'carrier') {
+            require_once 'models/Carrier.php';
+            $carrier_model = new Carrier();
+
+            $carrier_model->setId($_GET['id']);
+            $result = $carrier_model->delete();
+            if ($result) header("Location: " . base_url . "admin/carriers");
+
+            else {
+                $_SESSION['error'] = "Error en la eliminación";
+                header("Location: " . base_url . "admin/carriers");
+            }
+        }
         if (isset($_GET['entity']) && $_GET['entity'] == 'character') {
             require_once 'models/Character.php';
             $character_model = new Character();
@@ -415,6 +435,16 @@ class AdminController
         } else {
             require_once 'views/admin/sagas.php';
         }
+    }
+    public function carriers()
+    {
+        Utils::isAdmin();
+        require_once 'models/Carrier.php';
+        $carrier_model = new Carrier();
+        $all_carriers = $carrier_model->getAll();
+
+        require_once 'views/admin/carriers/index.php';
+        
     }
     public function menu()
     {
