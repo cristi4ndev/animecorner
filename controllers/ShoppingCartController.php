@@ -21,6 +21,7 @@ class ShoppingCartController
         if (isset($_SESSION['cart'][$id])) {
             // Incrementar la cantidad
             $_SESSION['cart'][$id]['quantity'] += 1;
+            $_SESSION['cart'][$id]['subtotal'] =  $_SESSION['cart'][$id]['quantity'] *  $_SESSION['cart'][$id]['price'];
         } else {
             // Si no lo está, agregar un nuevo elemento al carrito
             $_SESSION['cart'][$id] = array(
@@ -28,11 +29,11 @@ class ShoppingCartController
                 'ref' => $_GET['ref'],
                 'quantity' => 1,
                 'price' => $_GET['price'],
-                'name' => $_GET['name']
+                'name' => $_GET['name'],
+                'subtotal' => $_GET['price']
             );
         }
     }
-
     public function remove()
     {
 
@@ -41,14 +42,16 @@ class ShoppingCartController
         if (isset($_SESSION['cart'][$id])) {
             // Decrementar la cantidad
             $_SESSION['cart'][$id]['quantity'] -= 1;
+            $_SESSION['cart'][$id]['subtotal'] =  $_SESSION['cart'][$id]['quantity'] *  $_SESSION['cart'][$id]['price'];
         }
     }
 
     public function delete()
     {
         // Ver si $_SESSION['cart'] está definido
-        if (!isset($_SESSION['cart'])) {
+        if (isset($_SESSION['cart'])) {
             Utils::deleteSession('cart');
         }
+        
     }
 }

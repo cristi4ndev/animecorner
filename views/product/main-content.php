@@ -1,5 +1,5 @@
 <div id="main-content-product">
-    <?php if (!$product) show_error(); ?>
+    <?php if (!$product) echo "no existe el producto" ?>
 
     <div class="product-image">
         <img src="<?= base_url ?>uploads/images/products/<?= $product[0]['image'] ?>">

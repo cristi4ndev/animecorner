@@ -17,7 +17,7 @@
 
             } else echo "<a href='" . base_url . "user/'><li><i class='fa-solid fa-user'></i>Mi cuenta</li></a>";
             ?>
-                <li><i class="fa-solid fa-cart-shopping"></i>Carrito</li>
+                <li><a href="<?=base_url?>shoppingcart/"><i class="fa-solid fa-cart-shopping"></i>Carrito</a></li>
                 <li><i class="fa-solid fa-message"></i></i>Contacto</li>
             </ul>
         </div>
