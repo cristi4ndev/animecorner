@@ -1,0 +1,14 @@
+<table>
+    <tr>
+        <th>Referencia</th>
+        <th>Imagen</th>
+        <th>Producto</th>
+        <th>Precio</th>
+    </tr>
+    <td>
+        <td>Referencia</td>
+        <td>Imagen</td>
+        <td>Producto</td>
+        <td>Precio</td>
+    </td>
+</table>
