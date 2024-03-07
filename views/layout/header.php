@@ -1,7 +1,7 @@
 <div id="main-container">
-<?php require_once 'views/layout/before.php'; ?>
-<header id="header">
-        <a href="<?=base_url?>"><img id="logo" src="<?=base_url?>/uploads/images/animecornerlogo.png"></a>
+    <?php require_once 'views/layout/before.php'; ?>
+    <header id="header">
+        <a href="<?= base_url ?>"><img id="logo" src="<?= base_url ?>/uploads/images/animecornerlogo.png"></a>
         <div class="search-bar">
             <form>
                 <div><input type="search" placeholder="Realiza tu búsqueda..."></div>
@@ -9,17 +9,62 @@
             </form>
         </div>
         <div id="user-panel">
-            <ul class="flex-list">
-           
-            <?php 
-            if (isset($_SESSION['logged']) && $_SESSION['logged'] == true && isset($_SESSION['user']['role']) && $_SESSION['user']['role']=='admin') {
-                echo "<a href='" . base_url . "admin/'><li><i class='fa-solid fa-wrench'></i>Administración</li></a>";
 
-            } else echo "<a href='" . base_url . "user/'><li><i class='fa-solid fa-user'></i>Mi cuenta</li></a>";
+
+            <?php
+            if (isset($_SESSION['logged']) && $_SESSION['logged'] == true && isset($_SESSION['user']['role']) && $_SESSION['user']['role'] == 'admin') {
+                echo "<a href='" . base_url . "admin/'>
+                                <div class='flex'>
+                                    <div class='icon-container-up'><i class='icon-up fa-solid fa-wrench'></i></div>
+                                    <span>Administración</span>
+                                </div>
+                        </a>";
+            } else echo "<a href='" . base_url . "user/'>
+                                <div class='flex'>
+                                <div class='icon-container-up'><i class='icon-up fa-solid fa-user'></i></div>
+                                    <span>Mi cuenta</span>
+                                </div>
+                            </a>";
             ?>
-                <li><a href="<?=base_url?>shoppingcart/"><i class="fa-solid fa-cart-shopping"></i>Carrito</a></li>
-                <li><i class="fa-solid fa-message"></i></i>Contacto</li>
-            </ul>
-        </div>
+
+
+
+
+            <a href="<?= base_url ?>shoppingcart/">
+                <div class="flex" style="position: relative;">
+                    <div class="icon-container-up" style="position: relative;">
+
+                        <i class="icon-up fa-solid fa-cart-shopping"></i>
+                        <?php
+
+                        
+
+                        if (isset($_SESSION['cart'])) {
+                            // Sacar el número de productos del carrito e imprimirlo
+                            
+                            echo "<div id='cart-icon-div'><span>"
+                                . ShoppingCartController::productsCount() .
+                                "</span></div>";
+                        }
+                        ?>
+                    </div>
+
+                    <span>
+                        Carrito
+                    </span>
+                </div>
+
+            </a>
+
+
+
+
+            <a href='" . base_url . "admin/'>
+                <div class='flex'>
+                    <div class='icon-container-up'><i class="icon-up fa-solid fa-message"></i></div>
+                    <span>Contacto</span>
+                </div>
+            </a>
+
+
     </header>
-    

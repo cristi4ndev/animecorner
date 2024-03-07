@@ -3,6 +3,7 @@
 require_once 'autoload.php';
 require_once 'config/db.php';
 require_once 'config/parameters.php';
+require_once 'controllers/ShoppingCartController.php';
 
 
 // Función para cargar un error 404 en el caso que la solicitud no exista

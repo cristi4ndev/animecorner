@@ -15,7 +15,7 @@
         </div>
         <div><span style="font-style: italic; font-size:50px;"><?= $product[0]['price'] ?>€</span></div>
         <div>
-            <a href="<?= base_url ?>shoppingcart/add&id=<?= $product[0]['id'] ?>&image=<?= $product[0]['image'] ?>&name=<?= $product[0]['name']?>&ref=<?=$product[0]['ref']?>&price=<?=$product[0]['price']?>">
+            <a href="<?= base_url ?>shoppingcart/add&id=<?= $product[0]['id'] ?>&image=<?= $product[0]['image'] ?>&name=<?= urlencode($product[0]['name'])?>&ref=<?=$product[0]['ref']?>&price=<?=$product[0]['price']?>">
                 <button style="font-size: 20px;" class="primary-button">
                     <i class="fa-solid fa-cart-plus"></i>Añadir al carrito
                 </button>

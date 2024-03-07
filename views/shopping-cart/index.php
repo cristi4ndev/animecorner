@@ -1,6 +1,7 @@
 <div id="shopping-cart-content">
 
     <?php
+    
     if (isset($_SESSION['cart'])) {
         require_once 'views/shopping-cart/shopping-list.php';
     } else {

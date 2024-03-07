@@ -10,7 +10,9 @@
                     <span>' . $product["price"] . '</span><span class="currency">€</span>
                 </div>
                 <div>
-                    <button class="primary-button"><i class="fa-solid fa-cart-plus"></i>Añadir al carrito</button>
+                <a href="' . base_url . 'shoppingcart/add&id=' . $product["id"] . '&image=' . $product["image"] . '&name=' . urlencode($product["name"]) . '&ref=' . $product["ref"] . '&price=' . $product["price"] . '">
+                <button class="primary-button"><i class="fa-solid fa-cart-plus"></i>Añadir al carrito</button>
+                </a>
                 </div>
             </article>
             ';

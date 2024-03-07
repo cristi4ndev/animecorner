@@ -2,8 +2,19 @@
 
 * {
 
-    letter-spacing: 5px;
+    
     box-sizing: border-box;
+}
+:root {
+    letter-spacing: 5px;
+}
+
+
+
+.flex {
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .table-container {
@@ -94,10 +105,10 @@
 }
 
 
-button,
-.button {
+button, .button {
     cursor: pointer;
     transition-duration: 500ms;
+    letter-spacing: 0px;
 
 }
 
@@ -246,7 +257,7 @@ a:hover {
 /************************ LAYOUT ***********************/
 
 body {
-    letter-spacing: 4px;
+    
     font-family: "Avenir Next", Roboto, -apple-system,
         BlinkMacSystemFont, "Helvetica Neue", helvetica, segoe ui, arial,
         "PingFang SC", "miui", "Hiragino Sans GB", "Microsoft Yahei", sans-serif;
@@ -313,7 +324,44 @@ body {
 #user-panel {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
 }
+
+#cart-icon-div {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    width: 14px;
+    height: 14px;
+    background-color: rgb(66, 66, 66);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: white;
+    font-size: 10px;
+    border: 1px solid white;
+    letter-spacing: 0px;
+}
+.icon-container-up {
+    height: 30px;
+    width: 30px;
+    margin-right: 5px;
+    background-color: #FF5757;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.icon-up{
+    color: white;
+    font-size: 15px;
+}
+
 
 #navbar {
     width: 100%;
@@ -918,11 +966,56 @@ carrousel-banner {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    width: 75%;
+    align-self: center;
+}
+
+#cart-total{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-top: 3px solid black;
     width: 100%;
 }
+
+#checkout-button{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 600;
+    
+}
+
 #cart-table img{
     width: 50px;
     height: auto;
+}
+
+#cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-overflow: ellipsis;
+}
+
+#cart-table th,
+#cart-table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+#cart-table th {
+    background-color: #FF5757;
+    color: white;
+}
+
+#cart-table tr:hover {
+    background-color: #f5f5f5;
+}
+
+#cart-table tr:nth-child(even) {
+    background-color: #f2f2f2;
 }
 
 /****************** PRODUCT PAGE ********************/
