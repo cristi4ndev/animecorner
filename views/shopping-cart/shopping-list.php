@@ -1,4 +1,3 @@
-
 <h1>Carrito de Compras</h1>
 <table id="cart-table">
     <tr>
@@ -37,11 +36,16 @@
             ";
     }
     ?>
-    
+
 </table>
-<div id="cart-total">
+<div id="summary-cart">
+    <div id="cart-total">
         <h3>Total: </h3><?= ShoppingCartController::total() ?>€
-</div>
-<div style="display: flex; justify-content:flex-end; width:100%">
+    </div>
+    <div style="display: flex; justify-content:flex-end; width:100%;align-items: center;">
+    
+    </div>
+    <div style="display: flex; justify-content:flex-end; width:100%">
         <button id="checkout-button" class="primary-button"><i class="fa-solid fa-credit-card"></i> Realizar pedido</button>
+    </div>
 </div>

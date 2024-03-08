@@ -1,3 +1,3 @@
 <div id="before-content">
-        <p> Las mejores ofertas con este código de descuento-> <span>SFE32SD3fS</span></p>
+        <p> Las mejores ofertas del mundo del Anime y el Manga</p>
 </div>

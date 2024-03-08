@@ -1,11 +1,15 @@
 <div id="main-container">
     <?php require_once 'views/layout/before.php'; ?>
     <header id="header">
-        <a href="<?= base_url ?>"><img id="logo" src="<?= base_url ?>/uploads/images/animecornerlogo.png"></a>
+        <div id="logo-div">
+            <a href="<?= base_url ?>"><img id="logo" src="<?= base_url ?>/uploads/images/logo-ninja-3.png"></a>
+            
+        </div>
+        
         <div class="search-bar">
-            <form>
-                <div><input type="search" placeholder="Realiza tu búsqueda..."></div>
-                <div id="search-button"><i class="fa-solid fa-magnifying-glass"></i></div>
+            <form method="POST" action="<?=base_url?>search/query">
+                <div><input name="query" id="query" type="search" placeholder="Realiza tu búsqueda..."></div>
+                <div> <button type="submit" id="search-button"><i class="fa-solid fa-magnifying-glass"></i></div>
             </form>
         </div>
         <div id="user-panel">

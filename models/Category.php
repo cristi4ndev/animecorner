@@ -69,7 +69,7 @@ class Category
         return $this;
     }
 
-       /**
+    /**
      * Get the value of menu
      */
     public function getMenu()
@@ -86,7 +86,7 @@ class Category
 
         return $this;
     }
-  
+
 
     public function getOne()
     {
@@ -115,7 +115,7 @@ class Category
         } else {
             return false;
         }
-    }  
+    }
 
 
     public function getCategories()
@@ -137,92 +137,91 @@ class Category
     }
 
 
-  // Metodo para devolver el listado de productos
-  public function getProducts(){
-    $sql= "SELECT p.*, cat.name as cat_name, s.name as saga_name FROM products p 
+    // Metodo para devolver el listado de productos
+    public function getProducts()
+    {
+        $sql = "SELECT p.*, cat.name as cat_name, s.name as saga_name FROM products p 
     JOIN categories cat ON p.category_id = cat.id 
     JOIN sagas s ON p.saga_id = s.id 
     where p.category_id = {$this->getId()} and p.deleted=0";
 
-    if (isset($_GET['character'])) {
-        $sql =  "SELECT p.*, cat.name as cat_name, s.name as saga_name, pc.character_id as character_id, c.name as character_name FROM products p 
+        if (isset($_GET['character'])) {
+            $sql =  "SELECT p.*, cat.name as cat_name, s.name as saga_name, pc.character_id as character_id, c.name as character_name FROM products p 
         JOIN categories cat ON p.category_id = cat.id 
         JOIN sagas s ON p.saga_id = s.id 
         JOIN product_characters pc ON p.id = pc.product_id 
         JOIN characters c ON pc.character_id = c.id 
         where p.category_id = {$this->getId()} and p.deleted=0 and pc.character_id={$_GET['character']}";
-    }
-    
-    if (isset($_GET['saga'])) {
-        $sql .=  " and p.saga_id={$_GET['saga']}";
-    }
-
-    $sql .=  " ORDER BY p.id DESC";
-    $result = $this->db->query($sql);
-
-    if ($result && $result->num_rows > 0) {
-        $products = array();
-        while ($row = $result->fetch_assoc()) {
-            $products[] = $row;
         }
 
-        return $products;
-    } else {
-        return false;
-    }
+        if (isset($_GET['saga'])) {
+            $sql .=  " and p.saga_id={$_GET['saga']}";
+        }
 
-}
-// Metodo para devolver el listado de sagas base según productos de una saga
-public function getBaseSagas(){
-    $sql= "SELECT p.*, cat.name as cat_name, s.name as saga_name 
+        $sql .=  " ORDER BY p.id DESC";
+        $result = $this->db->query($sql);
+
+        if ($result && $result->num_rows > 0) {
+            $products = array();
+            while ($row = $result->fetch_assoc()) {
+                $products[] = $row;
+            }
+
+            return $products;
+        } else {
+            return false;
+        }
+    }
+    // Metodo para devolver el listado de sagas base según productos de una saga
+    public function getBaseSagas()
+    {
+        $sql = "SELECT p.*, cat.name as cat_name, s.name as saga_name 
     FROM products p 
     JOIN categories cat ON p.category_id = cat.id JOIN sagas s ON p.saga_id = s.id 
     where p.category_id = {$this->getId()} and p.deleted=0";
 
-        
-    
-    $result = $this->db->query($sql);
 
-    if ($result && $result->num_rows > 0) {
-        $base_categories = array();
-        while ($row = $result->fetch_assoc()) {
-            $base_categories[] = $row;
+
+        $result = $this->db->query($sql);
+
+        if ($result && $result->num_rows > 0) {
+            $base_categories = array();
+            while ($row = $result->fetch_assoc()) {
+                $base_categories[] = $row;
+            }
+
+            return $base_categories;
+        } else {
+            return false;
         }
-
-        return $base_categories;
-    } else {
-        return false;
     }
-
-}
-// Metodo para devolver el listado de personajes base según productos de una saga
-public function getBaseCharacters(){
-    $sql= "SELECT p.*, cat.name as cat_name, s.name as saga_name, pc.character_id as character_id, c.name as character_name FROM products p 
+    // Metodo para devolver el listado de personajes base según productos de una saga
+    public function getBaseCharacters()
+    {
+        $sql = "SELECT p.*, cat.name as cat_name, s.name as saga_name, pc.character_id as character_id, c.name as character_name FROM products p 
     JOIN categories cat ON p.category_id = cat.id 
     JOIN sagas s ON p.saga_id = s.id 
     JOIN product_characters pc ON p.id = pc.product_id 
     JOIN characters c ON pc.character_id = c.id 
     where p.category_id = {$this->getId()} and p.deleted=0";
 
-        
-    
-    $result = $this->db->query($sql);
 
-    if ($result && $result->num_rows > 0) {
-        $base_characters = array();
-        while ($row = $result->fetch_assoc()) {
-            $base_characters[] = $row;
+
+        $result = $this->db->query($sql);
+
+        if ($result && $result->num_rows > 0) {
+            $base_characters = array();
+            while ($row = $result->fetch_assoc()) {
+                $base_characters[] = $row;
+            }
+
+            return $base_characters;
+        } else {
+            return false;
         }
-
-        return $base_characters;
-    } else {
-        return false;
     }
 
-}
-
-
-
+    
 
     // CRUD
 
@@ -238,28 +237,34 @@ public function getBaseCharacters(){
         }
     }
 
-    public function delete(){
+    public function delete()
+    {
         $sql = "DELETE FROM categories WHERE id={$this->id}";
         $result = $this->db->query($sql);
-        if($result) return true; else return false;
+        if ($result) return true;
+        else return false;
     }
-    public function edit(){
+    public function edit()
+    {
         $sql = "UPDATE categories SET name='{$this->getName()}' ,parent='{$this->getParent()}' WHERE id={$this->id}";
         $result = $this->db->query($sql);
-        if($result) return true; else return false;
+        if ($result) return true;
+        else return false;
     }
-    public function editMenu(){
+    public function editMenu()
+    {
         $sql = "UPDATE categories SET menu='{$this->getMenu()}' WHERE id={$this->id}";
         $result = $this->db->query($sql);
-        if($result) return true; else return false;
+        if ($result) return true;
+        else return false;
     }
 
     // Función para mantener la integridad de la base de datos. Si se quiere eliminar una categoría con subcategorías, estas se setean a "Inicio"
-    public function setParentCategory(){
+    public function setParentCategory()
+    {
         $sql = "UPDATE categories SET parent=1 WHERE parent={$this->getParent()}";
         $result = $this->db->query($sql);
-        if($result) return true; else return false;
+        if ($result) return true;
+        else return false;
     }
-
- 
 }

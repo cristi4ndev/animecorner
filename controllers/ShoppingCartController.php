@@ -34,6 +34,10 @@ class ShoppingCartController
                 'subtotal' => $_GET['price']
             );
         }
+        if ($_SERVER['HTTP_REFERER'] == base_url ."search/query"){
+            header('Location: ' . base_url . "shoppingcart/");
+            exit();
+        }
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
     public function remove()
@@ -88,5 +92,8 @@ class ShoppingCartController
         }
 
         return $count;
+    }
+    public function checkout (){
+        
     }
 }
