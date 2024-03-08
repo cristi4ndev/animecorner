@@ -1,4 +1,9 @@
 <h1>Carrito de Compras</h1>
+<div style="display: flex; justify-content:flex-end; width:100%; margin-bottom:10px;">
+    <a href="<?=base_url?>shoppingcart/delete">
+        <button id="checkout-button" class="secondary-button"><i class="fa-solid fa-eraser"></i>Vaciar carrito</button>
+    </a>
+</div>
 <table id="cart-table">
     <tr>
         <th>Referencia</th>
