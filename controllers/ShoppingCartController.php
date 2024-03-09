@@ -94,6 +94,19 @@ class ShoppingCartController
         return $count;
     }
     public function checkout (){
-        
+        Utils::isCustomer();
+
+        //cargamos las direcciones del usuario
+        require_once 'models/Address.php';
+        $address_model = new Address();
+        $address_model->setUserId($_SESSION['user']['id']);
+        $addresses = $address_model->getAll();
+
+        // cargamos los transportistas disponibles
+        require_once 'models/Carrier.php';
+        $carrier_model = new Carrier();
+        $carriers = $carrier_model->getAll();
+
+        require_once 'views/shopping-cart/checkout.php';
     }
 }

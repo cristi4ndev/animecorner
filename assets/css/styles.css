@@ -440,7 +440,7 @@ display: flex;
 
 
 #logo {
-    height: 65px;
+    height: 70px;
 }
 
 .search-bar {
@@ -746,7 +746,7 @@ display: flex;
     align-items: center;
     flex-direction: column;
     gap: 20px;
-    height: 100%;
+ 
 
 
 }
@@ -1057,6 +1057,56 @@ carrousel-banner {
 
 #cart-table tr:nth-child(even) {
     background-color: #f2f2f2;
+}
+
+#checkout-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    align-self: center;
+}
+
+#checkout {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+#order-config{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f7f7f7;
+    padding-left: 10px;
+    padding-right: 10px;
+   
+}
+
+#order-summary{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+legend, legend i {
+    
+    background-color: #FF5757;
+    color: white;
+    padding: 10px;
+    font-weight: 600;
+}
+fieldset {
+    border-color: #FF5757;
+    padding: 20px;
+    margin-bottom: 20px;
 }
 
 /****************** PRODUCT PAGE ********************/

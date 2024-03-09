@@ -51,6 +51,9 @@
     
     </div>
     <div style="display: flex; justify-content:flex-end; width:100%">
+    <a href="<?=base_url?>shoppingcart/checkout">
         <button id="checkout-button" class="primary-button"><i class="fa-solid fa-credit-card"></i> Realizar pedido</button>
+    </a>
+        
     </div>
 </div>

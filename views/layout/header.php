@@ -2,7 +2,7 @@
     <?php require_once 'views/layout/before.php'; ?>
     <header id="header">
         <div id="logo-div">
-            <a href="<?= base_url ?>"><img id="logo" src="<?= base_url ?>/uploads/images/logo-ninja-3.png"></a>
+            <a href="<?= base_url ?>"><img id="logo" src="<?= base_url ?>/uploads/images/logo-ninja-2.png"></a>
             
         </div>
         
