@@ -9,12 +9,50 @@
     letter-spacing: 5px;
 }
 
+@font-face {
+    font-family: lastshuriken;
+    src: url(../fonts/the_last_shuriken/The\ Last\ Shuriken.otf);
+}
+@font-face {
+    font-family: neo;
+    src: url(../fonts/neo_tech/Neo\ Tech.otf);
+}
+@font-face {
+    font-family: alpha;
+    src: url(../fonts/alphabet_snk_by_pmpeps/Alphabet\ SNK\ by\ PMPEPS.ttf);
+}
+@font-face {
+    font-family: bouncy;
+    src: url(../fonts/bouncy_2/Bouncy-Black-PERSONAL_USE_ONLY.otf);
+}
+@font-face {
+    font-family: funny;
+    src: url(../fonts/funny_samurai/FunnySamuraiDemoRegular.ttf);
+}
+@font-face {
+    font-family: hanbai;
+    src: url(../fonts/hanbai/HANBAI.ttf);
+}
+@font-face {
+    font-family: kids;
+    src: url(../fonts/kids_magazine/Kids\ Magazine.ttf);
+}
+@font-face {
+    font-family: komigo;
+    src: url(../fonts/komigo/Komigo3D-Regular.ttf);
+}
+@font-face {
+    font-family: orewa;
+    src: url(../fonts/orewa/OREWA-PersonalUse.otf);
+}
 
 
 .flex {
     display:flex;
     justify-content: center;
     align-items: center;
+
+    ;
 }
 
 .table-container {
@@ -415,28 +453,38 @@ display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    font-weight: 900;
-    font-size: 20px;
+    
     
 }
-#logo-text{
-    display: flex;
-   
+#text-logo{
+    display: flex;   
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-weight: 900;
-    font-size: 10px;
-    height: 40px;
-  
+        
     
+}
+#anime {
+    font-family: funny;
+    font-size: 25px;
+    text-transform: uppercase;
+
+}
+#corner {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    
+    font-size: 10px;
+    font-weight: 700;
+    background-color: #FF5757;
+    text-align: center;
+    width: 100%;
+    color: white;
+    text-transform: uppercase;
+
     
 }
 
-#logo-text span{
-    padding: 5px;
-    font-size: 40px;
-    
-}
 
 
 #logo {
