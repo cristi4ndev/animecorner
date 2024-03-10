@@ -10,6 +10,7 @@ class Address
     private $locality;
     private $address;
     private $phone;
+    private $deleted;
     private $user_id;
     private $db;
 
@@ -181,13 +182,29 @@ class Address
 
         return $this;
     }
+    /**
+     * Get the value of deleted
+     */
+    public function getDeleted()
+    {
+        return $this->deleted;
+    }
 
+    /**
+     * Set the value of deleted
+     */
+    public function setDeleted($deleted): self
+    {
+        $this->deleted = $deleted;
+
+        return $this;
+    }
 
 
     public function create()
     {
 
-        $sql = "INSERT INTO addresses VALUES (null,'{$this->getAlias()}','{$this->getCountry()}','{$this->getProvince()}','{$this->getPostalCode()}','{$this->getLocality()}','{$this->getAddress()}','{$this->getPhone()}','{$this->getUserId()}')";
+        $sql = "INSERT INTO addresses VALUES (null,'{$this->getAlias()}','{$this->getCountry()}','{$this->getProvince()}','{$this->getPostalCode()}','{$this->getLocality()}','{$this->getAddress()}','{$this->getPhone()}',0,'{$this->getUserId()}')";
         $creation = $this->db->query($sql);
         return $creation;
     }
@@ -199,12 +216,13 @@ class Address
         return $creation;
     }
 
-    public function delete() {
+    public function delete()
+    {
         $sql = "UPDATE addresses SET deleted = 1 WHERE id = '{$this->getId()}'";
         $delete = $this->db->query($sql);
         return $delete;
     }
-    
+
 
     public function getAll()
     {

@@ -47,6 +47,8 @@
 
     </div>
     <div style="display: flex; justify-content:flex-end; width:100%">
-        <button type="submit" id="checkout-button" class="primary-button"><i class="fa-solid fa-circle-check"></i> Proceder al pago</button>
+        
+            <button type="submit" id="checkout-button" class="primary-button"><i class="fa-solid fa-circle-check"></i> Proceder al pago</button>
+        
     </div>
 </div>

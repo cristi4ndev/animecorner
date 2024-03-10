@@ -1085,8 +1085,14 @@ carrousel-banner {
     background-color: #f7f7f7;
     padding-left: 10px;
     padding-right: 10px;
+    flex:1;
    
 }
+
+#order-config form {
+    width: 100%;
+}
+
 
 #order-summary{
     

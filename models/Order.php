@@ -5,10 +5,9 @@ class Order
     private $id;
     private $total;
     private $created_at;
-    private $product_id;
     private $user_id;
     private $carrier_id;
-    private $vat;
+    private $payment_method;
     private $address_id;
     private $db;
 
@@ -71,23 +70,7 @@ class Order
         return $this;
     }
 
-    /**
-     * Get the value of product_id
-     */
-    public function getProductId()
-    {
-        return $this->product_id;
-    }
-
-    /**
-     * Set the value of product_id
-     */
-    public function setProductId($product_id): self
-    {
-        $this->product_id = $product_id;
-
-        return $this;
-    }
+    
 
     /**
      * Get the value of user_id
@@ -128,17 +111,17 @@ class Order
     /**
      * Get the value of vat
      */
-    public function getVat()
+    public function getPaymentMethod()
     {
-        return $this->vat;
+        return $this->payment_method;
     }
 
     /**
      * Set the value of vat
      */
-    public function setVat($vat): self
+    public function setPaymentMethod($payment_method): self
     {
-        $this->vat = $vat;
+        $this->payment_method = $payment_method;
 
         return $this;
     }
@@ -200,11 +183,25 @@ class Order
 
     public function create()
     {
-        $sql = "INSERT INTO orders VALUES (null,'{$this->getName()}','{$this->getParent()}',0)";
+        
+        $sql = "INSERT INTO orders VALUES (null,'{$this->getTotal()}',CURRENT_TIMESTAMP(),{$this->getUserId()}, {$this->getCarrierId()}, '{$this->getPaymentMethod()}', {$this->getAddressId()})";
         $result = $this->db->query($sql);
 
         if ($result) {
             return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function getLastInsertedId()
+    {
+        $sql = "SELECT LAST_INSERT_ID() as last_id";
+        $result = $this->db->query($sql);
+
+        if ($result) {
+            $row = $result->fetch_assoc();
+            return $row['last_id'];
         } else {
             return false;
         }
