@@ -18,15 +18,16 @@
                     <th>Total</th>
                 </tr>
             <?php 
-            
+               
                 foreach ($my_orders as $order) {
+                   
                     echo '
                     <tr>
                         <td>'.$order["id"].'</td>
                         <td>'.$order["created_at"].'</td>
-                        <td>'.$order["id"].'</td>
+                        <td>'.$order["prods"].'</td>
                         <td>'.$order["payment_method"].'</td>
-                        <td>'.$order["total"].'</td>
+                        <td>'.number_format($order["total"],2).'</td>
                     </tr>
                                         
                     ';

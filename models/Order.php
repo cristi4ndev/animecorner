@@ -164,14 +164,21 @@ class Order
     }
     public function getAllByUser()
     {
-        $sql = "SELECT o.*,u.*,c.*,a.* from orders o
-        INNER JOIN users u ON o.user_id = u.id
-        INNER JOIN carriers c ON o.carrier_id = c.id
-        INNER JOIN addresses a ON o.address_id = a.id
-        WHERE o.user_id = {$this->getUserId()} order by o.id desc";
+        $sql = "SELECT o.*, u.*, c.*, a.*, (SELECT COUNT(product_id) AS numero_de_productos FROM order_products WHERE order_id = o.id) AS prods 
+        FROM orders o 
+        INNER JOIN users u ON o.user_id = u.id 
+        INNER JOIN carriers c ON o.carrier_id = c.id 
+        INNER JOIN addresses a ON o.address_id = a.id 
+        INNER JOIN order_products op ON op.order_id = o.id 
+        WHERE o.user_id = 38 ORDER BY o.id DESC;";
         $result = $this->db->query($sql);
-        if ($result && $result->num_rows == 1) {
-            return $result->fetch_assoc();
+        if ($result && $result->num_rows > 0) {
+            $orders = array();
+            while ($row = $result->fetch_assoc()) {
+                $orders[] = $row;
+            }
+
+            return $orders;
         } else {
             return false;
         }
@@ -188,12 +195,12 @@ class Order
         $result = $this->db->query($sql);
 
         if ($result && $result->num_rows > 0) {
-            $categories = array();
+            $orders = array();
             while ($row = $result->fetch_assoc()) {
-                $categories[] = $row;
+                $orders[] = $row;
             }
 
-            return $categories;
+            return $orders;
         } else {
             return false;
         }
