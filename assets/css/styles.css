@@ -470,10 +470,13 @@ display: flex;
     text-transform: uppercase;
 
 }
+#logo-div:hover #corner{
+    background-color: #383838;
+}
 #corner {
     padding-top: 2px;
     padding-bottom: 2px;
-    
+    transition: 500ms;
     font-size: 10px;
     font-weight: 700;
     background-color: #FF5757;

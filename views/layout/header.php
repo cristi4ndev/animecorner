@@ -1,18 +1,22 @@
 <div id="main-container">
     <?php require_once 'views/layout/before.php'; ?>
     <header id="header">
-        <div id="logo-div">
-            <a href="<?= base_url ?>"><img id="logo" src="<?= base_url ?>/uploads/images/logo-ninja.png"></a>
-            <div id="text-logo">
-                <span id="anime">anime</span>
-                <span id="corner">corner</span>
 
+        <a href="<?= base_url ?>">
+            <div id="logo-div">
+                <img id="logo" src="<?= base_url ?>/uploads/images/logo-ninja.png">
+                <div id="text-logo">
+                    <span id="anime">anime</span>
+                    <span id="corner">corner</span>
+
+                </div>
             </div>
-            
-        </div>
-        
+        </a>
+
+
+
         <div class="search-bar">
-            <form method="POST" action="<?=base_url?>search/query">
+            <form method="POST" action="<?= base_url ?>search/query">
                 <div><input name="query" id="query" type="search" placeholder="Realiza tu búsqueda..."></div>
                 <div> <button type="submit" id="search-button"><i class="fa-solid fa-magnifying-glass"></i></div>
             </form>
@@ -46,11 +50,11 @@
                         <i class="icon-up fa-solid fa-cart-shopping"></i>
                         <?php
 
-                        
+
 
                         if (isset($_SESSION['cart'])) {
                             // Sacar el número de productos del carrito e imprimirlo
-                            
+
                             echo "<div id='cart-icon-div'><span>"
                                 . ShoppingCartController::productsCount() .
                                 "</span></div>";

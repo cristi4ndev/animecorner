@@ -150,7 +150,25 @@ class Order
 
     public function getOne()
     {
-        $sql = "SELECT * FROM categories WHERE id={$this->getId()}";
+        $sql = "SELECT o.*,u.*,c.*,a.* from orders o
+        INNER JOIN users u ON o.user_id = u.id
+        INNER JOIN carriers c ON o.carrier_id = c.id
+        INNER JOIN addresses a ON o.address_id = a.id
+        WHERE o.id = {$this->getid()} order by o.id desc";
+        $result = $this->db->query($sql);
+        if ($result && $result->num_rows == 1) {
+            return $result->fetch_assoc();
+        } else {
+            return false;
+        }
+    }
+    public function getAllByUser()
+    {
+        $sql = "SELECT o.*,u.*,c.*,a.* from orders o
+        INNER JOIN users u ON o.user_id = u.id
+        INNER JOIN carriers c ON o.carrier_id = c.id
+        INNER JOIN addresses a ON o.address_id = a.id
+        WHERE o.user_id = {$this->getUserId()} order by o.id desc";
         $result = $this->db->query($sql);
         if ($result && $result->num_rows == 1) {
             return $result->fetch_assoc();
@@ -161,7 +179,11 @@ class Order
 
     public function getAll()
     {
-        $sql = "SELECT * FROM categories ORDER BY name";
+        $sql = "SELECT o.*,u.*,c.*,a.* from orders o
+        INNER JOIN users u ON o.user_id = u.id
+        INNER JOIN carriers c ON o.carrier_id = c.id
+        INNER JOIN addresses a ON o.address_id = a.id
+        order by o.id DESC";
 
         $result = $this->db->query($sql);
 

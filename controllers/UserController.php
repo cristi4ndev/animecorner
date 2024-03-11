@@ -120,4 +120,13 @@ class UserController
         Utils::isCustomer();
         require_once 'views/user/addresses.php';
     }
+    public function orders()
+    {
+        Utils::isCustomer();
+        require_once 'models/Order.php';
+        $order_model = new Order();
+        $order_model->setUserId($_SESSION['user']['id']);
+        $my_orders = $order_model->getAllByUser();
+        require_once 'views/user/orders.php';
+    }
 }
