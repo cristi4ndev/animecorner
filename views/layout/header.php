@@ -7,7 +7,7 @@
                 <img id="logo" src="<?= base_url ?>/uploads/images/logo-ninja.png">
                 <div id="text-logo">
                     <span id="anime">anime</span>
-                    <span id="corner">corner</span>
+                    <span id="corner">c·o·r·n·e·r</span>
 
                 </div>
             </div>

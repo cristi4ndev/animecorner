@@ -55,6 +55,31 @@
     ;
 }
 
+.status-canceled, .status-canceled i {
+    background-color: #cf1919;
+    border-radius: 5px;
+    padding: 5px;
+    color: white;
+}
+.status-confirmed, .status-confirmed i {
+    background-color: #21a706;
+    border-radius: 5px;
+    padding: 5px;
+    color: white;
+}
+.status-sent, .status-sent i {
+    background-color: #d5bc4b;
+    border-radius: 5px;
+    padding: 5px;
+    color: white;
+}
+.status-completed, .status-completed i {
+    background-color: #4bd5c0;
+    border-radius: 5px;
+    padding: 5px;
+    color: white;
+}
+
 .table-container {
     display: flex;
     flex-direction: column;
@@ -729,6 +754,10 @@ display: flex;
     justify-content: flex-start;
 }
 
+#orders-container{
+    width: 100%;
+}
+
 #address-list {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -776,6 +805,10 @@ display: flex;
 }
 
 
+#delivery-address{
+    align-self: flex-start;
+    flex: 1;
+}
 
 
 #account {

@@ -129,4 +129,20 @@ class UserController
         $my_orders = $order_model->getAllByUser();
         require_once 'views/user/orders.php';
     }
+    public function order()
+    {
+        Utils::isCustomer();
+
+        require_once 'models/Order.php';
+        $order_model = new Order();
+        $order_model->setId($_GET['id']);
+        $order = $order_model->getOne();
+
+        require_once 'models/OrderProduct.php';
+        $order_product = new OrderProduct();
+        $order_product->setOrderId($_GET['id']);
+        $products = $order_product->getAll();
+
+        require_once 'views/user/order.php';
+    }
 }

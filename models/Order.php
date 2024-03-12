@@ -150,11 +150,13 @@ class Order
 
     public function getOne()
     {
-        $sql = "SELECT o.*,u.*,c.*,a.* from orders o
-        INNER JOIN users u ON o.user_id = u.id
-        INNER JOIN carriers c ON o.carrier_id = c.id
-        INNER JOIN addresses a ON o.address_id = a.id
-        WHERE o.id = {$this->getid()} order by o.id desc";
+        $sql = "SELECT o.*,  c.name as carrier_name, c.price as carrier_price, a.alias, a.country, a.province, a.postal_code, a.locality, a.address, a.phone,  
+        (SELECT SUM(quantity) AS numero_de_productos FROM order_products WHERE order_id = o.id) AS prods, 
+        (SELECT SUM(subtotal) AS total_de_productos FROM order_products WHERE order_id = o.id) AS total_prods 
+        FROM orders o 
+        INNER JOIN carriers c ON o.carrier_id = c.id 
+        INNER JOIN addresses a ON o.address_id = a.id        
+        WHERE o.id = {$this->getId()} ORDER BY o.id DESC;";
         $result = $this->db->query($sql);
         if ($result && $result->num_rows == 1) {
             return $result->fetch_assoc();
@@ -164,13 +166,12 @@ class Order
     }
     public function getAllByUser()
     {
-        $sql = "SELECT o.*, u.*, c.*, a.*, (SELECT COUNT(product_id) AS numero_de_productos FROM order_products WHERE order_id = o.id) AS prods 
+        $sql = "SELECT o.*,  c.name as carrier_name, a.alias, a.country, a.province, a.postal_code, a.locality, a.address, a.phone,  
+        (SELECT SUM(quantity) AS numero_de_productos FROM order_products WHERE order_id = o.id) AS prods 
         FROM orders o 
-        INNER JOIN users u ON o.user_id = u.id 
         INNER JOIN carriers c ON o.carrier_id = c.id 
-        INNER JOIN addresses a ON o.address_id = a.id 
-        INNER JOIN order_products op ON op.order_id = o.id 
-        WHERE o.user_id = 38 ORDER BY o.id DESC;";
+        INNER JOIN addresses a ON o.address_id = a.id        
+        WHERE o.user_id = {$this->getUserId()} ORDER BY o.id DESC;";
         $result = $this->db->query($sql);
         if ($result && $result->num_rows > 0) {
             $orders = array();
@@ -213,7 +214,7 @@ class Order
     public function create()
     {
         
-        $sql = "INSERT INTO orders VALUES (null,'{$this->getTotal()}',CURRENT_TIMESTAMP(),{$this->getUserId()}, {$this->getCarrierId()}, '{$this->getPaymentMethod()}', {$this->getAddressId()})";
+        $sql = "INSERT INTO orders VALUES (null,'{$this->getTotal()}',CURRENT_TIMESTAMP(),{$this->getUserId()}, {$this->getCarrierId()}, '{$this->getPaymentMethod()}', 'pedido confirmado', {$this->getAddressId()})";
         $result = $this->db->query($sql);
 
         if ($result) {

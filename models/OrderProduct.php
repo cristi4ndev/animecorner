@@ -18,8 +18,8 @@ class OrderProduct
 
        public function getAll()
     {
-        $sql = "SELECT op.* FROM order_products op
-        INNER JOIN products p ON op.product_id = p.id WHERE order_id= {$this->getOrderId()}";
+        $sql = "SELECT op.*, p.name as name, p.ref as ref, p.image as image, p.price as price FROM order_products op
+        INNER JOIN products p ON op.product_id = p.id WHERE order_id={$this->getOrderId()}";
 
         $result = $this->db->query($sql);
 
