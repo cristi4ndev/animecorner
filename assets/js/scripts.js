@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
     //cargar los personajes dinámicamente según el select seleccionado por el usuario
     if (document.getElementById('saga')) {
     document.getElementById('saga').addEventListener('change', function() {
-        console.log("hasta aqui he entrado")
+       
         var sagaId = this.value;
         var xhr = new XMLHttpRequest();
         

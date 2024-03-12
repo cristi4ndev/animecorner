@@ -12,7 +12,7 @@ class OrderController
         try {
             //Creamos el pedido        
             $order_model = new Order();
-            $order_model->setTotal(ShoppingCartController::total())
+            $order_model->setTotal($_POST['total'])
                 ->setUserId($_SESSION['user']['id'])
                 ->setCarrierId($_POST['carrier'])
                 ->setPaymentMethod($_POST['payment-method'])

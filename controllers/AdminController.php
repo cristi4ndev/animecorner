@@ -280,6 +280,17 @@ class AdminController
             if ($result) header("Location: " . base_url . "admin/menu");
         } else $_SESSION['error'] = "Error en la modificación";
 
+        if (isset($_GET['entity']) && $_GET['entity'] == 'order') {
+            // var_dump($_POST);
+            // var_dump($_GET);die();
+            require_once 'models/Order.php';
+            $order_model = new Order();
+            if (isset($_GET['id'])) $order_model->setId($_GET['id']);
+            if (isset($_POST['status'])) $order_model->setStatus($_POST['status']);
+            $result = $order_model->editStatus();
+            if ($result) header("Location: " . $_SERVER['HTTP_REFERER']);
+        } else $_SESSION['error'] = "Error en la modificación";
+
         if (isset($_POST['entity']) && $_POST['entity'] == 'product') {
             require_once 'models/Product.php';
             require_once 'models/ProductCharacters.php';
@@ -490,6 +501,31 @@ class AdminController
         $product = $product_model->getOne();
 
         require_once 'views/admin/products/edit.php';
+    }
+    public function orders()
+    {
+        Utils::isAdmin();
+        require_once 'models/Order.php';
+        $order_model = new Order();
+       
+        $orders = $order_model->getAll();
+        require_once 'views/admin/orders/orders.php';
+    }
+    public function order()
+    {
+        Utils::isAdmin();
+
+        require_once 'models/Order.php';
+        $order_model = new Order();
+        $order_model->setId($_GET['id']);
+        $order = $order_model->getOne();
+
+        require_once 'models/OrderProduct.php';
+        $order_product = new OrderProduct();
+        $order_product->setOrderId($_GET['id']);
+        $products = $order_product->getAll();
+
+        require_once 'views/admin/orders/order.php';
     }
     
 }

@@ -39,9 +39,9 @@
             </div>';
     }
     ?>
-
+    
     <div class="flex">
-        <h2>Total: <?= (isset($_GET["carrier"])) ? number_format(ShoppingCartController::total() + $_GET["carrier"],2): ShoppingCartController::total() ?>€</h2>
+        <h2>Total: <?= $total ?>€</h2>
     </div>
     <div style="display: flex; justify-content:flex-end; width:100%;align-items: center;">
 

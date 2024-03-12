@@ -252,7 +252,12 @@ class Product
 
     public function getAll()
     {
-        $sql = "SELECT products.*, categories.name AS category_name, sagas.name AS saga_name FROM products JOIN categories ON products.category_id = categories.id JOIN sagas ON products.saga_id = sagas.id WHERE deleted=0";
+        $sql = "SELECT products.*, categories.name AS category_name, sagas.name AS saga_name 
+        FROM products 
+        JOIN categories ON products.category_id = categories.id 
+        JOIN sagas ON products.saga_id = sagas.id 
+        WHERE deleted=0
+        ORDER BY id DESC";
 
         // Agregar condiciones de filtrado si se proporcionan category_name y/o saga_name
         if ($this->getCategoryId()) {

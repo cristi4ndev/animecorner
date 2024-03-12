@@ -1,36 +1,23 @@
 <div id="category-panel">
-    <div id="create-block">
-        <h3>Crear nuevo transportista</h3>
-        <form method="POST" action="<?= base_url ?>admin/create" class="st2-form">
+            <div id="create-block">
+                <h3>Añadir categoría al menú</h3>
+                <form method="POST" action="<?= base_url ?>admin/edit&menu=1&entity=menu" class="st2-form">
+                                     
+                    <div class="st2-form-group">
+                        <label for="id">Seleccionar Categoría:</label>
+                        <select name="id" id="id">
+                            <?php
+                            foreach ($all_categories as $category) {
+                                echo "<option " . ($category['id'] == $_GET['id'] ? 'selected' : '') . " value='" . $category["id"] . "'>" . $category["name"] . "</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
 
+                    <button class="primary-button" type="submit"><i class="fa-solid fa-circle-plus"></i>Añadir</button>
+                </form>
+                <?php if (isset($_SESSION['error'])) echo $_SESSION['error']; ?>
 
-           
-                <div style="display: none;" class="st2-form-group">
-                    <label for="entity">Entidad</label>
-                    <input value="carrier" type="hidden" name="entity" required>
-                </div>
-                <div class="st2-form-group">
-                    <label for="name">Nombre</label>
-                    <input type="text" name="name" required>
-                </div>
-                <div class="st2-form-group">
-                    <label for="price">Precio</label>
-                    <input type="number" name="price" required>
-                </div>
-                
-
-
-
-                <button class="primary-button" type="submit"><i class="fa-solid fa-circle-plus"></i>Crear</button>
-           
+            </div>
             
-
-
-
-            
-        </form>
-        
-
-    </div>
-
-</div>
+        </div>

@@ -6,7 +6,18 @@
             <h2>Configurar pedido</h2>
             <form method="POST" action="<?= base_url ?>order/create">
                 <!-- Serializamos lo que tenemos el carrito para poder enviar por POST el array de productos de manera invisible -->
+
+
                 <input required type="hidden" name="cart" value="<?php echo  base64_encode(serialize($_SESSION['cart'])); ?>">
+                <?php
+                $total = 0;
+                if (isset($_GET["carrier"])) {
+                    $total = number_format(ShoppingCartController::total() + $_GET["carrier"], 2);
+                } else {
+                    $total = ShoppingCartController::total();
+                }
+                ?>
+                <input required type="hidden" name="total" value="<?php echo $total ?>">
                 <fieldset>
                     <legend><i class="fa-solid fa-map-location-dot"></i>Dirección de envío</legend>
                     <select required name="address">
@@ -35,13 +46,13 @@
                             address = (addressValue[0].value)
                             paymentMethod = document.getElementsByName("payment-method");
                             payment = '';
-                            for (i=0; i<paymentMethod.length;i++){
-                                if (paymentMethod[i].checked){
+                            for (i = 0; i < paymentMethod.length; i++) {
+                                if (paymentMethod[i].checked) {
                                     payment = paymentMethod[i].value;
                                     console.log(paymentMethod[i]);
                                 }
                             }
-                            
+
                             window.location = "<?= base_url ?>shoppingcart/checkout&carrier=" + carrier + "&id=" + id + "&address=" + address + "&payment=" + payment;
                         }
                     </script>
@@ -75,15 +86,15 @@
                     $creditcard = '';
                     $paypal = '';
                     $transfer = '';
-                    if (isset($_GET['payment']) && ($_GET['payment'])=='credit-card') {
+                    if (isset($_GET['payment']) && ($_GET['payment']) == 'credit-card') {
 
                         $creditcard = 'checked';
                     }
-                    if (isset($_GET['payment']) && ($_GET['payment'])=='transfer') {
+                    if (isset($_GET['payment']) && ($_GET['payment']) == 'transfer') {
 
                         $transfer = 'checked';
                     }
-                    if (isset($_GET['payment']) && ($_GET['payment'])=='paypal') {
+                    if (isset($_GET['payment']) && ($_GET['payment']) == 'paypal') {
 
                         $paypal = 'checked';
                     }

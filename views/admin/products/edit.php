@@ -13,7 +13,7 @@
                     <div id="first-column">
                         <div id="product-image-block">
                             <div id="product-image">
-                                <img width="100%" src="<?= $product['image'] ?>">
+                                <img width="100%" src="<?= base_url . "uploads/images/products/" . $product['image'] ?>">
                             </div>
                             <div style="display:flex; flex-direction:column">
                                 <label for="image">Reemplazar imagen:</label>

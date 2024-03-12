@@ -2,9 +2,10 @@
 
 * {
 
-    
+
     box-sizing: border-box;
 }
+
 :root {
     letter-spacing: 5px;
 }
@@ -13,34 +14,42 @@
     font-family: lastshuriken;
     src: url(../fonts/the_last_shuriken/The\ Last\ Shuriken.otf);
 }
+
 @font-face {
     font-family: neo;
     src: url(../fonts/neo_tech/Neo\ Tech.otf);
 }
+
 @font-face {
     font-family: alpha;
     src: url(../fonts/alphabet_snk_by_pmpeps/Alphabet\ SNK\ by\ PMPEPS.ttf);
 }
+
 @font-face {
     font-family: bouncy;
     src: url(../fonts/bouncy_2/Bouncy-Black-PERSONAL_USE_ONLY.otf);
 }
+
 @font-face {
     font-family: funny;
     src: url(../fonts/funny_samurai/FunnySamuraiDemoRegular.ttf);
 }
+
 @font-face {
     font-family: hanbai;
     src: url(../fonts/hanbai/HANBAI.ttf);
 }
+
 @font-face {
     font-family: kids;
     src: url(../fonts/kids_magazine/Kids\ Magazine.ttf);
 }
+
 @font-face {
     font-family: komigo;
     src: url(../fonts/komigo/Komigo3D-Regular.ttf);
 }
+
 @font-face {
     font-family: orewa;
     src: url(../fonts/orewa/OREWA-PersonalUse.otf);
@@ -48,32 +57,39 @@
 
 
 .flex {
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
 
     ;
 }
 
-.status-canceled, .status-canceled i {
+.status-canceled,
+.status-canceled i {
     background-color: #cf1919;
     border-radius: 5px;
     padding: 5px;
     color: white;
 }
-.status-confirmed, .status-confirmed i {
+
+.status-confirmed,
+.status-confirmed i {
     background-color: #21a706;
     border-radius: 5px;
     padding: 5px;
     color: white;
 }
-.status-sent, .status-sent i {
+
+.status-sent,
+.status-sent i {
     background-color: #d5bc4b;
     border-radius: 5px;
     padding: 5px;
     color: white;
 }
-.status-completed, .status-completed i {
+
+.status-completed,
+.status-completed i {
     background-color: #4bd5c0;
     border-radius: 5px;
     padding: 5px;
@@ -102,7 +118,7 @@
     &:first-child {
         border-bottom: 2px solid black;
         padding-top: 10px;
-        
+
     }
 }
 
@@ -115,60 +131,80 @@
     align-items: center;
     width: 100%;
     border-top: 1px solid black;
-   
+
 
 }
+
+
+.table-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
 
 .table-cell img {
-    width: 50px;
+    max-height: 50px;
+    width: auto;
     height: auto;
+    max-width: 50px
 }
-.table-cell, .table-heading {
+
+.table-cell,
+.table-heading {
     width: 100%;
 }
 
 .table-id {
-    width: 20px;
-    
-    
+    width: 30px;
+
+
 }
+
 .table-image {
     width: 50px;
-    
-    
+
+
 }
+
 .table-name {
     width: 250px;
     text-overflow: ellipsis;
-    
+
 }
+
 .table-price {
-    width: 20px;
-    
-    
+    width: 50px;
+
+
 }
+
 .table-stock {
-    width: 20px;
-   
-    
+    width: 30px;
+
+
 }
+
 .table-category {
     width: 100px;
-  
-    
+
+
 }
+
 .table-saga {
     width: 100px;
-    
+
 }
+
 .table-action {
-    width: 150px; 
-    
+    width: 150px;
+
 }
 
 
-button, .button {
+button,
+.button {
     cursor: pointer;
     transition-duration: 500ms;
     letter-spacing: 0px;
@@ -191,7 +227,7 @@ button:hover {
 
 #update-address {
     display: none;
-    
+
 
 
 }
@@ -307,20 +343,20 @@ i {
 
 a {
     text-decoration: none;
-    transition: color 500ms; 
+    transition: color 500ms;
     color: inherit;
     cursor: pointer;
 }
 
 a:hover {
-    color: #FF5757; 
+    color: #FF5757;
 }
 
 
 /************************ LAYOUT ***********************/
 
 body {
-    
+
     font-family: "Avenir Next", Roboto, -apple-system,
         BlinkMacSystemFont, "Helvetica Neue", helvetica, segoe ui, arial,
         "PingFang SC", "miui", "Hiragino Sans GB", "Microsoft Yahei", sans-serif;
@@ -341,7 +377,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    
+
     justify-self: center;
     padding: 8px;
 
@@ -409,6 +445,7 @@ body {
     border: 1px solid white;
     letter-spacing: 0px;
 }
+
 .icon-container-up {
     height: 30px;
     width: 30px;
@@ -421,7 +458,7 @@ body {
     border-radius: 50%;
 }
 
-.icon-up{
+.icon-up {
     color: white;
     font-size: 15px;
 }
@@ -450,7 +487,8 @@ body {
     align-items: center;
 
 }
-#categories-nav-list li:last-child{
+
+#categories-nav-list li:last-child {
     display: none;
 }
 
@@ -460,7 +498,7 @@ body {
     border-top: 2px solid #FF5757;
     border-bottom: 2px solid #FF5757;
     line-height: 0px;
-display: flex;
+    display: flex;
     font-size: 12px;
 }
 
@@ -473,31 +511,36 @@ display: flex;
     justify-content: center;
     align-items: center;
 }
-#logo-div{
+
+#logo-div {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    
-    
+
+
 }
-#text-logo{
-    display: flex;   
+
+#text-logo {
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-        
-    
+
+
 }
+
 #anime {
     font-family: funny;
     font-size: 25px;
     text-transform: uppercase;
 
 }
-#logo-div:hover #corner{
+
+#logo-div:hover #corner {
     background-color: #383838;
 }
+
 #corner {
     padding-top: 2px;
     padding-bottom: 2px;
@@ -510,7 +553,7 @@ display: flex;
     color: white;
     text-transform: uppercase;
 
-    
+
 }
 
 
@@ -563,11 +606,13 @@ display: flex;
     height: 100%;
     min-width: 260px;
     text-indent: 10px;
+
     &::placeholder {
         text-indent: 10px;
 
     }
-    &:focus{
+
+    &:focus {
         outline: none;
     }
 }
@@ -614,17 +659,17 @@ display: flex;
 }
 
 .carousel-slide {
-    
+
     animation: 30s carousel infinite linear;
     display: flex;
-   justify-content: center;
+    justify-content: center;
     align-items: center;
 }
 
 .carousel-slide div {
 
-   
-   margin: 10px 30px;
+
+    margin: 10px 30px;
     display: inline-block;
 
 }
@@ -648,11 +693,6 @@ display: flex;
     height: 100%;
 
 }
-
-
-/*********** ACCOUNT ***********/
-
-
 
 
 
@@ -684,8 +724,8 @@ display: flex;
     width: auto;
     height: 300px;
     border-radius: 20px;
-   
-    
+
+
     animation: scrolling-images linear both;
     animation-timeline: view();
     animation-range: entry 25% cover 30%;
@@ -754,7 +794,7 @@ display: flex;
     justify-content: flex-start;
 }
 
-#orders-container{
+#orders-container {
     width: 100%;
 }
 
@@ -804,10 +844,31 @@ display: flex;
 
 }
 
+#order-container {
+    width: 100%;
+}
 
-#delivery-address{
+#delivery-address {
     align-self: flex-start;
     flex: 1;
+
+    padding: 10px;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+#head-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* Por ejemplo, 3 columnas de 100px cada una */
+    grid-template-rows: repeat(2, 1fr);
+    /* Por ejemplo, 3 filas de 100px cada una */
+    gap: 10px;
+    /* Espacio entre las celdas */
+    align-items: center;
+    /* Centra verticalmente */
+    justify-content: center;
+    /* Centra horizontalmente */
 }
 
 
@@ -830,7 +891,7 @@ display: flex;
     align-items: center;
     flex-direction: column;
     gap: 20px;
- 
+
 
 
 }
@@ -952,25 +1013,29 @@ display: flex;
     width: 100%;
     display: flex;
     overflow: hidden;
-    
-   
-    
+
+
+
 }
+
 #carrousel:hover img {
     animation-play-state: paused;
 }
-#carrousel img{
-   
+
+#carrousel img {
+
     width: 100%;
     height: auto;
     animation: 13s linear infinite image-slider;
-   
+
 }
+
 carrousel-banner {
     display: flex;
 }
+
 .homepage-grid {
-    
+
     display: grid;
     grid-template-areas:
         " goku figuras camisetas funkos disfraces onepiece"
@@ -979,7 +1044,7 @@ carrousel-banner {
         " goku sudaderas gorras posters  mochilas onepiece";
     max-width: 100%;
     margin: 0 auto;
-    grid-template-columns: repeat(6,1fr);
+    grid-template-columns: repeat(6, 1fr);
     column-gap: 10px;
     row-gap: 5px;
     justify-content: center;
@@ -989,41 +1054,44 @@ carrousel-banner {
     letter-spacing: 10px;
 }
 
-@media (width <= 1024px)  { 
+@media (width <=1024px) {
     .homepage-grid {
-        grid-template-columns: repeat(3,  1fr);
+        grid-template-columns: repeat(3, 1fr);
         grid-template-areas:
-        " goku figuras camisetas"
-        " goku figuras camisetas"
-        " goku sudaderas tazas"
-        " goku sudaderas gorras"
-        "funkos disfraces onepiece"
-        "alfombrillas disfraces onepiece"
-        "posters mochilas onepiece"
-        "posters  mochilas onepiece"
+            " goku figuras camisetas"
+            " goku figuras camisetas"
+            " goku sudaderas tazas"
+            " goku sudaderas gorras"
+            "funkos disfraces onepiece"
+            "alfombrillas disfraces onepiece"
+            "posters mochilas onepiece"
+            "posters  mochilas onepiece"
 
 
 
-    
-}}
-@media (width < 480px) { 
+
+    }
+}
+
+@media (width < 480px) {
     .homepage-grid {
-        grid-template-columns: repeat(2,  1fr);
+        grid-template-columns: repeat(2, 1fr);
         grid-template-areas:
-        "goku figuras"
-        "goku figuras"
-        "goku sudaderas"
-        "goku sudaderas"
-        "camisetas funkos"
-        "camisetas alfombrillas"
-        "tazas posters"
-        "gorras posters"
-        "disfraces onepiece"
-        "disfraces onepiece"
-        "mochilas onepiece"
-        "mochilas onepiece"
-     
-}}
+            "goku figuras"
+            "goku figuras"
+            "goku sudaderas"
+            "goku sudaderas"
+            "camisetas funkos"
+            "camisetas alfombrillas"
+            "tazas posters"
+            "gorras posters"
+            "disfraces onepiece"
+            "disfraces onepiece"
+            "mochilas onepiece"
+            "mochilas onepiece"
+
+    }
+}
 
 
 .homepage-grid img {
@@ -1041,18 +1109,53 @@ carrousel-banner {
     padding: 5px;
 }
 
-#figuras { grid-area: figuras; }
-#goku { grid-area: goku; }
-#onepiece { grid-area: onepiece; }
-#camisetas { grid-area: camisetas; }
-#gorras { grid-area: gorras; }
-#sudaderas { grid-area: sudaderas; }
-#tazas { grid-area: tazas; }
-#disfraces { grid-area: disfraces; }
-#posters { grid-area: posters; }
-#alfombrillas { grid-area: alfombrillas; }
-#funkos { grid-area: funkos; }
-#mochilas { grid-area: mochilas; }
+#figuras {
+    grid-area: figuras;
+}
+
+#goku {
+    grid-area: goku;
+}
+
+#onepiece {
+    grid-area: onepiece;
+}
+
+#camisetas {
+    grid-area: camisetas;
+}
+
+#gorras {
+    grid-area: gorras;
+}
+
+#sudaderas {
+    grid-area: sudaderas;
+}
+
+#tazas {
+    grid-area: tazas;
+}
+
+#disfraces {
+    grid-area: disfraces;
+}
+
+#posters {
+    grid-area: posters;
+}
+
+#alfombrillas {
+    grid-area: alfombrillas;
+}
+
+#funkos {
+    grid-area: funkos;
+}
+
+#mochilas {
+    grid-area: mochilas;
+}
 
 
 
@@ -1071,14 +1174,14 @@ carrousel-banner {
 }
 
 .product-listing div {
-    
+
     display: flex;
 
 }
 
 /******************** CARRITO *********************/
 
-#shopping-cart-content{
+#shopping-cart-content {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1087,7 +1190,7 @@ carrousel-banner {
     align-self: center;
 }
 
-#summary-cart{
+#summary-cart {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -1095,7 +1198,7 @@ carrousel-banner {
     align-items: flex-end;
 }
 
-#cart-total{
+#cart-total {
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -1103,16 +1206,16 @@ carrousel-banner {
     width: 100%;
 }
 
-#checkout-button{
+#checkout-button {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     font-size: 20px;
     font-weight: 600;
-    
+
 }
 
-#cart-table img{
+#cart-table img {
     width: 50px;
     height: auto;
 }
@@ -1143,7 +1246,7 @@ carrousel-banner {
     background-color: #f2f2f2;
 }
 
-#checkout-content{
+#checkout-content {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1160,8 +1263,8 @@ carrousel-banner {
     gap: 30px;
 }
 
-#order-config{
-    
+#order-config {
+
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1169,8 +1272,8 @@ carrousel-banner {
     background-color: #f7f7f7;
     padding-left: 10px;
     padding-right: 10px;
-    flex:1;
-   
+    flex: 1;
+
 }
 
 #order-config form {
@@ -1178,21 +1281,23 @@ carrousel-banner {
 }
 
 
-#order-summary{
-    
+#order-summary {
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-legend, legend i {
-    
+legend,
+legend i {
+
     background-color: #FF5757;
     color: white;
     padding: 10px;
     font-weight: 600;
 }
+
 fieldset {
     border-color: #FF5757;
     padding: 20px;
@@ -1205,28 +1310,34 @@ fieldset {
     display: flex;
     width: 100%;
 }
+
 #main-content-product {
     display: flex;
     width: 100%;
     justify-content: center;
     align-items: center;
 }
-.product-image{
+
+.product-image {
     margin-right: 30px;
 }
-.product-image img{
+
+.product-image img {
     width: 650px;
+
 }
 
 .product-info {
     width: 30%;
 }
 
-.details-table td, .details-table th{
+.details-table td,
+.details-table th {
     border: 1px solid black;
     padding: 10px;
-    box-shadow: 0px 2px  black;
+    box-shadow: 0px 2px black;
 }
+
 /* FOOTER */
 
 #footer {
@@ -1327,52 +1438,59 @@ fieldset {
     display: flex;
     flex-direction: column;
     width: 20%;
-    
+
 }
+
 .admin-listing {
     display: flex;
     flex-direction: column;
     width: 80%;
-    
+    max-height: 800px;
+    overflow: auto;
 }
 
 
 /*********** PRODUCTS ***********/
 
-#product-image{
+#product-image {
     width: 225px;
-    height: 225px;
+    min-height: 225px;
 }
+
 #create-product {
     display: flex;
     flex-direction: column;
     gap: 20px;
     width: 100%;
 }
+
 .create-product {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-#product-image-block{
+#product-image-block {
     display: flex;
     flex-direction: column;
 }
-#first-column{
+
+#first-column {
     display: flex;
     flex-direction: column;
 }
-#second-column{
+
+#second-column {
     display: flex;
     flex-direction: column;
 }
 
 #product-title {
-    display:flex; 
-    flex-direction:column;
-    
+    display: flex;
+    flex-direction: column;
+
 }
+
 #product-title input {
     font-size: 20px;
     text-indent: 10px;
@@ -1389,47 +1507,47 @@ fieldset {
         transform: translateX(-100%);
     }
 }
+
 @keyframes image-slider {
     0% {
         transform: translateX(0);
-        
+
     }
-    
+
     31.33% {
         transform: translateX(0%);
-        
-     
+
+
     }
 
     35% {
         transform: translateX(-100%);
-        
-     
+
+
     }
-   
+
     64.66% {
         transform: translateX(-100%);
-        
+
     }
 
     66.66% {
         transform: translateX(-200%);
-        
+
     }
-    
+
     98% {
         transform: translateX(-200%);
-       
+
     }
+
     100% {
         transform: translateX(-300%);
-        
+
     }
 }
 
-@keyframes opacity-view {
-    
-}
+@keyframes opacity-view {}
 
 
 @keyframes scrolling-images {
@@ -1438,7 +1556,8 @@ fieldset {
         scale: 50%;
         transform: translateY(100px);
     }
-    to{
+
+    to {
         opacity: 100;
         scale: 100%;
     }

@@ -5,5 +5,4 @@
         <?php require_once 'views/admin/menu/categories-container.php' ?>
     </div>
 </div>
-
 </div>

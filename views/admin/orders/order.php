@@ -1,7 +1,5 @@
 <div id="account-content">
-    <?= require_once 'views/user/category-block.php';
-    if (isset($_SESSION['error'])) echo "<p> {$_SESSION['error']} </p>"
-    ?>
+    <?= require_once 'views/admin/category-block.php' ?>
 
     <div id="main-content-account">
 
@@ -12,7 +10,7 @@
                     <div>
                         <strong><i class="fa-solid fa-location-dot"></i>Dirección de envío</strong>
                         <hr>
-                        <br>
+                        
                         <span><?= $order['address'] ?></span>
                         <span><?= $order['postal_code'] ?></span>
                         <br>
@@ -40,7 +38,16 @@
                         </div>
                         <hr>
                         <div>
-                            <?php echo Utils::printOrderStatus($order['status']) ?>
+                            <form method="POST" action="<?=base_url?>admin/edit&entity=order&id=<?=$order['id']?>">
+                            <select name="status" id="status">
+                                <option <?=($order['status']=="pedido confirmado")?"selected":''?> value="pedido confirmado">Pedido Confirmado</option>
+                                <option <?=($order['status']=="enviado")?"selected":''?> value="enviado">Enviado</option>
+                                <option <?=($order['status']=="entregado")?"selected":''?> value="entregado">Entregado</option>
+                                <option <?=($order['status']=="cancelado")?"selected":''?> value="cancelado">Cancelado</option>
+                            </select>
+                            
+                            <button type="submit" class="primary-button">Cambiar</button>
+
                         </div>
                     </div>
                     <div>
@@ -62,7 +69,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
             <br>
             <div>
@@ -115,5 +122,7 @@
 
             </div>
 
-        </div>
+            </div>
+
+        
     </div>

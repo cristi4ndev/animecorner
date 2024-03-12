@@ -8,12 +8,31 @@ class Order
     private $user_id;
     private $carrier_id;
     private $payment_method;
+    private $status;
     private $address_id;
     private $db;
 
     public function __construct()
     {
         $this->db = Database::connect();
+    }
+
+     /**
+     * Get the value of status
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set the value of status
+     */
+    public function setStatus($status): self
+    {
+        $this->status = $status;
+
+        return $this;
     }
 
     /**
@@ -187,11 +206,12 @@ class Order
 
     public function getAll()
     {
-        $sql = "SELECT o.*,u.*,c.*,a.* from orders o
-        INNER JOIN users u ON o.user_id = u.id
-        INNER JOIN carriers c ON o.carrier_id = c.id
-        INNER JOIN addresses a ON o.address_id = a.id
-        order by o.id DESC";
+        $sql = "SELECT o.*,  c.name as carrier_name, a.alias, a.country, a.province, a.postal_code, a.locality, a.address, a.phone,  
+        (SELECT SUM(quantity) AS numero_de_productos FROM order_products WHERE order_id = o.id) AS prods 
+        FROM orders o 
+        INNER JOIN carriers c ON o.carrier_id = c.id 
+        INNER JOIN addresses a ON o.address_id = a.id        
+         ORDER BY o.id DESC";
 
         $result = $this->db->query($sql);
 
@@ -236,8 +256,21 @@ class Order
             return false;
         }
     }
+    public function editStatus()
+    {
+        $sql = "UPDATE orders SET status = '{$this->getStatus()}' WHERE id = '{$this->getId()}'";
+        $result = $this->db->query($sql);
+
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     
+
+   
 
    
 

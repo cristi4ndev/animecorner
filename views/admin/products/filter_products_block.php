@@ -30,7 +30,7 @@
 
 
 
-            <?php if (isset($_SESSION['error'])) echo $_SESSION['error']; ?>
+           
 
         </div>
         <div class="filter-by-saga">
