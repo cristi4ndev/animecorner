@@ -281,6 +281,29 @@ class Product
             return false;
         }
     }
+    public function getLastAdded()
+    {
+        $sql = "SELECT products.*, categories.name AS category_name, sagas.name AS saga_name 
+        FROM products 
+        JOIN categories ON products.category_id = categories.id 
+        JOIN sagas ON products.saga_id = sagas.id 
+        WHERE deleted=0
+        ORDER BY id DESC
+        LIMIT 6";
+
+        $result = $this->db->query($sql);
+
+        if ($result && $result->num_rows > 0) {
+            $products = array();
+            while ($row = $result->fetch_assoc()) {
+                $products[] = $row;
+            }
+
+            return $products;
+        } else {
+            return false;
+        }
+    }
 
     public function create()
     {

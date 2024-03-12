@@ -50,64 +50,29 @@
     </div>
 
 
-    <h2 class="h2-block">Productos <strong>más Vendidos</strong> </h2>
+    <h2 class="h2-block">Últimos <strong>productos añadidos</strong> </h2>
     <section class="products-list" id="last-added-products">
 
         <div class="product-listing">
+            <?php foreach ($products as $product) 
+            
+            echo '
             <div>
                 <article class="article-list">
-                    <img src="<?= base_url ?>/uploads/images/bp18856_frente.jpg" class="article-list-image">
-                    <h3 class="article-list-name">Luffy</h3>
+                    <img src="' .base_url . 'uploads/images/products/'. $product['image'] .'" class="article-list-image">
+                    <h3 class="article-list-name">'.$product['name'].'</h3>
                     <div class="article-list-price">
-                        <span>15</span><span class="currency">€</span>
+                        <span>'.$product['price'].'€</span>
                     </div>
                 </article>
             </div>
-            <div>
-                <article class="article-list">
-                    <img src="<?= base_url ?>/uploads/images/bp18856_frente.jpg" class="article-list-image">
-                    <h3 class="article-list-name">Luffy</h3>
-                    <div class="article-list-price">
-                        <span>15</span><span class="currency">€</span>
-                    </div>
-                </article>
-            </div>
-            <div>
-                <article class="article-list">
-                    <img src="<?= base_url ?>/uploads/images/bp18856_frente.jpg" class="article-list-image">
-                    <h3 class="article-list-name">Luffy</h3>
-                    <div class="article-list-price">
-                        <span>15</span><span class="currency">€</span>
-                    </div>
-                </article>
-            </div>
-            <div>
-                <article class="article-list">
-                    <img src="<?= base_url ?>/uploads/images/bp18856_frente.jpg" class="article-list-image">
-                    <h3 class="article-list-name">Luffy</h3>
-                    <div class="article-list-price">
-                        <span>15</span><span class="currency">€</span>
-                    </div>
-                </article>
-            </div>
-            <div>
-                <article class="article-list">
-                    <img src="<?= base_url ?>/uploads/images/bp18856_frente.jpg" class="article-list-image">
-                    <h3 class="article-list-name">Luffy</h3>
-                    <div class="article-list-price">
-                        <span>15</span><span class="currency">€</span>
-                    </div>
-                </article>
-            </div>
-            <div>
-                <article class="article-list">
-                    <img src="<?= base_url ?>/uploads/images/bp18856_frente.jpg" class="article-list-image">
-                    <h3 class="article-list-name">Luffy</h3>
-                    <div class="article-list-price">
-                        <span>15</span><span class="currency">€</span>
-                    </div>
-                </article>
-            </div>
+            
+            
+            '
+            
+            ?>
+            
+            
 
         </div>
 
