@@ -169,12 +169,13 @@ class Order
 
     public function getOne()
     {
-        $sql = "SELECT o.*,  c.name as carrier_name, c.price as carrier_price, a.alias, a.country, a.province, a.postal_code, a.locality, a.address, a.phone,  
+        $sql = "SELECT o.*,  u.name as user_name, u.surname as user_surname, u.email as user_email, u.dni as user_dni, c.name as carrier_name, c.price as carrier_price, a.alias, a.country, a.province, a.postal_code, a.locality, a.address, a.phone,  
         (SELECT SUM(quantity) AS numero_de_productos FROM order_products WHERE order_id = o.id) AS prods, 
         (SELECT SUM(subtotal) AS total_de_productos FROM order_products WHERE order_id = o.id) AS total_prods 
         FROM orders o 
         INNER JOIN carriers c ON o.carrier_id = c.id 
-        INNER JOIN addresses a ON o.address_id = a.id        
+        INNER JOIN addresses a ON o.address_id = a.id 
+        INNER JOIN users u ON o.user_id = u.id         
         WHERE o.id = {$this->getId()} ORDER BY o.id DESC;";
         $result = $this->db->query($sql);
         if ($result && $result->num_rows == 1) {
@@ -185,10 +186,11 @@ class Order
     }
     public function getAllByUser()
     {
-        $sql = "SELECT o.*,  c.name as carrier_name, a.alias, a.country, a.province, a.postal_code, a.locality, a.address, a.phone,  
+        $sql = "SELECT o.*,  u.name as user_name, u.email as user_email, u.dni as user_dni, c.name as carrier_name, a.alias, a.country, a.province, a.postal_code, a.locality, a.address, a.phone,  
         (SELECT SUM(quantity) AS numero_de_productos FROM order_products WHERE order_id = o.id) AS prods 
         FROM orders o 
         INNER JOIN carriers c ON o.carrier_id = c.id 
+        INNER JOIN users u ON o.user_id = u.id 
         INNER JOIN addresses a ON o.address_id = a.id        
         WHERE o.user_id = {$this->getUserId()} ORDER BY o.id DESC;";
         $result = $this->db->query($sql);

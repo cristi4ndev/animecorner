@@ -176,6 +176,25 @@ class User {
         return $result;
 
     }
+
+    public function getUsers(){
+        $sql = "SELECT u.*, 
+        (SELECT count(o.id) FROM orders o WHERE o.user_id = u.id) AS num_orders, 
+        (SELECT sum(o.total) FROM orders o WHERE o.user_id = u.id) AS total 
+        FROM users u ORDER BY id DESC;
+        ";
+        $result = $this->db->query($sql);
+       
+        if ($result && $result->num_rows > 0) {
+            $users = array();
+            while ($row = $result->fetch_assoc()) {
+                $users[] = $row;
+            }
+            return $users;
+        } else {
+            return false;
+        }
+    }
     
 }   
 

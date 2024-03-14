@@ -120,12 +120,28 @@ class AdminController
     public function users()
     {
         Utils::isAdmin();
-        $admin = new Admin();
+        
+        if (isset($_GET['id'])){
+            require_once 'models/Order.php';
+            $order_model = new Order();
+            $order_model->setUserId($_GET['id']);
+            $my_orders = $order_model->getAllByUser();
+            require_once 'views/admin/users/orders.php';
+        } else {
+            $user_model = new User();
 
-        $user_list = $admin->setId($_SESSION['user']['id'])->getUsers();
+            $user_list = $user_model->getUsers();
+    
+            require_once 'views/admin/users/index.php';
+        }
+       
+        
 
-        require_once 'views/admin/users.php';
+        
     }
+
+  
+    
     public function categories()
     {
         Utils::isAdmin();

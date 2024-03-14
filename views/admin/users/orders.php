@@ -6,12 +6,13 @@
     <div id="main-content-account">
         
         <div id="orders-container">
-            <div><h1>Mis pedidos</h1></div>
+            <div><h1>Pedidos del usuario</h1></div>
             <div id="orders-list">
         
             <?php 
                 if ($my_orders) {
-                    echo '                  
+                    echo '
+                    
                  
                         <table id="cart-table">
                             <tr>
@@ -29,7 +30,7 @@
                    
                         echo '
                         
-                        <tr style="cursor:pointer" onClick="window.location=\''. base_url . 'user/order&id='. $order['id'] .'\';">
+                        <tr style="cursor:pointer" onClick="window.location=\''. base_url . 'admin/order&id='. $order['id'] .'\';">
                             
                             <td><a href=#>'.$order["id"].'</a></td>
                             <td>'.$order["created_at"].'</td>
@@ -44,7 +45,7 @@
                         ';
                     }
                 } else {
-                    echo "<h2>Actualmente <strong>no tengo</strong> pedidos</h2>";
+                    echo "<h2>El usuario <strong>no tiene</strong> pedidos</h2>";
                 }
                 
 

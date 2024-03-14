@@ -179,20 +179,7 @@ class Admin extends User {
 
     }
 
-    public function getUsers(){
-        $sql = "SELECT * FROM users WHERE NOT id='{$this->getId()}'";
-        $result = $this->db->query($sql);
-       
-        if ($result && $result->num_rows > 0) {
-            $users = array();
-            while ($row = $result->fetch_assoc()) {
-                $users[] = $row;
-            }
-            return $users;
-        } else {
-            return false;
-        }
-    }
+   
    
 
     

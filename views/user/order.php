@@ -1,71 +1,83 @@
 <div id="account-content">
-    <?= require_once 'views/user/category-block.php';
-    if (isset($_SESSION['error'])) echo "<p> {$_SESSION['error']} </p>"
-    ?>
+    <?= require_once 'views/admin/category-block.php' ?>
 
     <div id="main-content-account">
 
         <div id="order-container">
             <h1>Pedido Nº <?= $order['id'] ?> - realizado el <?= $order['created_at'] ?></h1>
-            <div class="flex">
-                <div id="delivery-address">
+            <div class="flex" style="align-items: flex-start; gap:20px">
+                <div style="width: 100%;">
+                    <div >
+                        <div>
+                            <strong><i class="fa-solid fa-location-dot"></i>Dirección de envío</strong>
+                            <hr>
+
+                            <span><?= $order['address'] ?></span>
+                            <span><?= $order['postal_code'] ?></span>
+                            <br>
+                            <span><?= $order['locality'] ?></span>
+                            <span><?= $order['province'] ?></span>
+                            <span><?= $order['country'] ?></span>
+                            <br>
+                            <span><?= $order['phone'] ?></span>
+                        </div>
+                    </div>
                     <div>
-                        <strong><i class="fa-solid fa-location-dot"></i>Dirección de envío</strong>
-                        <hr>
-                        <br>
-                        <span><?= $order['address'] ?></span>
-                        <span><?= $order['postal_code'] ?></span>
-                        <br>
-                        <span><?= $order['locality'] ?></span>
-                        <span><?= $order['province'] ?></span>
-                        <span><?= $order['country'] ?></span>
-                        <br>
-                        <span><?= $order['phone'] ?></span>
+                        <div>
+                            <strong><i class="fa-solid fa-user"></i></i>Datos de usuario</strong>
+                            <hr>
+
+                            <span><?= $order['user_name'] ?></span>
+                            <span><?= $order['user_surname'] ?></span>
+                            <br>
+                            <span><?= $order['user_dni'] ?></span>
+                            <br>
+                            <span><?= $order['user_email'] ?></span>
+                        </div>
+
+                    </div>
+                    <div id="head-info">
+                        <div>
+                            <div>
+                                <strong><i class="fa-solid fa-calendar-days"></i>Fecha</strong>
+                            </div>
+                            <hr>
+                            <div>
+                                <?= $order['created_at'] ?>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <strong><i class="fa-solid fa-signs-post"></i>Estado</strong>
+                            </div>
+                            <hr>
+                            <div>
+                            <?php echo Utils::printOrderStatus($order['status']) ?>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <strong><i class="fa-solid fa-truck"></i>Transportista</strong>
+                            </div>
+                            <hr>
+                            <div>
+                                <?= $order['carrier_name'] ?>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <strong><i class="fa-solid fa-cart-shopping"></i>Productos Comprados</strong>
+                            </div>
+                            <hr>
+                            <div>
+                                <?= $order['prods'] ?>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
-                <div id="head-info">
-                    <div>
-                        <div>
-                            <strong><i class="fa-solid fa-calendar-days"></i>Fecha</strong>
-                        </div>
-                        <hr>
-                        <div>
-                            <?= $order['created_at'] ?>
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <strong><i class="fa-solid fa-signs-post"></i>Estado</strong>
-                        </div>
-                        <hr>
-                        <div>
-                            <?php echo Utils::printOrderStatus($order['status']) ?>
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <strong><i class="fa-solid fa-truck"></i>Transportista</strong>
-                        </div>
-                        <hr>
-                        <div>
-                            <?= $order['carrier_name'] ?>
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <strong><i class="fa-solid fa-cart-shopping"></i>Productos Comprados</strong>
-                        </div>
-                        <hr>
-                        <div>
-                            <?= $order['prods'] ?>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-            <br>
-            <div>
+
+                <div>
 
                 <div>
                     <table id="cart-table">
@@ -114,6 +126,12 @@
 
 
             </div>
+                
+            </div>
+
+            
 
         </div>
+
+
     </div>
